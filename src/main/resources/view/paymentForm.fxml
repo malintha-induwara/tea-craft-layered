@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import io.github.palexdev.materialfx.controls.MFXButton?>
+<?import io.github.palexdev.materialfx.controls.MFXComboBox?>
+<?import io.github.palexdev.materialfx.controls.MFXTextField?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane fx:id="paymentsPane" prefHeight="720.0" prefWidth="1030.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.controller.PaymentFormController">
+   <children>
+      <Text fill="#636e72" layoutX="60.0" layoutY="100.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Payments">
+         <font>
+            <Font name="Roboto Medium" size="37.0" />
+         </font>
+         <effect>
+            <DropShadow>
+               <color>
+                  <Color opacity="0.2786259651184082" />
+               </color>
+            </DropShadow>
+         </effect>
+      </Text>
+      <Rectangle arcHeight="10.0" arcWidth="10.0" fill="WHITE" height="457.0" layoutX="101.0" layoutY="150.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" style="" width="364.0">
+         <effect>
+            <DropShadow blurType="GAUSSIAN" offsetX="-1.0" offsetY="2.0" spread="0.12">
+               <color>
+                  <Color opacity="0.20000000298023224" />
+               </color>
+            </DropShadow>
+         </effect>
+      </Rectangle>
+      <Rectangle arcHeight="10.0" arcWidth="10.0" fill="WHITE" height="78.0" layoutX="496.0" layoutY="147.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" style="" width="481.0">
+         <effect>
+            <DropShadow blurType="GAUSSIAN" offsetX="-1.0" offsetY="2.0" spread="0.12">
+               <color>
+                  <Color opacity="0.20000000298023224" />
+               </color>
+            </DropShadow>
+         </effect>
+      </Rectangle>
+      <Text fill="#636e72" layoutX="143.0" layoutY="206.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Payment ID">
+         <font>
+            <Font name="Roboto Medium" size="22.0" />
+         </font>
+      </Text>
+      <Text fx:id="txtPaymentId" layoutX="333.0" layoutY="205.0" strokeType="OUTSIDE" strokeWidth="0.0" text="P-001">
+         <font>
+            <Font name="Roboto Medium" size="20.0" />
+         </font>
+      </Text>
+      <Text fill="#636e72" layoutX="143.0" layoutY="268.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Supplier ID">
+         <font>
+            <Font name="Roboto Medium" size="22.0" />
+         </font>
+      </Text>
+      <MFXComboBox fx:id="cmbSupId" floatMode="DISABLED" layoutX="283.0" layoutY="241.0" onAction="#cmbSupIdOnAction" prefHeight="40.0" prefWidth="144.0" styleClass="mfx-combo-box" stylesheets="@../assets/css/MFXProcessing.css" />
+      <Text fill="#636e72" layoutX="143.0" layoutY="331.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Name">
+         <font>
+            <Font name="Roboto Medium" size="22.0" />
+         </font>
+      </Text>
+      <Text fx:id="txtName" layoutX="348.0" layoutY="330.0" strokeType="OUTSIDE" strokeWidth="0.0" text="-">
+         <font>
+            <Font name="Roboto Medium" size="20.0" />
+         </font>
+      </Text>
+      <Text fill="#636e72" layoutX="143.0" layoutY="385.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Supplied Amount">
+         <font>
+            <Font name="Roboto Medium" size="22.0" />
+         </font>
+      </Text>
+      <Text fx:id="txtAmount" layoutX="354.0" layoutY="384.0" strokeType="OUTSIDE" strokeWidth="0.0" text="-">
+         <font>
+            <Font name="Roboto Medium" size="20.0" />
+         </font>
+      </Text>
+      <Text fill="#636e72" layoutX="143.0" layoutY="444.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Payment">
+         <font>
+            <Font name="Roboto Medium" size="22.0" />
+         </font>
+      </Text>
+      <Text fx:id="txtPayment" layoutX="354.0" layoutY="443.0" strokeType="OUTSIDE" strokeWidth="0.0" text="-">
+         <font>
+            <Font name="Roboto Medium" size="20.0" />
+         </font>
+      </Text>
+      <Text fill="#636e72" layoutX="526.0" layoutY="193.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Price Of Tea Leaves" wrappingWidth="197.8720703125">
+         <font>
+            <Font name="Roboto Medium" size="22.0" />
+         </font>
+      </Text>
+      <MFXTextField fx:id="txtFieldTeaLeavesPrice" floatMode="DISABLED" layoutX="767.0" layoutY="160.0" prefHeight="50.0" prefWidth="107.0" styleClass="mfx-text-field" stylesheets="@../assets/css/MFXProcessing.css" text="0" />
+      <Rectangle arcHeight="10.0" arcWidth="10.0" fill="WHITE" height="366.0" layoutX="496.0" layoutY="241.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" style="" width="481.0">
+         <effect>
+            <DropShadow blurType="GAUSSIAN" offsetX="-1.0" offsetY="2.0" spread="0.12">
+               <color>
+                  <Color opacity="0.20000000298023224" />
+               </color>
+            </DropShadow>
+         </effect>
+      </Rectangle>
+      <TableView fx:id="tblPayments" layoutX="524.0" layoutY="268.0" prefHeight="312.0" prefWidth="428.0" stylesheets="@../assets/css/TableStyle.css">
+        <columns>
+          <TableColumn fx:id="colPaymentId" prefWidth="96.0" style="-fx-alignment: center;" text="Payment ID" />
+          <TableColumn fx:id="colAmount" prefWidth="105.0" style="-fx-alignment: center;" text="Amount" />
+            <TableColumn fx:id="colPayment" prefWidth="114.0" style="-fx-alignment: center;" text="Payment" />
+            <TableColumn fx:id="colDate" prefWidth="112.0" style="-fx-alignment: center;" text="Date" />
+        </columns>
+      </TableView>
+      <MFXButton fx:id="btnPay" buttonType="RAISED" depthLevel="LEVEL0" layoutX="208.0" layoutY="522.0" onAction="#btnPayOnAction" prefHeight="50.0" prefWidth="150.0" style="-fx-background-color: #1dd1a1;" styleClass="mfx-button-AddToCart" stylesheets="@../assets/css/MFXSales.css" text="Pay">
+         <graphic>
+            <ImageView fitHeight="30.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../assets/images/salary.png" />
+               </image>
+            </ImageView>
+         </graphic></MFXButton>
+      <MFXButton buttonType="RAISED" depthLevel="LEVEL3" layoutX="522.0" layoutY="643.0" prefHeight="50.0" prefWidth="133.0" style="-fx-background-color: #a29bfe;" styleClass="mfx-button-Employee" stylesheets="@../assets/css/MFXEmployee.css" text="Payments">
+         <graphic>
+            <ImageView fitHeight="30.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../assets/images/salary.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </MFXButton>
+      <MFXButton fx:id="btnSupplier" buttonType="RAISED" depthLevel="LEVEL3" layoutX="371.0" layoutY="643.0" onAction="#btnSupplierOnAction" prefHeight="50.0" prefWidth="133.0" style="-fx-background-color: #74b9ff;" styleClass="mfx-button-Employee" stylesheets="@../assets/css/MFXEmployee.css" text="Supplier">
+         <graphic>
+            <ImageView fitHeight="28.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../assets/images/supplier.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </MFXButton>
+      <Text fx:id="txtPaymentId1" layoutX="738.0" layoutY="193.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Rs">
+         <font>
+            <Font name="Roboto Medium" size="20.0" />
+         </font>
+      </Text>
+      <MFXButton fx:id="btnUpdate" buttonType="RAISED" depthLevel="LEVEL0" ellipsisString="" layoutX="896.0" layoutY="160.0" onAction="#btnUpdateOnAction" prefHeight="50.0" prefWidth="65.0" style="-fx-background-color: #1dd1a1;" styleClass="mfx-button-AddToCart" stylesheets="@../assets/css/MFXSales.css">
+         <graphic>
+            <ImageView fitHeight="33.0" fitWidth="66.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../assets/images/update.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </MFXButton>
+      <Text layoutX="322.0" layoutY="443.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Rs">
+         <font>
+            <Font name="Roboto Medium" size="20.0" />
+         </font>
+      </Text>
+      <Text layoutX="417.0" layoutY="384.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Kg">
+         <font>
+            <Font name="Roboto Medium" size="20.0" />
+         </font>
+      </Text>
+   </children>
+</AnchorPane>

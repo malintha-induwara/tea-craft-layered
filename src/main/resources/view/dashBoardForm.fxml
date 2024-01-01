@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import io.github.palexdev.materialfx.controls.MFXButton?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.controller.DashBoardFormController">
+   <children>
+      <AnchorPane prefHeight="720.0" prefWidth="250.0" style="-fx-background-color: #2d3436;">
+         <children>
+            <Text fill="#1dd1a1" layoutX="62.0" layoutY="105.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Tea">
+               <font>
+                  <Font name="Roboto Medium" size="29.0" />
+               </font>
+            </Text>
+            <VBox layoutX="27.0" layoutY="141.0" prefHeight="298.0" prefWidth="190.0">
+               <children>
+                  <MFXButton fx:id="btnDashboard" alignment="BASELINE_LEFT" graphicTextGap="10.0" onAction="#btnDashboardOnAction" prefHeight="50.0" prefWidth="190.0" styleClass="mfx-button-Dashboard" stylesheets="@../assets/css/MFXDashboard.css" text="Dashboard" textFill="WHITE">
+                     <graphic>
+                        <ImageView fitHeight="19.0" fitWidth="29.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../assets/images/dashboard.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                     <padding>
+                        <Insets left="35.0" />
+                     </padding>
+                     <VBox.margin>
+                        <Insets right="1.0" />
+                     </VBox.margin>
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                  </MFXButton>
+                  <MFXButton fx:id="btnTeaLeaves" alignment="BASELINE_LEFT" graphicTextGap="10.0" onAction="#btnTeaLeavesOnAction" prefHeight="50.0" prefWidth="190.0" styleClass="mfx-button-Dashboard" stylesheets="@../assets/css/MFXDashboard.css" text="Tea leaves" textFill="WHITE">
+                     <graphic>
+                        <ImageView fitHeight="19.0" fitWidth="29.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../assets/images/leaf.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                     <opaqueInsets>
+                        <Insets left="10.0" />
+                     </opaqueInsets>
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin>
+                     <padding>
+                        <Insets left="35.0" />
+                     </padding>
+                  </MFXButton>
+                  <MFXButton fx:id="btnProcessing" alignment="BASELINE_LEFT" graphicTextGap="10.0" onAction="#btnProcessingOnAction" prefHeight="50.0" prefWidth="190.0" styleClass="mfx-button-Dashboard" stylesheets="@../assets/css/MFXDashboard.css" text="Processing" textFill="WHITE">
+                     <graphic>
+                        <ImageView fitHeight="19.0" fitWidth="29.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../assets/images/processing.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                     <opaqueInsets>
+                        <Insets left="10.0" />
+                     </opaqueInsets>
+                     <padding>
+                        <Insets left="35.0" />
+                     </padding>
+                  </MFXButton>
+                  <MFXButton fx:id="btnPackaging" alignment="BASELINE_LEFT" graphicTextGap="10.0" onAction="#btnPackagingOnAction" prefHeight="50.0" prefWidth="190.0" styleClass="mfx-button-Dashboard" stylesheets="@../assets/css/MFXDashboard.css" text="Packaging" textFill="WHITE">
+                     <graphic>
+                        <ImageView fitHeight="19.0" fitWidth="29.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../assets/images/packaging.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                     <opaqueInsets>
+                        <Insets left="10.0" />
+                     </opaqueInsets>
+                     <padding>
+                        <Insets left="35.0" />
+                     </padding>
+                  </MFXButton>
+                  <MFXButton fx:id="btnSales" alignment="BASELINE_LEFT" graphicTextGap="10.0" onAction="#btnSalesOnAction" prefHeight="50.0" prefWidth="190.0" styleClass="mfx-button-Dashboard" stylesheets="@../assets/css/MFXDashboard.css" text="Tea Sales" textFill="WHITE">
+                     <graphic>
+                        <ImageView fitHeight="19.0" fitWidth="29.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../assets/images/purchase.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                     <opaqueInsets>
+                        <Insets left="10.0" />
+                     </opaqueInsets>
+                     <padding>
+                        <Insets left="35.0" />
+                     </padding>
+                  </MFXButton>
+                  <MFXButton fx:id="btnFertilizer" alignment="BASELINE_LEFT" graphicTextGap="10.0" onAction="#btnFertilizerOnAction" prefHeight="50.0" prefWidth="190.0" styleClass="mfx-button-Dashboard" stylesheets="@../assets/css/MFXDashboard.css" text="Fertilizer" textFill="WHITE">
+                     <graphic>
+                        <ImageView fitHeight="19.0" fitWidth="29.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../assets/images/fertilizer.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                     <opaqueInsets>
+                        <Insets left="10.0" />
+                     </opaqueInsets>
+                     <padding>
+                        <Insets left="35.0" />
+                     </padding>
+                  </MFXButton>
+               </children>
+            </VBox>
+            <MFXButton fx:id="btnSupplier" alignment="BASELINE_LEFT" graphicTextGap="10.0" layoutX="27.0" layoutY="438.0" onAction="#btnSupplierOnAction" prefHeight="50.0" prefWidth="190.0" styleClass="mfx-button-Dashboard" stylesheets="@../assets/css/MFXDashboard.css" text="Supplier" textFill="WHITE">
+               <graphic>
+                  <ImageView fitHeight="19.0" fitWidth="29.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../assets/images/supplier.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <font>
+                  <Font size="20.0" />
+               </font>
+               <padding>
+                  <Insets left="35.0" />
+               </padding>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+            </MFXButton>
+            <MFXButton fx:id="btnEmployee" alignment="BASELINE_LEFT" graphicTextGap="10.0" layoutX="27.0" layoutY="491.0" onAction="#btnEmployeeOnAction" prefHeight="50.0" prefWidth="190.0" styleClass="mfx-button-Dashboard" stylesheets="@../assets/css/MFXDashboard.css" text="Employee" textFill="WHITE">
+               <graphic>
+                  <ImageView fitHeight="19.0" fitWidth="29.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../assets/images/employee.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <font>
+                  <Font size="20.0" />
+               </font>
+               <padding>
+                  <Insets left="35.0" />
+               </padding>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+            </MFXButton>
+            <MFXButton fx:id="btnCustomer" alignment="BASELINE_LEFT" graphicTextGap="10.0" layoutX="27.0" layoutY="541.0" onAction="#btnCustomerOnAction" prefHeight="50.0" prefWidth="190.0" styleClass="mfx-button-Dashboard" stylesheets="@../assets/css/MFXDashboard.css" text="Customer" textFill="WHITE">
+               <graphic>
+                  <ImageView fitHeight="19.0" fitWidth="29.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../assets/images/customer.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <font>
+                  <Font size="20.0" />
+               </font>
+               <padding>
+                  <Insets left="35.0" />
+               </padding>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+            </MFXButton>
+            <MFXButton fx:id="btnLogout" alignment="BASELINE_LEFT" graphicTextGap="10.0" layoutX="27.0" layoutY="624.0" onAction="#btnLogoutOnAction" prefHeight="50.0" prefWidth="190.0" styleClass="mfx-button-Dashboard" stylesheets="@../assets/css/MFXDashboard.css" text="Logout" textFill="WHITE">
+               <graphic>
+                  <ImageView fitHeight="19.0" fitWidth="29.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../assets/images/logout.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <font>
+                  <Font size="20.0" />
+               </font>
+               <padding>
+                  <Insets left="50.0" />
+               </padding>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+            </MFXButton>
+            <Text fill="WHITE" layoutX="122.0" layoutY="104.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Craft">
+               <font>
+                  <Font name="Roboto Medium" size="29.0" />
+               </font>
+            </Text>
+            <ImageView fitHeight="50.0" fitWidth="65.0" layoutX="99.0" layoutY="18.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../assets/images/leafLogo.png" />
+               </image>
+            </ImageView>
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="mainPane" layoutX="250.0" prefHeight="720.0" prefWidth="1030.0" />
+   </children>
+</AnchorPane>

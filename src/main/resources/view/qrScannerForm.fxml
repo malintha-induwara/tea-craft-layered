@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import io.github.palexdev.materialfx.controls.MFXButton?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="444.0" prefWidth="600.0" style="-fx-background-color: #FFFF;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.controller.QrScannerFormController">
+   <children>
+      <MFXButton buttonType="RAISED" depthLevel="LEVEL1" layoutX="246.0" layoutY="375.0" onAction="#btnCloseOnAction" prefHeight="50.0" prefWidth="108.0" style="-fx-background-color: #2d3436;" styleClass="mfx-button-CreateAccount" stylesheets="@../assets/css/MFXLogin.css" text="Close" />
+      <Text fill="#1dd1a1" layoutX="221.0" layoutY="62.0" strokeType="OUTSIDE" strokeWidth="0.0" text="QR Scanner">
+         <font>
+            <Font name="Segoe UI Semibold" size="30.0" />
+         </font>
+      </Text>
+      <ImageView fx:id="imgView" fitHeight="270.0" fitWidth="366.0" layoutX="126.0" layoutY="87.0" pickOnBounds="true" preserveRatio="true" />
+   </children>
+</AnchorPane>

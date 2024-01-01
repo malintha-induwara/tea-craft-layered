@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import io.github.palexdev.materialfx.controls.MFXButton?>
+<?import io.github.palexdev.materialfx.controls.MFXTextField?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="720.0" prefWidth="1030.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.controller.CustomerFormController">
+   <children>
+      <Text fill="#636e72" layoutX="60.0" layoutY="100.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Customer">
+         <font>
+            <Font name="Roboto Medium" size="37.0" />
+         </font>
+         <effect>
+            <DropShadow>
+               <color>
+                  <Color opacity="0.2786259651184082" />
+               </color>
+            </DropShadow>
+         </effect>
+      </Text>
+      <TableView fx:id="tblCustomer" layoutX="60.0" layoutY="160.0" prefHeight="450.0" prefWidth="911.0" stylesheets="@../assets/css/TableStyle.css">
+         <columns>
+            <TableColumn fx:id="colCustomerId" prefWidth="110.0" style="-fx-alignment: center;" text="Customer ID" />
+            <TableColumn fx:id="colFirstName" prefWidth="112.0" style="-fx-alignment: center;" text="First Name" />
+            <TableColumn fx:id="colLastName" prefWidth="94.0" style="-fx-alignment: center;" text="Last Name" />
+            <TableColumn fx:id="colAddress" prefWidth="124.0" style="-fx-alignment: center;" text="Address" />
+            <TableColumn fx:id="colEmail" prefWidth="136.0" style="-fx-alignment: center;" text="Email" />
+            <TableColumn fx:id="colMobileNo" prefWidth="130.0" style="-fx-alignment: center;" text="Mobile No" />
+            <TableColumn fx:id="colUpdate" prefWidth="99.0" style="-fx-alignment: center;" text="Update" />
+            <TableColumn fx:id="colDelete" prefWidth="104.0" style="-fx-alignment: center;" text="Delete" />
+         </columns>
+      </TableView>
+      <MFXButton fx:id="btnAddCustomer" buttonType="RAISED" depthLevel="LEVEL3" layoutX="821.0" layoutY="93.0" onAction="#btnAddCustomerOnAction" prefHeight="50.0" prefWidth="150.0" style="-fx-background-color: #1dd1a1;" styleClass="mfx-button-Customer" stylesheets="@../assets/css/MFXAddCustomer.css" text="Add Customer">
+         <graphic>
+            <ImageView fitHeight="28.0" fitWidth="47.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../assets/images/addEmployee.png" />
+               </image>
+            </ImageView>
+         </graphic></MFXButton>
+      <MFXTextField fx:id="txtSearch" floatMode="DISABLED" layoutX="631.0" layoutY="97.0" onAction="#txtSearchOnAction" prefHeight="43.0" prefWidth="150.0" styleClass="mfx-text-field" stylesheets="@../assets/css/MFXProcessing.css" />
+      <Text fill="#636e72" layoutX="545.0" layoutY="125.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Search">
+         <font>
+            <Font name="Roboto Medium" size="22.0" />
+         </font>
+      </Text>
+   </children>
+</AnchorPane>
