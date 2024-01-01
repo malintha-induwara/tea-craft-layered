@@ -2,7 +2,7 @@ package lk.ijse.model;
 
 import lk.ijse.db.DbConnection;
 import lk.ijse.dto.TeaBookTypeDetailDto;
-import lk.ijse.dto.TeaBookTypeDto;
+import lk.ijse.entity.TeaBookType;
 
 import java.sql.*;
 import java.time.LocalDate;
@@ -54,7 +54,7 @@ public class TeaBookTypeModel {
         return "TBT-001";
     }
 
-    public boolean saveTeaBookType(TeaBookTypeDto dto) throws SQLException {
+    public boolean saveTeaBookType(TeaBookType dto) throws SQLException {
 
         Connection connection = DbConnection.getInstance().getConnection();
 
@@ -72,7 +72,7 @@ public class TeaBookTypeModel {
 
     }
 
-    public List<TeaBookTypeDto> getAllTeaBookTypeDetails(String date) throws SQLException {
+    public List<TeaBookType> getAllTeaBookTypeDetails(String date) throws SQLException {
 
        Connection connection = DbConnection.getInstance().getConnection();
 
@@ -84,10 +84,10 @@ public class TeaBookTypeModel {
 
          ResultSet resultSet = pstm.executeQuery();
 
-         List<TeaBookTypeDto> dtoList = new ArrayList<>();
+         List<TeaBookType> dtoList = new ArrayList<>();
 
          while (resultSet.next()){
-                TeaBookTypeDto dto = new TeaBookTypeDto(
+                TeaBookType dto = new TeaBookType(
                         resultSet.getString(1),
                         resultSet.getDate(2).toLocalDate(),
                         resultSet.getString(3),

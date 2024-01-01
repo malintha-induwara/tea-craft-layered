@@ -13,7 +13,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.text.Text;
 import lk.ijse.entity.TeaBook;
 import lk.ijse.dto.TeaBookTypeDetailDto;
-import lk.ijse.dto.TeaBookTypeDto;
+import lk.ijse.entity.TeaBookType;
 import lk.ijse.entity.TeaTypes;
 import lk.ijse.view.tdm.TeaBookTypeTm;
 import lk.ijse.model.ProcessingModel;
@@ -100,12 +100,12 @@ public class ProcessingFormController {
 
         try {
 
-            List<TeaBookTypeDto> dtoList = teaBookTypeModel.getAllTeaBookTypeDetails(date);
+            List<TeaBookType> dtoList = teaBookTypeModel.getAllTeaBookTypeDetails(date);
 
             ObservableList <TeaBookTypeTm> obList = FXCollections.observableArrayList();
 
 
-            for (TeaBookTypeDto dto :dtoList){
+            for (TeaBookType dto :dtoList){
 
                 //Getting The Name from databace
                 String teaType= teaTypeModel.getTeaType(dto.getTypeId());
@@ -255,7 +255,7 @@ public class ProcessingFormController {
         try {
 
             String teaTypeId=teaTypeModel.getTeaTypeId(type);
-            TeaBookTypeDto dto = new TeaBookTypeDto(teaBookTypeId,date,teaTypeId,amount,false);
+            TeaBookType dto = new TeaBookType(teaBookTypeId,date,teaTypeId,amount,false);
 
             boolean isSaved = teaBookTypeModel.saveTeaBookType(dto);
 

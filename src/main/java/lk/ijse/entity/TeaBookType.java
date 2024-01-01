@@ -1,4 +1,4 @@
-package lk.ijse.dto;
+package lk.ijse.entity;
 
 
 import lombok.AllArgsConstructor;
@@ -12,7 +12,7 @@ import java.time.LocalDate;
 @Data
 
 
-public class TeaBookTypeDto {
+public class TeaBookType {
 
     private String teaBookTypeId;
     private LocalDate date;
