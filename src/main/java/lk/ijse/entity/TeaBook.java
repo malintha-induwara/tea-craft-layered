@@ -1,4 +1,4 @@
-package lk.ijse.dto;
+package lk.ijse.entity;
 
 
 import lombok.AllArgsConstructor;
@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-public class TeaBookDto {
+public class TeaBook {
 
     private  String teaBookId;
     private  double dailyAmount;

@@ -1,7 +1,7 @@
 package lk.ijse.model;
 
 import lk.ijse.db.DbConnection;
-import lk.ijse.dto.UserDto;
+import lk.ijse.entity.User;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -12,7 +12,7 @@ public class UserModel {
     public static String userName;
 
 
-    public boolean saveUser(UserDto dto) throws SQLException {
+    public boolean saveUser(User dto) throws SQLException {
         Connection connection = DbConnection.getInstance().getConnection();
         String sql= "INSERT INTO user VALUES(?,?,?)";
         PreparedStatement pstm = connection.prepareStatement(sql);

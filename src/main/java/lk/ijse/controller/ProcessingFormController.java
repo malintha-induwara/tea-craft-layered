@@ -11,7 +11,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.text.Text;
-import lk.ijse.dto.TeaBookDto;
+import lk.ijse.entity.TeaBook;
 import lk.ijse.dto.TeaBookTypeDetailDto;
 import lk.ijse.dto.TeaBookTypeDto;
 import lk.ijse.entity.TeaTypes;
@@ -206,9 +206,9 @@ public class ProcessingFormController {
 
         try {
 
-            List <TeaBookDto> teaBookList =  teaBookModel.getAllTeaBookDetails();
+            List <TeaBook> teaBookList =  teaBookModel.getAllTeaBookDetails();
 
-            for (TeaBookDto teaBookDto : teaBookList) {
+            for (TeaBook teaBookDto : teaBookList) {
                 obList.add(teaBookDto.getDate());
             }
             cmbDate.setItems(obList);

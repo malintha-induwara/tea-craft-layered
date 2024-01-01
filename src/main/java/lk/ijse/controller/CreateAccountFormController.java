@@ -9,7 +9,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
-import lk.ijse.dto.UserDto;
+import lk.ijse.entity.User;
 import lk.ijse.model.UserModel;
 
 import java.io.IOException;
@@ -73,7 +73,7 @@ public class CreateAccountFormController {
         String reEnterPassword = txtReEnterPassword.getText();
 
 
-        UserDto dto = new UserDto(userName,password,email);
+        User dto = new User(userName,password,email);
 
 
         //TO switch the UI

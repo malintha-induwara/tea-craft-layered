@@ -14,7 +14,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
 import javafx.util.Duration;
-import lk.ijse.dto.TeaBookDto;
+import lk.ijse.entity.TeaBook;
 import lk.ijse.entity.TeaTypes;
 import lk.ijse.model.*;
 
@@ -152,17 +152,17 @@ public class DashBoardMainFormController {
         XYChart.Series series = new XYChart.Series();
 
         try {
-            List<TeaBookDto> dtoList = teaBookModel.getAllTeaBookDetails();
+            List<TeaBook> dtoList = teaBookModel.getAllTeaBookDetails();
 
             //To limit for last 5 days
 
             int startIndex = Math.max(0, dtoList.size() - 7); // Ensure startIndex is not negative
-            List<TeaBookDto> finaList = dtoList.subList(startIndex, dtoList.size());
+            List<TeaBook> finaList = dtoList.subList(startIndex, dtoList.size());
 
 
 
 
-            for (TeaBookDto dto : finaList) {
+            for (TeaBook dto : finaList) {
 
                 //To Extract the Day Only
                 DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");

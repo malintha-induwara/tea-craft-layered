@@ -1,4 +1,4 @@
-package lk.ijse.dto;
+package lk.ijse.entity;
 
 
 import lombok.AllArgsConstructor;
@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
-public class UserDto {
+public class User {
     private String username;
     private String password;
     private String email;

@@ -9,7 +9,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
-import lk.ijse.dto.UserDto;
+import lk.ijse.entity.User;
 import lk.ijse.model.UserModel;
 import lk.ijse.util.EmailService;
 
@@ -42,7 +42,7 @@ public class CreateAccountOtpFormController {
 
 
 
-    private UserDto userDto;
+    private User userDto;
 
     private String otp;
 
@@ -94,7 +94,7 @@ public class CreateAccountOtpFormController {
         otpPane.getChildren().add(registerPane);
     }
 
-    public void setUserDto(UserDto userDto) {
+    public void setUserDto(User userDto) {
         this.userDto = userDto;
     }
 

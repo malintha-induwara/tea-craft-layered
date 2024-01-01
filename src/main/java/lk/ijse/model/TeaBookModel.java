@@ -1,7 +1,7 @@
 package lk.ijse.model;
 
 import lk.ijse.db.DbConnection;
-import lk.ijse.dto.TeaBookDto;
+import lk.ijse.entity.TeaBook;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -167,7 +167,7 @@ public class TeaBookModel {
     }
 
 
-    public List<TeaBookDto> getAllTeaBookDetails() throws SQLException {
+    public List<TeaBook> getAllTeaBookDetails() throws SQLException {
 
 
         Connection connection = DbConnection.getInstance().getConnection();
@@ -176,7 +176,7 @@ public class TeaBookModel {
 
         PreparedStatement pstm = connection.prepareStatement(sql);
 
-        List<TeaBookDto> dtoList = new ArrayList<>();
+        List<TeaBook> dtoList = new ArrayList<>();
 
         ResultSet resultSet = pstm.executeQuery();
 
@@ -185,7 +185,7 @@ public class TeaBookModel {
             double dailyAmount = resultSet.getDouble(2);
             String date = resultSet.getString(3);
 
-            TeaBookDto dto = new TeaBookDto(teaBookId,dailyAmount,date);
+            TeaBook dto = new TeaBook(teaBookId,dailyAmount,date);
 
             dtoList.add(dto);
 

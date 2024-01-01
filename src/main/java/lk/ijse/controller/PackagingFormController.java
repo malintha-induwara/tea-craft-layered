@@ -21,6 +21,7 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import lk.ijse.dto.*;
 import lk.ijse.entity.Packaging;
+import lk.ijse.entity.TeaBook;
 import lk.ijse.entity.TeaTypes;
 import lk.ijse.view.tdm.PackagingTm;
 import lk.ijse.model.*;
@@ -261,9 +262,9 @@ public class PackagingFormController {
 
         try {
 
-            List<TeaBookDto> teaBookList =  teaBookModel.getAllTeaBookDetails();
+            List<TeaBook> teaBookList =  teaBookModel.getAllTeaBookDetails();
 
-            for (TeaBookDto teaBookDto : teaBookList) {
+            for (TeaBook teaBookDto : teaBookList) {
                 obList.add(teaBookDto.getDate());
             }
             cmbDate.setItems(obList);
