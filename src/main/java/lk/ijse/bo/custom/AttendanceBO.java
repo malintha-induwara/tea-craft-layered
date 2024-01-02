@@ -3,7 +3,7 @@ package lk.ijse.bo.custom;
 import lk.ijse.bo.SuperBO;
 import lk.ijse.db.DbConnection;
 import lk.ijse.entity.Attendance;
-
+import lk.ijse.Dto.AttendanceDto;
 import java.sql.*;
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -12,9 +12,9 @@ import java.util.List;
 
 public interface AttendanceBO extends SuperBO {
     String generateNextAttendanceId() throws SQLException, ClassNotFoundException;
-    boolean markAttendance(Attendance dto) throws SQLException;
+    boolean markAttendance(AttendanceDto dto) throws SQLException;
     boolean searchAttendance(String empId, LocalDate date) throws SQLException;
-    List<Attendance> getAllAttendanceDetails(LocalDate date) throws SQLException;
+    List<AttendanceDto> getAllAttendanceDetails(LocalDate date) throws SQLException;
     boolean deleteAttendance(String attendanceId) throws SQLException ;
     void updateOutTime(String empId, LocalTime outTime, LocalDate currentDate) throws SQLException ;
     int getWorkedHoursCount(String empId) throws SQLException;

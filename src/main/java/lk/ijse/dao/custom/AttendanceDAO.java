@@ -5,6 +5,7 @@ import lk.ijse.entity.Attendance;
 
 import java.sql.SQLException;
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.List;
 
 public interface AttendanceDAO extends CrudDAO<Attendance> {
@@ -15,4 +16,5 @@ public interface AttendanceDAO extends CrudDAO<Attendance> {
     boolean updatePayedStatus(String empId) throws SQLException;
     int getAttendanceCount(String date) throws SQLException;
     boolean searchOutTime(String empId, LocalDate date) throws SQLException;
+    void updateOutTime(String empId, LocalTime outTime, LocalDate currentDate) throws SQLException;
 }

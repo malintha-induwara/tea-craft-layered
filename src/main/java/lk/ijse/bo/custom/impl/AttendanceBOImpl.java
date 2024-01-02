@@ -4,10 +4,11 @@ import lk.ijse.bo.custom.AttendanceBO;
 import lk.ijse.dao.DAOFactory;
 import lk.ijse.dao.custom.AttendanceDAO;
 import lk.ijse.entity.Attendance;
-
+import lk.ijse.Dto.AttendanceDto;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.ArrayList;
 import java.util.List;
 
 public class AttendanceBOImpl implements AttendanceBO {
@@ -21,53 +22,72 @@ public class AttendanceBOImpl implements AttendanceBO {
     }
 
     @Override
-    public boolean markAttendance(Attendance dto) throws SQLException {
-        return false;
+    public boolean markAttendance(AttendanceDto dto) throws SQLException {
+        return attendanceDAO.save(new Attendance(
+                dto.getAttendanceId(),
+                dto.getDate(),
+                dto.getEmpId(),
+                dto.getInTime(),
+                dto.getOutTime(),
+                dto.isPayed()
+        ));
     }
 
     @Override
     public boolean searchAttendance(String empId, LocalDate date) throws SQLException {
-        return false;
+        return attendanceDAO.searchAttendance(empId,date);
     }
 
     @Override
-    public List<Attendance> getAllAttendanceDetails(LocalDate date) throws SQLException {
-        return null;
+    public List<AttendanceDto> getAllAttendanceDetails(LocalDate date) throws SQLException {
+        List<Attendance> allAttendance = attendanceDAO.getAllAttendanceDetails(date);
+        List<AttendanceDto> allAttendanceDto = new ArrayList<>();
+        for (Attendance attendance : allAttendance) {
+            allAttendanceDto.add(new AttendanceDto(
+                    attendance.getAttendanceId(),
+                    attendance.getDate(),
+                    attendance.getEmpId(),
+                    attendance.getInTime(),
+                    attendance.getOutTime(),
+                    attendance.isPayed()
+            ));
+        }
+        return allAttendanceDto;
     }
 
     @Override
     public boolean deleteAttendance(String attendanceId) throws SQLException {
-        return false;
+        return attendanceDAO.delete(attendanceId);
     }
 
     @Override
     public void updateOutTime(String empId, LocalTime outTime, LocalDate currentDate) throws SQLException {
-
+      attendanceDAO.updateOutTime(empId,outTime,currentDate);
     }
 
     @Override
     public int getWorkedHoursCount(String empId) throws SQLException {
-        return 0;
+        return attendanceDAO.getWorkedHoursCount(empId);
     }
 
     @Override
     public int getWorkedDaysCount(String empId) throws SQLException {
-        return 0;
+        return attendanceDAO.getWorkedDaysCount(empId);
     }
 
     @Override
     public boolean updatePayedStatus(String empId) throws SQLException {
-        return false;
+        return attendanceDAO.updatePayedStatus(empId);
     }
 
     @Override
     public int getAttendanceCount(String date) throws SQLException {
-        return 0;
+        return attendanceDAO.getAttendanceCount(date);
     }
 
     @Override
     public boolean searchOutTime(String empId, LocalDate date) throws SQLException {
-        return false;
+        return attendanceDAO.searchOutTime(empId,date);
     }
 }
 

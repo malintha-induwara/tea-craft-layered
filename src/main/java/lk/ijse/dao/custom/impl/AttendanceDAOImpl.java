@@ -7,6 +7,7 @@ import lk.ijse.util.SQLUtil;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -135,5 +136,10 @@ public class AttendanceDAOImpl implements AttendanceDAO {
         }
         return "A001";
     }
+
+    public void updateOutTime(String empId, LocalTime outTime, LocalDate currentDate) throws SQLException {
+        SQLUtil.crudUtil("UPDATE attendance SET outTime=? WHERE empId=? AND date=?",outTime,empId,currentDate);
+    }
+
 }
 
