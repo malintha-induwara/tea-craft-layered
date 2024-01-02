@@ -208,7 +208,7 @@ public class SalesFormController {
             cmbCustomerNum.setItems(obList);
 
         }
-        catch (SQLException | ClassNotFoundException e){
+        catch (SQLException e){
             new Alert(Alert.AlertType.ERROR,e.getMessage()).show();
         }
 

@@ -14,7 +14,7 @@ public class CustomerBOImpl implements CustomerBO {
     CustomerDAO customerDAO =(CustomerDAO) DAOFactory.getInstance().getDAO(DAOFactory.DAOTypes.CUSTOMER);
 
     @Override
-    public ArrayList<CustomerDto> getAllCustomer() throws SQLException, ClassNotFoundException {
+    public ArrayList<CustomerDto> getAllCustomer() throws SQLException{
         ArrayList<Customer> allCustomer = customerDAO.getAll();
         ArrayList<CustomerDto> allCustomerDto = new ArrayList<>();
         for (Customer customer : allCustomer) {
@@ -31,7 +31,7 @@ public class CustomerBOImpl implements CustomerBO {
     }
 
     @Override
-    public boolean saveCustomer(CustomerDto dto) throws SQLException, ClassNotFoundException {
+    public boolean saveCustomer(CustomerDto dto) throws SQLException{
         return customerDAO.save(new Customer(
                 dto.getCusId(),
                 dto.getFirstName(),
@@ -43,7 +43,7 @@ public class CustomerBOImpl implements CustomerBO {
     }
 
     @Override
-    public boolean updateCustomer(CustomerDto dto) throws SQLException, ClassNotFoundException {
+    public boolean updateCustomer(CustomerDto dto) throws SQLException{
         return customerDAO.update(new Customer(
                 dto.getCusId(),
                 dto.getFirstName(),
@@ -55,17 +55,17 @@ public class CustomerBOImpl implements CustomerBO {
     }
 
     @Override
-    public boolean deleteCustomer(String id) throws SQLException, ClassNotFoundException {
+    public boolean deleteCustomer(String id) throws SQLException {
         return customerDAO.delete(id);
     }
 
     @Override
-    public String generateCustomerID() throws SQLException, ClassNotFoundException {
+    public String generateCustomerID() throws SQLException {
         return customerDAO.generateID();
     }
 
     @Override
-    public CustomerDto searchCustomer(String id) throws SQLException, ClassNotFoundException {
+    public CustomerDto searchCustomer(String id) throws SQLException{
         Customer customer = customerDAO.search(id);
         if (customer!=null){
             return new CustomerDto(
@@ -81,7 +81,7 @@ public class CustomerBOImpl implements CustomerBO {
     }
 
     @Override
-    public String searchCustomerID(String name) throws SQLException, ClassNotFoundException {
+    public String searchCustomerID(String name) throws SQLException {
         return customerDAO.searchCustomerId(name);
     }
 }

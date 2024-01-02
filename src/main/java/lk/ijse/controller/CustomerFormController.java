@@ -157,7 +157,7 @@ public class CustomerFormController {
             tblCustomer.setItems(obList);
 
         }
-        catch (SQLException | ClassNotFoundException e){
+        catch (SQLException  e){
             new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
         }
     }
@@ -196,7 +196,7 @@ public class CustomerFormController {
                 new Alert(Alert.AlertType.CONFIRMATION, "Customer deleted!").show();
                 loadAllCustomers();
             }
-        } catch (SQLException | ClassNotFoundException e) {
+        } catch (SQLException  e) {
             new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
         }
 

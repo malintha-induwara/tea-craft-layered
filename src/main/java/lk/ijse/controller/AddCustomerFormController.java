@@ -82,7 +82,7 @@ public class AddCustomerFormController {
                     customerFormController.loadAllCustomers();
                 }
             }
-        } catch (SQLException | ClassNotFoundException e) {
+        } catch (SQLException e) {
             new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
         }
 
@@ -165,7 +165,7 @@ public class AddCustomerFormController {
         try{
             String customerId= customerBO.generateCustomerID();
             txtCustomerId.setText(customerId);
-        }catch (SQLException | ClassNotFoundException e){
+        }catch (SQLException e){
             new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
         }
     }

@@ -81,7 +81,7 @@ public class UpdateCustomerFormController {
                 new Alert(Alert.AlertType.CONFIRMATION, "Customer updated").show();
             }
 
-        }catch (SQLException | ClassNotFoundException e){
+        }catch (SQLException e){
             new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
         }
 
@@ -153,7 +153,7 @@ public class UpdateCustomerFormController {
        try {
            CustomerDto dto = customerBO.searchCustomer(cusId);
            setFields(dto);
-       } catch (SQLException | ClassNotFoundException e) {
+       } catch (SQLException  e) {
            new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
        }
 
