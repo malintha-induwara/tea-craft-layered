@@ -19,12 +19,13 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import lk.ijse.bo.BOFactory;
+import lk.ijse.bo.custom.AttendanceBO;
 import lk.ijse.entity.Attendance;
 import lk.ijse.entity.Employee;
 import lk.ijse.view.tdm.AttendanceTm;
-import lk.ijse.model.AttendanceModel;
 import lk.ijse.model.EmployeeModel;
-
+import lk.ijse.dto.AttendanceDto;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.time.LocalDate;
@@ -87,7 +88,8 @@ public class AttendanceFormController {
     @FXML
     private Text txtTime;
 
-    private final AttendanceModel attendanceModel = new AttendanceModel();
+
+    private final AttendanceBO attendanceModel  = (AttendanceBO) BOFactory.getInstance().getBO(BOFactory.BOTypes.ATTENDANCE);
 
     private final EmployeeModel employeeModel = new EmployeeModel();
 
@@ -121,14 +123,14 @@ public class AttendanceFormController {
 
         try{
 
-            List<Attendance> attendanceList = attendanceModel.getAllAttendanceDetails(date);
+            List<AttendanceDto> attendanceList = attendanceModel.getAllAttendanceDetails(date);
 
             ObservableList<AttendanceTm> obList = FXCollections.observableArrayList();
 
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm");
 
 
-            for (Attendance dto : attendanceList){
+            for (AttendanceDto dto: attendanceList){
 
                 String inTime = dto.getInTime().format(formatter);
 
@@ -333,7 +335,7 @@ public class AttendanceFormController {
         LocalTime inTime = LocalTime.now();
 
 
-        Attendance dto = new Attendance(attendanceId,date,empId,inTime,null,false);
+        AttendanceDto dto = new AttendanceDto(attendanceId,date,empId,inTime,null,false);
 
         try{
 
@@ -447,7 +449,7 @@ public class AttendanceFormController {
 
             if (!isAttend){
                String attendanceId = txtAttendanceId.getText();
-               Attendance dto = new Attendance(attendanceId,date,empId,inTime,null,false);
+               AttendanceDto dto = new AttendanceDto(attendanceId,date,empId,inTime,null,false);
                boolean isAdded = attendanceModel.markAttendance(dto);
                if (isAdded) {
                    loadAllAttendanceDetails(dpDate.getValue());
