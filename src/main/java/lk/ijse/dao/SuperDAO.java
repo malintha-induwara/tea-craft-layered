@@ -1,5 +1,5 @@
 package lk.ijse.dao;
 
-public class SuperDAO {
+public interface SuperDAO {
 }
 

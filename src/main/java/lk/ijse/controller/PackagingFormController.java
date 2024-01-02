@@ -21,6 +21,7 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import lk.ijse.dto.*;
 import lk.ijse.entity.Packaging;
+import lk.ijse.entity.PackagingDetails;
 import lk.ijse.entity.TeaBook;
 import lk.ijse.entity.TeaTypes;
 import lk.ijse.view.tdm.PackagingTm;
@@ -127,12 +128,12 @@ public class PackagingFormController {
 
 
         try{
-            List<PackagingDetailsDto> dtoList = packagingDetailsModel.loadAllPackagingDetails(LocalDate.parse(date));
+            List<PackagingDetails> dtoList = packagingDetailsModel.loadAllPackagingDetails(LocalDate.parse(date));
 
             ObservableList<PackagingTm> obList = FXCollections.observableArrayList();
 
 
-            for (PackagingDetailsDto dto : dtoList){
+            for (PackagingDetails dto : dtoList){
 
                 Packaging packagingDto = packagingModel.searchPackaging(dto.getPackId());
 
@@ -316,7 +317,7 @@ public class PackagingFormController {
 
 
 
-            PackagingDetailsDto dto = new PackagingDetailsDto(packagingDetailsId,LocalDate.parse( cmbDate.getText()),packId, count, decreasedAmount, false);
+            PackagingDetails dto = new PackagingDetails(packagingDetailsId,LocalDate.parse( cmbDate.getText()),packId, count, decreasedAmount, false);
 
             boolean isAdded = packagingDetailsModel.addPackagingDetails(dto);
 

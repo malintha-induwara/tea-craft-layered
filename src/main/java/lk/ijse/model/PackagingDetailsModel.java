@@ -2,7 +2,7 @@ package lk.ijse.model;
 
 import lk.ijse.db.DbConnection;
 import lk.ijse.dto.PackagingCountAmountDto;
-import lk.ijse.dto.PackagingDetailsDto;
+import lk.ijse.entity.PackagingDetails;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -59,7 +59,7 @@ public class PackagingDetailsModel {
 
     }
 
-    public boolean addPackagingDetails(PackagingDetailsDto dto) throws SQLException {
+    public boolean addPackagingDetails(PackagingDetails dto) throws SQLException {
         Connection connection = DbConnection.getInstance().getConnection();
 
         String sql = "INSERT INTO packaging_details VALUES(?,?,?,?,?,?)";
@@ -98,7 +98,7 @@ public class PackagingDetailsModel {
         return 0;
     }
 
-    public List<PackagingDetailsDto> loadAllPackagingDetails(LocalDate date) throws SQLException {
+    public List<PackagingDetails> loadAllPackagingDetails(LocalDate date) throws SQLException {
 
         Connection connection = DbConnection.getInstance().getConnection();
 
@@ -110,10 +110,10 @@ public class PackagingDetailsModel {
 
         ResultSet resultSet = pstm.executeQuery();
 
-        List<PackagingDetailsDto> dtoList = new ArrayList<>();
+        List<PackagingDetails> dtoList = new ArrayList<>();
 
         while (resultSet.next()){
-            PackagingDetailsDto dto = new PackagingDetailsDto(
+            PackagingDetails dto = new PackagingDetails(
                     resultSet.getString(1),
                     resultSet.getDate(2).toLocalDate(),
                     resultSet.getString(3),

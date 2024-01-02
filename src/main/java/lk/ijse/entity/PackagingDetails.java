@@ -1,4 +1,4 @@
-package lk.ijse.dto;
+package lk.ijse.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -10,7 +10,7 @@ import java.time.LocalDate;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-public class PackagingDetailsDto {
+public class PackagingDetails {
 
     private String packagingDetailsId;
 
