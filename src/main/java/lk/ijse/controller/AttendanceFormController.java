@@ -21,6 +21,8 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import lk.ijse.bo.BOFactory;
 import lk.ijse.bo.custom.AttendanceBO;
+import lk.ijse.bo.custom.EmployeeBO;
+import lk.ijse.dto.EmployeeDto;
 import lk.ijse.entity.Employee;
 import lk.ijse.view.tdm.AttendanceTm;
 import lk.ijse.model.EmployeeModel;
@@ -90,7 +92,7 @@ public class AttendanceFormController {
 
     private final AttendanceBO attendanceBO = (AttendanceBO) BOFactory.getInstance().getBO(BOFactory.BOTypes.ATTENDANCE);
 
-    private final EmployeeModel employeeModel = new EmployeeModel();
+    private final EmployeeBO employeeModel= (EmployeeBO) BOFactory.getInstance().getBO(BOFactory.BOTypes.EMPLOYEE);
 
 
 
@@ -241,9 +243,9 @@ public class AttendanceFormController {
 
         try{
 
-            List<Employee> employeeList = employeeModel.getAllEmployees();
+            List<EmployeeDto> employeeList = employeeModel.getAllEmployees();
 
-            for (Employee dto : employeeList){
+            for (EmployeeDto dto : employeeList){
                 employeeIdList.add(dto.getEmpId());
             }
 
@@ -391,7 +393,7 @@ public class AttendanceFormController {
         String empId = cmbEmployeeId.getValue();
 
         try{
-            Employee dto = employeeModel.searchEmployee(empId);
+            EmployeeDto dto = employeeModel.searchEmployee(empId);
             txtFirstName.setText(dto.getFirstName());
             txtLastName.setText(dto.getLastName());
         }
@@ -438,7 +440,7 @@ public class AttendanceFormController {
 
         try{
 
-            Employee edto = employeeModel.searchEmployee(empId);
+            EmployeeDto edto = employeeModel.searchEmployee(empId);
             if (edto==null){
                 new Alert(Alert.AlertType.WARNING, "Invalid ID").show();
                 return;

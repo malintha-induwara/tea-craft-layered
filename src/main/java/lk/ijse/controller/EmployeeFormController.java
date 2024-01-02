@@ -1,6 +1,7 @@
 
 package lk.ijse.controller;
 
+import com.fasterxml.jackson.core.JsonToken;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import io.github.palexdev.materialfx.controls.MFXTextField;
 import io.github.palexdev.materialfx.css.themes.MFXThemeManager;
@@ -18,6 +19,10 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+import lk.ijse.bo.BOFactory;
+import lk.ijse.bo.custom.EmployeeBO;
+import lk.ijse.dao.custom.EmployeeDAO;
+import lk.ijse.dto.EmployeeDto;
 import lk.ijse.entity.Employee;
 import lk.ijse.view.tdm.EmployeeTm;
 import lk.ijse.model.EmployeeModel;
@@ -81,7 +86,7 @@ public class EmployeeFormController {
     private MFXTextField txtSearch;
 
 
-    private EmployeeModel employeeModel = new EmployeeModel();
+    private final EmployeeBO employeeModel= (EmployeeBO) BOFactory.getInstance().getBO(BOFactory.BOTypes.EMPLOYEE);
 
 
     public void  initialize(){
@@ -158,10 +163,10 @@ public class EmployeeFormController {
 
         try {
 
-            List<Employee>  dtoList = employeeModel.getAllEmployees();
+            List<EmployeeDto>  dtoList = employeeModel.getAllEmployees();
 
 
-            for (Employee dto : dtoList) {
+            for (EmployeeDto dto : dtoList) {
 
                 obList.add(new EmployeeTm(
                         dto.getEmpId(),
@@ -235,7 +240,6 @@ public class EmployeeFormController {
 
         FXMLLoader loader = new FXMLLoader(this.getClass().getResource("/view/updateEmployeeForm.fxml"));
         Parent rootNode = loader.load();
-
         UpdateEmployeeFormController updateEmployeeFormController = loader.getController();
 
         updateEmployeeFormController.setEmployeeFormController(this);

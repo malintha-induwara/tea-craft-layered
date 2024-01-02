@@ -9,6 +9,9 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import lk.ijse.bo.BOFactory;
+import lk.ijse.bo.custom.EmployeeBO;
+import lk.ijse.dto.EmployeeDto;
 import lk.ijse.entity.Employee;
 import lk.ijse.model.EmployeeModel;
 
@@ -50,7 +53,7 @@ public class UpdateEmployeeFormController {
 
     private EmployeeFormController employeeFormController;
 
-    private final EmployeeModel employeeModel = new EmployeeModel();
+    private final EmployeeBO employeeModel= (EmployeeBO) BOFactory.getInstance().getBO(BOFactory.BOTypes.EMPLOYEE);
 
     private String empId;
 
@@ -91,7 +94,7 @@ public class UpdateEmployeeFormController {
         String mobileNo = txtMobileNo.getText();
 
         try {
-            boolean isUpdated = employeeModel.updateEmployee(new Employee(empId,firstName,lastName,address,sex,dateOfBirth,mobileNo));
+            boolean isUpdated = employeeModel.updateEmployee(new EmployeeDto(empId,firstName,lastName,address,sex,dateOfBirth,mobileNo));
             if (isUpdated){
                 new Alert(Alert.AlertType.CONFIRMATION, "Employee Updated").show();
             }
@@ -178,8 +181,7 @@ public class UpdateEmployeeFormController {
     public void loadEmployeeDetails(){
 
         try {
-
-            Employee dto = employeeModel.searchEmployee(empId);
+            EmployeeDto dto = employeeModel.searchEmployee(empId);
             setFields(dto);
 
         }catch (SQLException e){
@@ -188,7 +190,7 @@ public class UpdateEmployeeFormController {
 
     }
 
-    private void setFields(Employee dto) {
+    private void setFields(EmployeeDto dto) {
 
         txtEmployeeId.setText(dto.getEmpId());
         txtFirstName.setText(dto.getFirstName());

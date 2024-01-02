@@ -2,6 +2,7 @@ package lk.ijse.dao;
 
 import lk.ijse.dao.custom.impl.AttendanceDAOImpl;
 import lk.ijse.dao.custom.impl.CustomerDAOImpl;
+import lk.ijse.dao.custom.impl.EmployeeDAOImpl;
 import lk.ijse.dao.custom.impl.UserDAOImpl;
 
 public class DAOFactory {
@@ -12,7 +13,7 @@ public class DAOFactory {
     }
 
     public enum DAOTypes{
-        CUSTOMER,USER,ATTENDANCE
+        CUSTOMER,USER,ATTENDANCE,EMPLOYEE
     }
 
     public SuperDAO getDAO(DAOTypes daoTypes){
@@ -23,6 +24,8 @@ public class DAOFactory {
                 return new UserDAOImpl();
             case ATTENDANCE:
                 return new AttendanceDAOImpl();
+            case EMPLOYEE:
+                return new EmployeeDAOImpl();
             default:
                 return null;
         }

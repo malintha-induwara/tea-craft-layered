@@ -17,6 +17,8 @@ import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
 import lk.ijse.bo.BOFactory;
 import lk.ijse.bo.custom.AttendanceBO;
+import lk.ijse.bo.custom.EmployeeBO;
+import lk.ijse.dto.EmployeeDto;
 import lk.ijse.entity.Employee;
 import lk.ijse.entity.Salary;
 import lk.ijse.view.tdm.SalaryTm;
@@ -90,7 +92,7 @@ public class SalaryFormController {
     @FXML
     private Text txtTotal;
 
-    private final EmployeeModel employeeModel = new EmployeeModel();
+    private final EmployeeBO employeeModel= (EmployeeBO) BOFactory.getInstance().getBO(BOFactory.BOTypes.EMPLOYEE);
 
     private final AttendanceBO attendanceBO = (AttendanceBO) BOFactory.getInstance().getBO(BOFactory.BOTypes.ATTENDANCE);
 
@@ -185,9 +187,9 @@ public class SalaryFormController {
 
         try{
 
-            List<Employee> employeeList = employeeModel.getAllEmployees();
+            List<EmployeeDto> employeeList = employeeModel.getAllEmployees();
 
-            for (Employee dto : employeeList){
+            for (EmployeeDto dto : employeeList){
                 employeeIdList.add(dto.getEmpId());
             }
 
@@ -334,7 +336,7 @@ public class SalaryFormController {
 
         try {
             loadEmployeePaymentDetails(empId);
-            Employee employee = employeeModel.searchEmployee(empId);
+            EmployeeDto employee = employeeModel.searchEmployee(empId);
             txtName.setText(employee.getFirstName());
             calculateSalary();
 

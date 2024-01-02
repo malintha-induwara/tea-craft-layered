@@ -9,6 +9,9 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import lk.ijse.bo.BOFactory;
+import lk.ijse.bo.custom.EmployeeBO;
+import lk.ijse.dto.EmployeeDto;
 import lk.ijse.entity.Employee;
 import lk.ijse.model.EmployeeModel;
 
@@ -50,7 +53,8 @@ public class AddEmployeeFormController {
 
     private EmployeeFormController employeeFormController;
 
-    private final EmployeeModel employeeModel = new EmployeeModel();
+
+    private final EmployeeBO employeeModel= (EmployeeBO) BOFactory.getInstance().getBO(BOFactory.BOTypes.EMPLOYEE);
 
     public void initialize(){
         generateNextEmployeeId();
@@ -80,7 +84,7 @@ public class AddEmployeeFormController {
         String mobileNo = txtMobileNo.getText();
 
 
-        var dto = new Employee(empId,firstName,lastName,address,sex,dateOfBirth,mobileNo);
+        var dto = new EmployeeDto(empId,firstName,lastName,address,sex,dateOfBirth,mobileNo);
 
         try {
 

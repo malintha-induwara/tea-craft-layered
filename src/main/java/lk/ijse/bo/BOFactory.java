@@ -2,6 +2,7 @@ package lk.ijse.bo;
 
 import lk.ijse.bo.custom.impl.AttendanceBOImpl;
 import lk.ijse.bo.custom.impl.CustomerBOImpl;
+import lk.ijse.bo.custom.impl.EmployeeBOImpl;
 import lk.ijse.bo.custom.impl.UserBOImpl;
 
 public class BOFactory {
@@ -14,7 +15,7 @@ public class BOFactory {
     }
 
     public enum BOTypes{
-        CUSTOMER,USER,ATTENDANCE
+        CUSTOMER,USER,ATTENDANCE,EMPLOYEE
     }
 
     public SuperBO getBO(BOTypes boTypes){
@@ -25,6 +26,8 @@ public class BOFactory {
                 return new UserBOImpl();
             case ATTENDANCE:
                 return new AttendanceBOImpl();
+            case EMPLOYEE:
+                return new EmployeeBOImpl();
             default:
                 return null;
         }

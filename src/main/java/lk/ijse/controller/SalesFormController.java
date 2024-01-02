@@ -502,7 +502,7 @@ public class SalesFormController {
         String cusId = null;
         try {
             cusId = customerModel.searchCustomerID(cusNum);
-        } catch (SQLException | ClassNotFoundException e) {
+        } catch (SQLException e) {
             throw new RuntimeException(e);
         }
 
@@ -592,7 +592,7 @@ public class SalesFormController {
             CustomerDto dto = customerModel.searchCustomer(cusId);
             txtName.setText(dto.getFirstName());
         }
-        catch (SQLException | ClassNotFoundException e){
+        catch (SQLException  e){
             new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
         }
 

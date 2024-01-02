@@ -62,7 +62,7 @@ public class EmployeeDAOImpl implements EmployeeDAO {
 
     @Override
     public Employee search(String id) throws SQLException{
-        ResultSet resultSet = SQLUtil.crudUtil("SELECT * FROM employee WHERE empId = ?");
+        ResultSet resultSet = SQLUtil.crudUtil("SELECT * FROM employee WHERE empId = ?",id);
         Employee entity= null;
         if (resultSet.next()){
             entity = new Employee(resultSet.getString("empId"),
