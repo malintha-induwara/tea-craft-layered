@@ -12,7 +12,7 @@ public class BOFactory {
     }
 
     public enum BOTypes{
-        CUSTOMER,USER,ATTENDANCE,EMPLOYEE,SUPPLIER
+        CUSTOMER,USER,ATTENDANCE,EMPLOYEE,SUPPLIER,SALARY
     }
 
     public SuperBO getBO(BOTypes boTypes){
@@ -27,6 +27,8 @@ public class BOFactory {
                 return new EmployeeBOImpl();
             case SUPPLIER:
                 return new SupplierBOImpl();
+            case SALARY:
+                return new SalaryBOImpl();
             default:
                 return null;
         }

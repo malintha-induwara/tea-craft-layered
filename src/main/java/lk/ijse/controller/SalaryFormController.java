@@ -18,7 +18,9 @@ import javafx.scene.text.Text;
 import lk.ijse.bo.BOFactory;
 import lk.ijse.bo.custom.AttendanceBO;
 import lk.ijse.bo.custom.EmployeeBO;
+import lk.ijse.bo.custom.SalaryBO;
 import lk.ijse.dto.EmployeeDto;
+import lk.ijse.dto.SalaryDto;
 import lk.ijse.entity.Employee;
 import lk.ijse.entity.Salary;
 import lk.ijse.view.tdm.SalaryTm;
@@ -100,7 +102,7 @@ public class SalaryFormController {
 
     private final TeaCraftDetailModel teaCraftDetailModel = new TeaCraftDetailModel();
 
-    private final SalaryModel salaryModel = new SalaryModel();
+    private final SalaryBO salaryModel = (SalaryBO) BOFactory.getInstance().getBO(BOFactory.BOTypes.SALARY);
 
     public void initialize(){
 
@@ -127,10 +129,10 @@ public class SalaryFormController {
 
         try{
 
-            List<Salary> salaryList = salaryModel.getPaymentDetails(empId);
+            List<SalaryDto> salaryList = salaryModel.getPaymentDetails(empId);
 
 
-            for (Salary dto: salaryList){
+            for (SalaryDto dto: salaryList){
 
                 obList.add( new SalaryTm(
                        dto.getSalaryId(),
