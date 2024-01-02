@@ -12,8 +12,6 @@ import javafx.stage.Stage;
 import lk.ijse.bo.BOFactory;
 import lk.ijse.bo.custom.EmployeeBO;
 import lk.ijse.dto.EmployeeDto;
-import lk.ijse.entity.Employee;
-import lk.ijse.model.EmployeeModel;
 
 import java.sql.SQLException;
 import java.time.LocalDate;

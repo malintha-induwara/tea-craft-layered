@@ -1,7 +1,6 @@
 
 package lk.ijse.controller;
 
-import com.fasterxml.jackson.core.JsonToken;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import io.github.palexdev.materialfx.controls.MFXTextField;
 import io.github.palexdev.materialfx.css.themes.MFXThemeManager;
@@ -21,11 +20,8 @@ import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import lk.ijse.bo.BOFactory;
 import lk.ijse.bo.custom.EmployeeBO;
-import lk.ijse.dao.custom.EmployeeDAO;
 import lk.ijse.dto.EmployeeDto;
-import lk.ijse.entity.Employee;
 import lk.ijse.view.tdm.EmployeeTm;
-import lk.ijse.model.EmployeeModel;
 
 import java.io.IOException;
 import java.sql.SQLException;
