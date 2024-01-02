@@ -19,8 +19,9 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import lk.ijse.bo.BOFactory;
+import lk.ijse.bo.custom.PackagingBO;
 import lk.ijse.dto.*;
-import lk.ijse.entity.Packaging;
 import lk.ijse.entity.PackagingDetails;
 import lk.ijse.entity.TeaBook;
 import lk.ijse.entity.TeaTypes;
@@ -97,7 +98,7 @@ public class PackagingFormController {
 
     private final TeaTypeModel teaTypeModel = new TeaTypeModel();
 
-    private final PackagingModel packagingModel = new PackagingModel();
+    private final PackagingBO packagingBO = (PackagingBO) BOFactory.getInstance().getBO(BOFactory.BOTypes.PACKAGING);
 
     private final PackagingDetailsModel packagingDetailsModel = new PackagingDetailsModel();
 
@@ -135,7 +136,7 @@ public class PackagingFormController {
 
             for (PackagingDetails dto : dtoList){
 
-                Packaging packagingDto = packagingModel.searchPackaging(dto.getPackId());
+                PackagingDto packagingDto = packagingBO.searchPackaging(dto.getPackId());
 
                 String type = teaTypeModel.getTeaType(packagingDto.getTypedId());
 
@@ -313,7 +314,7 @@ public class PackagingFormController {
             }
 
             String typeId = teaTypeModel.getTeaTypeId(teaType);
-            String packId = packagingModel.getPackId(typeId,packSize);
+            String packId = packagingBO.getPackId(typeId,packSize);
 
 
 
@@ -462,9 +463,9 @@ public class PackagingFormController {
         try{
             String teaTypeId= teaTypeModel.getTeaTypeId(teaType);
 
-            List<Packaging> packagingList = packagingModel.getAllPackaging(teaTypeId);
+            List<PackagingDto> packagingList = packagingBO.getAllPackaging(teaTypeId);
 
-            for (Packaging dto : packagingList){
+            for (PackagingDto dto : packagingList){
                 obList.add(dto.getDescription());
             }
 

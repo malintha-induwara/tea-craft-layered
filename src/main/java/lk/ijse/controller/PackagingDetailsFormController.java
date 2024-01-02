@@ -10,10 +10,11 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.text.Text;
-import lk.ijse.entity.Packaging;
+import lk.ijse.bo.BOFactory;
+import lk.ijse.bo.custom.PackagingBO;
+import lk.ijse.dto.PackagingDto;
 import lk.ijse.entity.TeaTypes;
 import lk.ijse.view.tdm.PackagingDetailsTm;
-import lk.ijse.model.PackagingModel;
 import lk.ijse.model.TeaTypeModel;
 
 import java.sql.SQLException;
@@ -69,9 +70,7 @@ public class PackagingDetailsFormController {
     private MFXButton btnUpdate;
 
 
-
-
-    private final PackagingModel packagingModel=new PackagingModel();
+    private final PackagingBO packagingBO = (PackagingBO) BOFactory.getInstance().getBO(BOFactory.BOTypes.PACKAGING);
 
     private final TeaTypeModel teaTypeModel=new TeaTypeModel();
 
@@ -144,9 +143,9 @@ public class PackagingDetailsFormController {
 
         try {
 
-            List<Packaging> dtoList = packagingModel.getAllPackaging();
+            List<PackagingDto> dtoList = packagingBO.getAllPackaging();
 
-            for (Packaging dto : dtoList) {
+            for (PackagingDto dto : dtoList) {
 
                 String type = teaTypeModel.getTeaType(dto.getTypedId());
 
@@ -190,7 +189,7 @@ public class PackagingDetailsFormController {
 
         try {
 
-            boolean isDeleted = packagingModel.deletePackage(packId);
+            boolean isDeleted = packagingBO.deletePackage(packId);
 
             if (isDeleted){
                 new Alert(Alert.AlertType.CONFIRMATION,"Package Deleted").show();
@@ -229,7 +228,7 @@ public class PackagingDetailsFormController {
     private void generateNextPackId() {
 
         try{
-            String lastPackId = packagingModel.generateNextPackId();
+            String lastPackId = packagingBO.generateNextPackId();
             txtPackId.setText(lastPackId);
 
         }catch (SQLException e){
@@ -258,10 +257,10 @@ public class PackagingDetailsFormController {
             String size = txtFieldSize.getText();
             String price = txtFieldPrice.getText();
 
-            Packaging dto = new Packaging(packId,typeId,size,0,Double.parseDouble(price));
+            PackagingDto dto = new PackagingDto(packId,typeId,size,0,Double.parseDouble(price));
 
 
-            boolean isAdded = packagingModel.addPackage(dto);
+            boolean isAdded = packagingBO.addPackage(dto);
 
             if (isAdded){
                 new Alert(Alert.AlertType.CONFIRMATION,"Package Added").show();
@@ -363,7 +362,7 @@ public class PackagingDetailsFormController {
             String price = txtFieldPrice.getText();
 
 
-            boolean isAdded = packagingModel.updatePack(packId,typeId,size,Double.parseDouble(price));
+            boolean isAdded = packagingBO.updatePack(packId,typeId,size,Double.parseDouble(price));
 
             if (isAdded){
                 new Alert(Alert.AlertType.CONFIRMATION,"Package Updated").show();

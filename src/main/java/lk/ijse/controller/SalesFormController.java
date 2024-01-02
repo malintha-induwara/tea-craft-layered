@@ -13,8 +13,10 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.text.Text;
 import lk.ijse.bo.BOFactory;
 import lk.ijse.bo.custom.CustomerBO;
+import lk.ijse.bo.custom.PackagingBO;
 import lk.ijse.db.DbConnection;
 import lk.ijse.dto.CustomerDto;
+import lk.ijse.dto.PackagingDto;
 import lk.ijse.entity.Packaging;
 import lk.ijse.dto.PlaceTeaOrderDto;
 import lk.ijse.entity.TeaTypes;
@@ -113,10 +115,8 @@ public class SalesFormController {
     private final TeaOrderModel teaOrderModel = new TeaOrderModel();
 
     private  final CustomerBO customerModel = (CustomerBO) BOFactory.getInstance().getBO(BOFactory.BOTypes.CUSTOMER);
-
     private final TeaTypeModel teaTypeModel = new TeaTypeModel();
-
-    private final PackagingModel packagingModel = new PackagingModel();
+    private final PackagingBO packagingModel= (PackagingBO) BOFactory.getInstance().getBO(BOFactory.BOTypes.PACKAGING);
 
     private final PlaceTeaOrderModel placeOrderModel = new PlaceTeaOrderModel();
 
@@ -148,7 +148,7 @@ public class SalesFormController {
 
         try{
 
-            List<Packaging> dtoList = packagingModel.getAllPackaging();
+            List<PackagingDto> dtoList = packagingModel.getAllPackaging();
 
             for (int i = 0; i < dtoList.size(); i++) {
                 packageDetails.add(new ArrayList<>());
@@ -326,7 +326,7 @@ public class SalesFormController {
             //Finding Pack id According to Tea Type id and Pack Size
             String packId = packagingModel.getPackId(teaTypeId,packSize);
 
-            Packaging dto = packagingModel.searchPackaging(packId);
+            PackagingDto dto = packagingModel.searchPackaging(packId);
 
             //Get Details From Packaging Details Array List
 
@@ -621,9 +621,9 @@ public class SalesFormController {
         try{
             String teaTypeId= teaTypeModel.getTeaTypeId(teaType);
 
-            List<Packaging> packagingList = packagingModel.getAllPackaging(teaTypeId);
+            List<PackagingDto> packagingList = packagingModel.getAllPackaging(teaTypeId);
 
-            for (Packaging dto : packagingList){
+            for (PackagingDto dto : packagingList){
                 obList.add(dto.getDescription());
             }
 
@@ -662,7 +662,7 @@ public class SalesFormController {
             //Finding Pack id According to Tea Type id and Pack Size
             String packId = packagingModel.getPackId(teaTypeId,packSize);
 
-            Packaging dto = packagingModel.searchPackaging(packId);
+            PackagingDto dto = packagingModel.searchPackaging(packId);
 
 
             //Get Details From Packaging Details Array List

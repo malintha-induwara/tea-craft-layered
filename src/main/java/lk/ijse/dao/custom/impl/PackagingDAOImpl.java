@@ -147,7 +147,7 @@ public class PackagingDAOImpl implements PackagingDAO {
         return true;
     }
 
-    private boolean updatePackagingQty(SalesCartTm tm) throws SQLException {
+    public boolean updatePackagingQty(SalesCartTm tm) throws SQLException {
         return SQLUtil.crudUtil("UPDATE packaging SET packageCount=packageCount-? WHERE packId=?",tm.getQty(),tm.getPackId());
     }
 
@@ -155,6 +155,10 @@ public class PackagingDAOImpl implements PackagingDAO {
         ResultSet resultSet = SQLUtil.crudUtil("SELECT typeId FROM packaging WHERE packId=?",packId);
         resultSet.next();
         return resultSet.getString(1);
+    }
+
+    public boolean updatePack(String packId, String typeId, String size, double price) throws SQLException{
+        return SQLUtil.crudUtil("UPDATE packaging SET typeId=?,description=?,price=? WHERE packId=?",typeId,size,price,packId);
     }
 
 
