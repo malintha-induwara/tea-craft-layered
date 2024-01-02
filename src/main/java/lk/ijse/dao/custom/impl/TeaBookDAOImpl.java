@@ -14,7 +14,10 @@ public class TeaBookDAOImpl implements TeaBookDAO {
         ResultSet resultSet = SQLUtil.crudUtil("SELECT * FROM tea_book order by date");
         ArrayList<TeaBook> teaBooks = new ArrayList<>();
         while (resultSet.next()){
-           teaBooks.add(new TeaBook(resultSet.getString(1),resultSet.getDouble(2),resultSet.getString(3)
+           teaBooks.add(new TeaBook(
+                   resultSet.getString(1),
+                   resultSet.getDouble(2),
+                   resultSet.getString(3)
            ));
         }
        return teaBooks;

@@ -10,10 +10,10 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import lk.ijse.bo.BOFactory;
 import lk.ijse.bo.custom.SupplierBO;
+import lk.ijse.bo.custom.TeaBookBO;
 import lk.ijse.bo.custom.TeaLeavesStockBO;
 import lk.ijse.dto.SupplierDto;
 import lk.ijse.dto.TeaLeavesStockDto;
-import lk.ijse.model.TeaBookModel;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.Objects;
@@ -41,11 +41,8 @@ public class AddTeaLeavesStockFormController {
     private Text txtTeaLeavesStockId;
 
     private   TeaLeavesFormController teaLeavesFormController;
-
     private final SupplierBO supplierModel = (SupplierBO) BOFactory.getInstance().getBO(BOFactory.BOTypes.SUPPLIER);
-
-    private  final TeaBookModel teaBookModel = new TeaBookModel();
-
+    private  final TeaBookBO teaBookBO = (TeaBookBO) BOFactory.getInstance().getBO(BOFactory.BOTypes.TEA_BOOK);
     private final TeaLeavesStockBO teaLeavesStockBO = (TeaLeavesStockBO) BOFactory.getInstance().getBO(BOFactory.BOTypes.TEA_LEAVES_STOCK);
 
 
@@ -105,7 +102,7 @@ public class AddTeaLeavesStockFormController {
         try {
             String teaStockId = txtTeaLeavesStockId.getText();
             String supId = cmbSupplierId.getText();
-            String teaBookId = teaBookModel.getTeaBookId(txtDate.getText());
+            String teaBookId = teaBookBO.getTeaBookId(txtDate.getText());
             double amount = Double.parseDouble(txtAmount.getText());
 
             TeaLeavesStockDto teaLeavesStock = new TeaLeavesStockDto(teaStockId,supId,teaBookId,amount,false);

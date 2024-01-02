@@ -16,7 +16,9 @@ import javafx.scene.text.Text;
 import javafx.util.Duration;
 import lk.ijse.bo.BOFactory;
 import lk.ijse.bo.custom.AttendanceBO;
+import lk.ijse.bo.custom.TeaBookBO;
 import lk.ijse.bo.custom.impl.UserBOImpl;
+import lk.ijse.dto.TeaBookDto;
 import lk.ijse.entity.TeaBook;
 import lk.ijse.entity.TeaTypes;
 import lk.ijse.model.*;
@@ -61,7 +63,7 @@ public class DashBoardMainFormController {
 
 
 
-    private final TeaBookModel teaBookModel=new TeaBookModel();
+    private  final TeaBookBO teaBookModel = (TeaBookBO) BOFactory.getInstance().getBO(BOFactory.BOTypes.TEA_BOOK);
 
     private final TeaOrderModel teaOrderModel=new TeaOrderModel();
 
@@ -155,17 +157,15 @@ public class DashBoardMainFormController {
         XYChart.Series series = new XYChart.Series();
 
         try {
-            List<TeaBook> dtoList = teaBookModel.getAllTeaBookDetails();
+            List<TeaBookDto> dtoList = teaBookModel.getAllTeaBookDetails();
 
             //To limit for last 5 days
 
             int startIndex = Math.max(0, dtoList.size() - 7); // Ensure startIndex is not negative
-            List<TeaBook> finaList = dtoList.subList(startIndex, dtoList.size());
+            List<TeaBookDto> finaList = dtoList.subList(startIndex, dtoList.size());
 
 
-
-
-            for (TeaBook dto : finaList) {
+            for (TeaBookDto dto : finaList) {
 
                 //To Extract the Day Only
                 DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
