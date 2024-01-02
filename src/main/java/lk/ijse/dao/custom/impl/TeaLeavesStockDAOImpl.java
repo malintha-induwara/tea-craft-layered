@@ -116,5 +116,13 @@ public class TeaLeavesStockDAOImpl implements TeaLeavesStockDAO {
         return teaLeavesStocks;
     }
 
+
+
+    public double getTotalAmount(String teaBookId) throws SQLException {
+        ResultSet resultSet = SQLUtil.crudUtil("SELECT SUM(amount) FROM tea_leaves_stock WHERE teaBookId=?",teaBookId);
+        resultSet.next();
+        return resultSet.getDouble(1);
+    }
+
 }
 

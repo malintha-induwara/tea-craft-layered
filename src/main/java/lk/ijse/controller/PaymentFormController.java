@@ -18,6 +18,7 @@ import javafx.scene.text.Text;
 import lk.ijse.bo.BOFactory;
 import lk.ijse.bo.custom.PaymentBO;
 import lk.ijse.bo.custom.SupplierBO;
+import lk.ijse.bo.custom.TeaLeavesStockBO;
 import lk.ijse.dto.PaymentsDto;
 import lk.ijse.dto.SupplierDto;
 import lk.ijse.entity.Payments;
@@ -78,7 +79,7 @@ public class PaymentFormController {
     @FXML
     private Text txtPaymentId;
 
-    private TeaLeavesStockModel teaLeavesStockModel = new TeaLeavesStockModel();
+    private final TeaLeavesStockBO teaLeavesStockBO = (TeaLeavesStockBO) BOFactory.getInstance().getBO(BOFactory.BOTypes.TEA_LEAVES_STOCK);
 
     private final SupplierBO supplierModel = (SupplierBO) BOFactory.getInstance().getBO(BOFactory.BOTypes.SUPPLIER);
 
@@ -98,8 +99,6 @@ public class PaymentFormController {
     }
 
     private void loadTeaLeavesPrice() {
-
-
         try{
             double teaLeavesPrice = teaCraftDetailModel.getTeaLeavesPrice();
             txtFieldTeaLeavesPrice.setText(String.valueOf(teaLeavesPrice));
@@ -230,7 +229,7 @@ public class PaymentFormController {
         txtName.setText(dto.getFirstName());
 
         //Calculate the amount
-        double amount = teaLeavesStockModel.getTotalTeaLeavesSuppliedAmount(supId);
+        double amount =  teaLeavesStockBO.getTotalTeaLeavesSuppliedAmount(supId);
 
         txtAmount.setText(String.valueOf(amount));
 

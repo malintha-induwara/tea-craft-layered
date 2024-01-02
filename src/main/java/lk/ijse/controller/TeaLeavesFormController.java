@@ -17,10 +17,10 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import lk.ijse.bo.BOFactory;
 import lk.ijse.bo.custom.SupplierBO;
-import lk.ijse.entity.TeaLeavesStock;
+import lk.ijse.bo.custom.TeaLeavesStockBO;
+import lk.ijse.dto.TeaLeavesStockDto;
 import lk.ijse.view.tdm.TeaLeavesStockTm;
 import lk.ijse.model.TeaBookModel;
-import lk.ijse.model.TeaLeavesStockModel;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -66,9 +66,9 @@ public class TeaLeavesFormController {
 
     private TeaBookModel teaBookModel = new TeaBookModel();
 
-    private final SupplierBO supplierModel = (SupplierBO) BOFactory.getInstance().getBO(BOFactory.BOTypes.SUPPLIER);
+    private final SupplierBO supplierBO = (SupplierBO) BOFactory.getInstance().getBO(BOFactory.BOTypes.SUPPLIER);
 
-    private TeaLeavesStockModel teaLeavesStockModel = new TeaLeavesStockModel();
+    private final TeaLeavesStockBO teaLeavesStockBO = (TeaLeavesStockBO) BOFactory.getInstance().getBO(BOFactory.BOTypes.TEA_LEAVES_STOCK);
 
 
     public void initialize(){
@@ -102,11 +102,11 @@ public class TeaLeavesFormController {
 
 
 
-            List<TeaLeavesStock> dtoList = teaLeavesStockModel.getAllStockDetails(dateBookId);
+            List<TeaLeavesStockDto> dtoList = teaLeavesStockBO.getAllStockDetails(dateBookId);
 
-            for (TeaLeavesStock dto : dtoList) {
+            for (TeaLeavesStockDto dto : dtoList) {
 
-                String supName = supplierModel.getSupplierName(dto.getSupId());
+                String supName = supplierBO.getSupplierName(dto.getSupId());
 
                 obList.add( new TeaLeavesStockTm(
                         dto.getTeaStockId(),
@@ -145,7 +145,7 @@ public class TeaLeavesFormController {
 
                         try {
                             String teaBookId = teaBookModel.getTeaBookId(String.valueOf(dpDate.getValue()));
-                            double dailyAmount = teaLeavesStockModel.getTotalAmount(teaBookId);
+                            double dailyAmount = teaLeavesStockBO.getTotalAmount(teaBookId);
                             teaBookModel.updateTeaBookAmount(teaBookId,dailyAmount);
                         } catch (SQLException e) {
                             throw new RuntimeException(e);
@@ -178,7 +178,7 @@ public class TeaLeavesFormController {
 
            try {
 
-               boolean isDeleted = teaLeavesStockModel.deleteTeaLeavesStock(teaStockId);
+               boolean isDeleted = teaLeavesStockBO.deleteTeaLeavesStock(teaStockId);
                if (isDeleted){
                    new Alert(Alert.AlertType.CONFIRMATION, "Stock Deleted").show();
                }

@@ -10,4 +10,5 @@ public interface TeaLeavesStockDAO extends CrudDAO<TeaLeavesStock> {
     boolean updatePayedStatus(String supId) throws SQLException;
     double getTotalTeaLeavesSuppliedAmount(String supId) throws SQLException;
     List<TeaLeavesStock> getAllStockDetails(String dateBookId) throws SQLException;
+    double getTotalAmount(String teaBookId) throws SQLException;
 }
