@@ -16,7 +16,9 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
 import lk.ijse.bo.BOFactory;
+import lk.ijse.bo.custom.PaymentBO;
 import lk.ijse.bo.custom.SupplierBO;
+import lk.ijse.dto.PaymentsDto;
 import lk.ijse.dto.SupplierDto;
 import lk.ijse.entity.Payments;
 import lk.ijse.view.tdm.PaymentTm;
@@ -80,11 +82,9 @@ public class PaymentFormController {
 
     private final SupplierBO supplierModel = (SupplierBO) BOFactory.getInstance().getBO(BOFactory.BOTypes.SUPPLIER);
 
-    private PaymentsModel paymentsModel = new PaymentsModel();
-
     private final TeaCraftDetailModel teaCraftDetailModel = new TeaCraftDetailModel();
 
-    private PaymentTransactionModel paymentTransactionModel = new PaymentTransactionModel();
+    private final PaymentBO paymentBO = (PaymentBO) BOFactory.getInstance().getBO(BOFactory.BOTypes.PAYMENTS);
 
 
     public void initialize() {
@@ -145,7 +145,7 @@ public class PaymentFormController {
     private void generateNextPaymentId() {
 
         try{
-            String paymentId= paymentsModel.generateNextPaymentId();
+            String paymentId= paymentBO.generateNextPaymentId();
             txtPaymentId.setText(paymentId);
         }
         catch (SQLException e){
@@ -170,10 +170,10 @@ public class PaymentFormController {
         double payment = Double.parseDouble(txtPayment.getText());
         LocalDate date = LocalDate.now();
 
-        Payments dto = new Payments(paymentId,supId,amount,payment,date);
+        PaymentsDto dto = new PaymentsDto(paymentId,supId,amount,payment,date);
 
         try {
-            boolean isSaved = paymentTransactionModel.savePayment(dto);
+            boolean isSaved = paymentBO.addPayment(dto);
 
             if (isSaved){
                 generateNextPaymentId();
@@ -282,9 +282,8 @@ public class PaymentFormController {
         ObservableList<PaymentTm> obList = FXCollections.observableArrayList();
 
         try {
-            List<Payments> dtoList = paymentsModel.getAllPaymentsDetails(supId);
-
-            for (Payments dto : dtoList) {
+            List<PaymentsDto> dtoList = paymentBO.getAllPaymentsDetails(supId);
+            for (PaymentsDto dto : dtoList) {
                 obList.add(new PaymentTm(
                         dto.getPaymentId(),
                         dto.getAmount(),

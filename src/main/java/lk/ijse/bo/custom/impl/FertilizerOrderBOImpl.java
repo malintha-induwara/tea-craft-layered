@@ -17,7 +17,6 @@ public class FertilizerOrderBOImpl implements FertilizerOrderBO {
 
     FertilizerDAO fertilizerDAO = (FertilizerDAO) DAOFactory.getInstance().getDAO(DAOFactory.DAOTypes.FERTILIZER);
     FertilizerOrderDAO fertilizerOrderDAO = (FertilizerOrderDAO) DAOFactory.getInstance().getDAO(DAOFactory.DAOTypes.FERTILIZER_ORDER);
-
     FertilizerOrderDetailDAO fertilizerOrderDetailDAO = (FertilizerOrderDetailDAO) DAOFactory.getInstance().getDAO(DAOFactory.DAOTypes.FERTILIZER_ORDER_DETAIL);
 
 
@@ -39,7 +38,6 @@ public class FertilizerOrderBOImpl implements FertilizerOrderBO {
     public boolean placeFertilizerOrder(PlaceFertilizerOrderDto dto) throws SQLException {
         boolean result = false;
         Connection connection = null;
-
         try{
             connection = DbConnection.getInstance().getConnection();
             connection.setAutoCommit(false);
