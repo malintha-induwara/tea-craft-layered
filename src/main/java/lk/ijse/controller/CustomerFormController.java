@@ -15,9 +15,10 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
+import lk.ijse.bo.BOFactory;
+import lk.ijse.bo.custom.CustomerBO;
 import lk.ijse.dto.CustomerDto;
 import lk.ijse.view.tdm.CustomerTm;
-import lk.ijse.model.CustomerModel;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -63,10 +64,7 @@ public class CustomerFormController {
 
 
 
-
-
-
-    private final  CustomerModel customerModel = new CustomerModel();
+    private  final CustomerBO customerBO = (CustomerBO) BOFactory.getInstance().getBO(BOFactory.BOTypes.CUSTOMER);
 
     public void initialize(){
         setCellValueFactory();
@@ -115,7 +113,7 @@ public class CustomerFormController {
         try {
             ObservableList<CustomerTm> obList = FXCollections.observableArrayList();
 
-            List<CustomerDto> dtoList = customerModel.getAllCustomers();
+            List<CustomerDto> dtoList = customerBO.getAllCustomer();
 
             for (CustomerDto dto:dtoList){
 
@@ -159,7 +157,7 @@ public class CustomerFormController {
             tblCustomer.setItems(obList);
 
         }
-        catch (SQLException e){
+        catch (SQLException | ClassNotFoundException e){
             new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
         }
     }
@@ -193,12 +191,12 @@ public class CustomerFormController {
     private void deleteCustomer(String id) {
 
         try {
-            boolean isDeleted = customerModel.deleteCustomer(id);
+            boolean isDeleted = customerBO.deleteCustomer(id);
             if(isDeleted) {
                 new Alert(Alert.AlertType.CONFIRMATION, "Customer deleted!").show();
                 loadAllCustomers();
             }
-        } catch (SQLException e) {
+        } catch (SQLException | ClassNotFoundException e) {
             new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
         }
 

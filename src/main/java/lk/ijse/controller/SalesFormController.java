@@ -11,6 +11,8 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.text.Text;
+import lk.ijse.bo.BOFactory;
+import lk.ijse.bo.custom.CustomerBO;
 import lk.ijse.db.DbConnection;
 import lk.ijse.dto.CustomerDto;
 import lk.ijse.entity.Packaging;
@@ -110,7 +112,7 @@ public class SalesFormController {
 
     private final TeaOrderModel teaOrderModel = new TeaOrderModel();
 
-    private final CustomerModel customerModel = new CustomerModel();
+    private  final CustomerBO customerModel = (CustomerBO) BOFactory.getInstance().getBO(BOFactory.BOTypes.CUSTOMER);
 
     private final TeaTypeModel teaTypeModel = new TeaTypeModel();
 
@@ -199,14 +201,14 @@ public class SalesFormController {
         ObservableList<String> obList = FXCollections.observableArrayList();
 
         try{
-            List<CustomerDto> cusList = customerModel.getAllCustomers();
+            List<CustomerDto> cusList = customerModel.getAllCustomer();
             for (CustomerDto dto : cusList){
                 obList.add(dto.getMobileNo());
             }
             cmbCustomerNum.setItems(obList);
 
         }
-        catch (SQLException e){
+        catch (SQLException | ClassNotFoundException e){
             new Alert(Alert.AlertType.ERROR,e.getMessage()).show();
         }
 
@@ -499,8 +501,8 @@ public class SalesFormController {
 
         String cusId = null;
         try {
-            cusId = customerModel.searchCustomerId(cusNum);
-        } catch (SQLException e) {
+            cusId = customerModel.searchCustomerID(cusNum);
+        } catch (SQLException | ClassNotFoundException e) {
             throw new RuntimeException(e);
         }
 
@@ -586,11 +588,11 @@ public class SalesFormController {
         String cusNum= cmbCustomerNum.getValue();
 
         try {
-            String cusId = customerModel.searchCustomerId(cusNum);
+            String cusId = customerModel.searchCustomerID(cusNum);
             CustomerDto dto = customerModel.searchCustomer(cusId);
             txtName.setText(dto.getFirstName());
         }
-        catch (SQLException e){
+        catch (SQLException | ClassNotFoundException e){
             new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
         }
 

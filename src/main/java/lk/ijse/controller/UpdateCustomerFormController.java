@@ -7,8 +7,9 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import lk.ijse.bo.BOFactory;
+import lk.ijse.bo.custom.CustomerBO;
 import lk.ijse.dto.CustomerDto;
-import lk.ijse.model.CustomerModel;
 
 import java.sql.SQLException;
 import java.util.regex.Pattern;
@@ -43,7 +44,8 @@ public class UpdateCustomerFormController {
 
     private String cusId;
 
-    private CustomerModel customerModel= new CustomerModel();
+
+    private  final CustomerBO customerBO = (CustomerBO) BOFactory.getInstance().getBO(BOFactory.BOTypes.CUSTOMER);
 
 
     @FXML
@@ -73,13 +75,13 @@ public class UpdateCustomerFormController {
         String mobileNo = txtMobileNo.getText();
 
         try{
-            boolean isUpdated = customerModel.updateCustomer(new CustomerDto(cusId,firstName,lastName,address,email,mobileNo));
+            boolean isUpdated = customerBO.updateCustomer(new CustomerDto(cusId,firstName,lastName,address,email,mobileNo));
 
             if (isUpdated){
                 new Alert(Alert.AlertType.CONFIRMATION, "Customer updated").show();
             }
 
-        }catch (SQLException e){
+        }catch (SQLException | ClassNotFoundException e){
             new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
         }
 
@@ -149,9 +151,9 @@ public class UpdateCustomerFormController {
     public void loadCustomerDetails() {
 
        try {
-           CustomerDto dto =customerModel.searchCustomer(cusId);
+           CustomerDto dto = customerBO.searchCustomer(cusId);
            setFields(dto);
-       } catch (SQLException e) {
+       } catch (SQLException | ClassNotFoundException e) {
            new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
        }
 
