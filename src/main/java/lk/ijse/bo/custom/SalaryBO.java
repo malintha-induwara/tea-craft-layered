@@ -11,7 +11,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 public interface SalaryBO extends SuperBO {
-    public boolean addSalary(SalaryDto dto) throws SQLException;
-    public String generateNextSalaryId() throws SQLException;
-    public List<SalaryDto> getPaymentDetails(String supplierId) throws SQLException;
+    boolean addSalary(SalaryDto dto) throws SQLException;
+    String generateNextSalaryId() throws SQLException;
+    List<SalaryDto> getPaymentDetails(String supplierId) throws SQLException;
+
+    boolean saveSalary(SalaryDto dto) throws SQLException;
+
+
+
 }

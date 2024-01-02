@@ -2,17 +2,20 @@ package lk.ijse.bo.custom.impl;
 
 import lk.ijse.bo.BOFactory;
 import lk.ijse.bo.custom.SalaryBO;
+import lk.ijse.dao.custom.AttendanceDAO;
 import lk.ijse.dao.custom.SalaryDAO;
+import lk.ijse.db.DbConnection;
 import lk.ijse.dto.SalaryDto;
 import lk.ijse.entity.Salary;
 
+import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
 public class SalaryBOImpl implements SalaryBO {
-
     SalaryDAO salaryDAO = (SalaryDAO) BOFactory.getInstance().getBO(BOFactory.BOTypes.SALARY);
+    AttendanceDAO attendanceDAO = (AttendanceDAO) BOFactory.getInstance().getBO(BOFactory.BOTypes.ATTENDANCE);
 
     @Override
     public boolean addSalary(SalaryDto dto) throws SQLException {
@@ -45,5 +48,36 @@ public class SalaryBOImpl implements SalaryBO {
         }
         return dtoList;
     }
+
+    @Override
+    public boolean saveSalary(SalaryDto dto) throws SQLException {
+        boolean result = false;
+
+        Connection connection = null;
+
+        try {
+            connection = DbConnection.getInstance().getConnection();
+            connection.setAutoCommit(false);
+
+            boolean isSalarySaved = addSalary(dto);
+
+            if (isSalarySaved) {
+                boolean isUpdated = attendanceDAO.updatePayedStatus(dto.getEmpId());
+
+                if (isUpdated) {
+                    connection.commit();
+                    result = true;
+                }
+            }
+        } catch (SQLException e){
+            connection.rollback();
+        } finally {
+            connection.setAutoCommit(true);
+        }
+
+        return result;
+    }
+
+
 }
 

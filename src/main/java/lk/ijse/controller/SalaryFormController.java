@@ -21,8 +21,6 @@ import lk.ijse.bo.custom.EmployeeBO;
 import lk.ijse.bo.custom.SalaryBO;
 import lk.ijse.dto.EmployeeDto;
 import lk.ijse.dto.SalaryDto;
-import lk.ijse.entity.Employee;
-import lk.ijse.entity.Salary;
 import lk.ijse.view.tdm.SalaryTm;
 import lk.ijse.model.*;
 
@@ -97,8 +95,6 @@ public class SalaryFormController {
     private final EmployeeBO employeeModel= (EmployeeBO) BOFactory.getInstance().getBO(BOFactory.BOTypes.EMPLOYEE);
 
     private final AttendanceBO attendanceBO = (AttendanceBO) BOFactory.getInstance().getBO(BOFactory.BOTypes.ATTENDANCE);
-
-    private final SalaryTransactionModel salaryTransactionModel = new SalaryTransactionModel();
 
     private final TeaCraftDetailModel teaCraftDetailModel = new TeaCraftDetailModel();
 
@@ -252,11 +248,11 @@ public class SalaryFormController {
         }
 
 
-        Salary dto = new Salary(salaryId, empId, total,workedDaysCount, date);
+        SalaryDto dto = new SalaryDto(salaryId, empId, total,workedDaysCount, date);
 
         try {
 
-            boolean isAdded = salaryTransactionModel.addSalary(dto);
+            boolean isAdded = salaryModel.saveSalary(dto);
             if (isAdded){
                 new Alert(Alert.AlertType.CONFIRMATION, "Payment Added Successfully").show();
                 loadEmployeePaymentDetails(empId);
