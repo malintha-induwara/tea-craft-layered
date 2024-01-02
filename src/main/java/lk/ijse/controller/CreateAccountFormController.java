@@ -9,8 +9,9 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
+import lk.ijse.bo.BOFactory;
+import lk.ijse.bo.custom.UserBO;
 import lk.ijse.entity.User;
-import lk.ijse.model.UserModel;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -43,7 +44,8 @@ public class CreateAccountFormController {
     @FXML
     private Text txtMassage;
 
-    private final UserModel model = new UserModel();
+
+    private final UserBO userBO = (UserBO) BOFactory.getInstance().getBO(BOFactory.BOTypes.USER);
 
 
     @FXML
@@ -104,9 +106,9 @@ public class CreateAccountFormController {
         boolean isEmailExist = false;
 
         try {
-            isEmailExist = model.searchEmail(email);
+            isEmailExist = userBO.searchEmail(email);
 
-        } catch (SQLException e) {
+        } catch (SQLException | ClassNotFoundException e) {
             throw new RuntimeException(e);
         }
 
@@ -136,8 +138,8 @@ public class CreateAccountFormController {
         boolean isUsernameExist = false;
 
         try {
-            isUsernameExist = model.searchUser(userName);
-        } catch (SQLException e) {
+            isUsernameExist = userBO.searchUser(userName);
+        } catch (SQLException | ClassNotFoundException e) {
             throw new RuntimeException(e);
         }
 

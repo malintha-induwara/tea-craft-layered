@@ -9,8 +9,9 @@ import javafx.scene.control.Alert;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
+import lk.ijse.bo.BOFactory;
+import lk.ijse.bo.custom.UserBO;
 import lk.ijse.entity.User;
-import lk.ijse.model.UserModel;
 import lk.ijse.util.EmailService;
 
 import java.io.IOException;
@@ -34,7 +35,8 @@ public class CreateAccountOtpFormController {
     @FXML
     private MFXTextField txtFieldOtp;
 
-    private UserModel userModel = new UserModel();
+
+    private final UserBO userModel = (UserBO) BOFactory.getInstance().getBO(BOFactory.BOTypes.USER);
 
 
     @FXML
@@ -81,7 +83,7 @@ public class CreateAccountOtpFormController {
                 new Alert(Alert.AlertType.CONFIRMATION, "Account Created").show();
                 switchToLogin();
             }
-        }catch (SQLException e){
+        }catch (SQLException | ClassNotFoundException e){
             new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
         }
 

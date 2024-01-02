@@ -4,6 +4,7 @@ import lk.ijse.dao.custom.UserDAO;
 import lk.ijse.entity.User;
 import lk.ijse.util.SQLUtil;
 
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
@@ -48,25 +49,30 @@ public class UserDAOImpl implements UserDAO {
     }
 
     public boolean searchUser(String userName) throws SQLException, ClassNotFoundException {
-        return SQLUtil.crudUtil("SELECT * FROM user WHERE username=?",userName);
+        ResultSet resultSet = SQLUtil.crudUtil("SELECT * FROM user WHERE username=?",userName);
+        return resultSet.next();
     }
 
     public boolean searchEmailAndUsername(String userName, String email) throws SQLException, ClassNotFoundException {
-        return SQLUtil.crudUtil("SELECT * FROM user WHERE username=? AND email=?",userName,email);
+        ResultSet resultSet =  SQLUtil.crudUtil("SELECT * FROM user WHERE username=? AND email=?",userName,email);
+        return  resultSet.next();
     }
 
 
     public boolean updatePassword(String userName, String password) throws SQLException, ClassNotFoundException {
-        return SQLUtil.crudUtil("UPDATE user SET password=? WHERE username=?",password,userName);
+        ResultSet resultSet =  SQLUtil.crudUtil("SELECT * FROM user WHERE username=?",userName);
+        return resultSet.next();
     }
 
 
     public boolean searchEmail(String email) throws SQLException, ClassNotFoundException {
-        return SQLUtil.crudUtil("SELECT * FROM user WHERE email=?",email);
+        ResultSet resultSet =  SQLUtil.crudUtil("SELECT * FROM user WHERE email=?",email);
+        return resultSet.next();
     }
 
     public boolean searchUsernameAndPassword(String userName,String password) throws SQLException, ClassNotFoundException {
-        return SQLUtil.crudUtil("SELECT * FROM user WHERE username=? AND password=?",userName,password);
+        ResultSet resultSet = SQLUtil.crudUtil("SELECT * FROM user WHERE username=? AND password=?",userName,password);
+        return resultSet.next();
     }
 
 }

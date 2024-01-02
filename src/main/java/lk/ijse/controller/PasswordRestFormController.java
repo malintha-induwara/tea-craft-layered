@@ -9,7 +9,8 @@ import javafx.scene.control.Alert;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
-import lk.ijse.model.UserModel;
+import lk.ijse.bo.BOFactory;
+import lk.ijse.bo.custom.UserBO;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -35,7 +36,8 @@ public class PasswordRestFormController {
     @FXML
     private Text txtMassage;
 
-    private final UserModel model = new UserModel();
+
+    private final UserBO userBO = (UserBO) BOFactory.getInstance().getBO(BOFactory.BOTypes.USER);
 
     private String userName;
 
@@ -67,13 +69,13 @@ public class PasswordRestFormController {
         String password = txtFieldPassword.getText();
 
         try {
-            boolean isUpdated = model.updatePassword(userName, password);
+            boolean isUpdated = userBO.updatePassword(userName, password);
             if (isUpdated){
                 new Alert(Alert.AlertType.CONFIRMATION, "Password Updated Successfully").show();
                 switchToLogin();
             }
         }
-        catch (SQLException e){
+        catch (SQLException | ClassNotFoundException e){
             new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
         }
 

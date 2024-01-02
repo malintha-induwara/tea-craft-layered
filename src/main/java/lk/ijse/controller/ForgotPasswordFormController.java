@@ -8,7 +8,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
-import lk.ijse.model.UserModel;
+import lk.ijse.bo.BOFactory;
+import lk.ijse.bo.custom.UserBO;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -32,7 +33,7 @@ public class ForgotPasswordFormController {
     @FXML
     private MFXTextField txtUserName;
 
-    private UserModel model = new UserModel();
+    private final UserBO userBO = (UserBO) BOFactory.getInstance().getBO(BOFactory.BOTypes.USER);
 
 
     @FXML
@@ -79,8 +80,8 @@ public class ForgotPasswordFormController {
         boolean isUsernameExist = false;
 
         try {
-            isUsernameExist = model.searchUser(userName);
-        } catch (SQLException e) {
+            isUsernameExist = userBO.searchUser(userName);
+        } catch (SQLException | ClassNotFoundException e) {
             throw new RuntimeException(e);
         }
 
@@ -103,8 +104,8 @@ public class ForgotPasswordFormController {
         boolean isEmailExist = false;
 
         try {
-          isEmailExist = model.searchEmailAndUsername(userName,email);
-        } catch (SQLException e) {
+          isEmailExist = userBO.searchEmailAndUsername(userName,email);
+        } catch (SQLException | ClassNotFoundException e) {
             throw new RuntimeException(e);
         }
 

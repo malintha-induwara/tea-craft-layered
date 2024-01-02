@@ -16,7 +16,9 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import lk.ijse.model.UserModel;
+import lk.ijse.bo.BOFactory;
+import lk.ijse.bo.custom.UserBO;
+import lk.ijse.bo.custom.impl.UserBOImpl;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -52,7 +54,8 @@ public class LoginFormController {
     @FXML
     private Text txtMassage;
 
-    private final UserModel userModel = new UserModel();
+
+    private final UserBO userBO = (UserBO) BOFactory.getInstance().getBO(BOFactory.BOTypes.USER);
 
 
 
@@ -140,9 +143,9 @@ public class LoginFormController {
         //Validate Username
         boolean isUsernameExist = false;
         try {
-            isUsernameExist = userModel.searchUser(userName);
+            isUsernameExist = userBO.searchUser(userName);
         }
-        catch (SQLException e){
+        catch (SQLException | ClassNotFoundException e){
             new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
         }
 
@@ -162,9 +165,9 @@ public class LoginFormController {
         //Validate Username and password
         boolean isUserExist = false;
         try {
-            isUserExist = userModel.searchUsernameAndPassword(userName,password);
+            isUserExist = userBO.searchUsernameAndPassword(userName,password);
         }
-        catch (SQLException e){
+        catch (SQLException | ClassNotFoundException e){
             new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
         }
 
@@ -182,7 +185,7 @@ public class LoginFormController {
 
 
         //Set Current User
-        UserModel.userName = userName;
+        UserBOImpl.userName = userName;
 
 
         return true;

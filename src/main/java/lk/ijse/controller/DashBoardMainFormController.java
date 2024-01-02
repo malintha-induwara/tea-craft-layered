@@ -14,6 +14,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
 import javafx.util.Duration;
+import lk.ijse.bo.custom.impl.UserBOImpl;
 import lk.ijse.entity.TeaBook;
 import lk.ijse.entity.TeaTypes;
 import lk.ijse.model.*;
@@ -81,7 +82,7 @@ public class DashBoardMainFormController {
     }
 
     private void setUserName() {
-        txtUser.setText(UserModel.userName);
+        txtUser.setText(UserBOImpl.userName);
     }
 
     private void setDashBoardTextFields() {
