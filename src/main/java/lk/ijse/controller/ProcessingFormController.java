@@ -11,13 +11,14 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.text.Text;
-import lk.ijse.entity.TeaBook;
+import lk.ijse.bo.BOFactory;
+import lk.ijse.bo.custom.TeaBookBO;
+import lk.ijse.dto.TeaBookDto;
 import lk.ijse.dto.TeaBookTypeDetailDto;
 import lk.ijse.entity.TeaBookType;
 import lk.ijse.entity.TeaTypes;
 import lk.ijse.view.tdm.TeaBookTypeTm;
 import lk.ijse.model.ProcessingModel;
-import lk.ijse.model.TeaBookModel;
 import lk.ijse.model.TeaBookTypeModel;
 import lk.ijse.model.TeaTypeModel;
 
@@ -69,7 +70,7 @@ public class ProcessingFormController {
 
     private final TeaBookTypeModel teaBookTypeModel = new TeaBookTypeModel();
 
-    private final TeaBookModel teaBookModel = new TeaBookModel();
+    private  final TeaBookBO teaBookBO = (TeaBookBO) BOFactory.getInstance().getBO(BOFactory.BOTypes.TEA_BOOK);
 
     private final TeaTypeModel teaTypeModel = new TeaTypeModel();
 
@@ -206,9 +207,9 @@ public class ProcessingFormController {
 
         try {
 
-            List <TeaBook> teaBookList =  teaBookModel.getAllTeaBookDetails();
+            List <TeaBookDto> teaBookList =  teaBookBO.getAllTeaBookDetails();
 
-            for (TeaBook teaBookDto : teaBookList) {
+            for (TeaBookDto teaBookDto : teaBookList) {
                 obList.add(teaBookDto.getDate());
             }
             cmbDate.setItems(obList);

@@ -19,10 +19,8 @@ import lk.ijse.bo.custom.AttendanceBO;
 import lk.ijse.bo.custom.TeaBookBO;
 import lk.ijse.bo.custom.impl.UserBOImpl;
 import lk.ijse.dto.TeaBookDto;
-import lk.ijse.entity.TeaBook;
 import lk.ijse.entity.TeaTypes;
 import lk.ijse.model.*;
-
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
@@ -63,7 +61,7 @@ public class DashBoardMainFormController {
 
 
 
-    private  final TeaBookBO teaBookModel = (TeaBookBO) BOFactory.getInstance().getBO(BOFactory.BOTypes.TEA_BOOK);
+    private  final TeaBookBO teaBookBO = (TeaBookBO) BOFactory.getInstance().getBO(BOFactory.BOTypes.TEA_BOOK);
 
     private final TeaOrderModel teaOrderModel=new TeaOrderModel();
 
@@ -92,7 +90,7 @@ public class DashBoardMainFormController {
     private void setDashBoardTextFields() {
 
         try{
-            int amount= (int) teaBookModel.getAmount(String.valueOf(LocalDate.now()));
+            int amount= (int) teaBookBO.getAmount(String.valueOf(LocalDate.now()));
             txtLeafStock.setText(amount+" Kg");
 
             int orderCount=teaOrderModel.getOrderCount(String.valueOf(LocalDate.now()));
@@ -157,7 +155,7 @@ public class DashBoardMainFormController {
         XYChart.Series series = new XYChart.Series();
 
         try {
-            List<TeaBookDto> dtoList = teaBookModel.getAllTeaBookDetails();
+            List<TeaBookDto> dtoList = teaBookBO.getAllTeaBookDetails();
             //To limit for last 5 days
 
             int startIndex = Math.max(0, dtoList.size() - 7); // Ensure startIndex is not negative
@@ -201,9 +199,9 @@ public class DashBoardMainFormController {
 
     private void createTeaBookRecord() {
         try {
-           boolean isExists=teaBookModel.searchDate(String.valueOf(LocalDate.now()));
+           boolean isExists= teaBookBO.searchDate(String.valueOf(LocalDate.now()));
            if (!isExists){
-               teaBookModel.createTeaBookRecord(String.valueOf(LocalDate.now()));
+               teaBookBO.createTeaBookRecord(String.valueOf(LocalDate.now()));
            }
         }catch (SQLException e){
             new Alert(Alert.AlertType.ERROR,e.getMessage()).show();

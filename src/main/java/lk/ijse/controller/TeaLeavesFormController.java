@@ -17,11 +17,10 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import lk.ijse.bo.BOFactory;
 import lk.ijse.bo.custom.SupplierBO;
+import lk.ijse.bo.custom.TeaBookBO;
 import lk.ijse.bo.custom.TeaLeavesStockBO;
 import lk.ijse.dto.TeaLeavesStockDto;
 import lk.ijse.view.tdm.TeaLeavesStockTm;
-import lk.ijse.model.TeaBookModel;
-
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
@@ -64,7 +63,8 @@ public class TeaLeavesFormController {
     @FXML
     private Text txtAmount;
 
-    private TeaBookModel teaBookModel = new TeaBookModel();
+
+    private  final TeaBookBO teaBookModel = (TeaBookBO) BOFactory.getInstance().getBO(BOFactory.BOTypes.TEA_BOOK);
 
     private final SupplierBO supplierBO = (SupplierBO) BOFactory.getInstance().getBO(BOFactory.BOTypes.SUPPLIER);
 

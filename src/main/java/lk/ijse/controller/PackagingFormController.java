@@ -21,13 +21,12 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import lk.ijse.bo.BOFactory;
 import lk.ijse.bo.custom.PackagingBO;
+import lk.ijse.bo.custom.TeaBookBO;
 import lk.ijse.dto.*;
 import lk.ijse.entity.PackagingDetails;
-import lk.ijse.entity.TeaBook;
 import lk.ijse.entity.TeaTypes;
 import lk.ijse.view.tdm.PackagingTm;
 import lk.ijse.model.*;
-
 import java.io.IOException;
 import java.sql.SQLException;
 import java.time.LocalDate;
@@ -94,7 +93,8 @@ public class PackagingFormController {
     private TableView<PackagingTm> tblPackaging;
 
 
-    private final TeaBookModel teaBookModel = new TeaBookModel();
+
+    private  final TeaBookBO teaBookBO = (TeaBookBO) BOFactory.getInstance().getBO(BOFactory.BOTypes.TEA_BOOK);
 
     private final TeaTypeModel teaTypeModel = new TeaTypeModel();
 
@@ -264,9 +264,9 @@ public class PackagingFormController {
 
         try {
 
-            List<TeaBook> teaBookList =  teaBookModel.getAllTeaBookDetails();
+            List<TeaBookDto> teaBookList =  teaBookBO.getAllTeaBookDetails();
 
-            for (TeaBook teaBookDto : teaBookList) {
+            for (TeaBookDto teaBookDto : teaBookList) {
                 obList.add(teaBookDto.getDate());
             }
             cmbDate.setItems(obList);
