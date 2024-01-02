@@ -20,7 +20,7 @@ public class SupplierDAOImpl implements SupplierDAO {
             resultSet.getString("address"),
             resultSet.getString("bank"),
             resultSet.getString("bankNo"),
-            resultSet.getString("mobilNo")
+            resultSet.getString("mobileNo")
             );
             dtoList.add(dto);
         }

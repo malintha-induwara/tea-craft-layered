@@ -8,9 +8,9 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import lk.ijse.entity.Supplier;
-import lk.ijse.model.SupplierModel;
-
+import lk.ijse.bo.BOFactory;
+import lk.ijse.bo.custom.SupplierBO;
+import lk.ijse.dto.SupplierDto;
 import java.sql.SQLException;
 import java.util.regex.Pattern;
 
@@ -47,7 +47,7 @@ public class UpdateSupplierFormController {
 
     private String supId;
 
-    private SupplierModel supplierModel= new SupplierModel();
+    private final SupplierBO supplierModel = (SupplierBO) BOFactory.getInstance().getBO(BOFactory.BOTypes.SUPPLIER);
 
 
 
@@ -66,15 +66,11 @@ public class UpdateSupplierFormController {
     @FXML
     void btnUpdateSupplierOnAction(ActionEvent event) {
 
-
         boolean isSupplierValidated = validateSupplier();
 
         if (!isSupplierValidated){
             return;
         }
-
-
-
 
         String supId = txtSupplierId.getText();
         String firstName = txtFirstName.getText();
@@ -85,7 +81,7 @@ public class UpdateSupplierFormController {
         String mobileNo = txtMobileNo.getText();
 
         try {
-            boolean isUpdated = supplierModel.updateSupplier(new Supplier(supId,firstName,lastName,address,bank,bankNo,mobileNo));
+            boolean isUpdated = supplierModel.updateSupplier(new SupplierDto(supId,firstName,lastName,address,bank,bankNo,mobileNo));
 
             if(isUpdated){
                 new Alert(Alert.AlertType.CONFIRMATION,"Supplier Updated").show();
@@ -178,7 +174,7 @@ public class UpdateSupplierFormController {
 
     public void loadSupplierDetails(){
         try {
-            Supplier dto = supplierModel.searchSupplier(supId);
+            SupplierDto dto = supplierModel.searchSupplier(supId);
             setFields(dto);
         } catch (SQLException e) {
             new Alert(Alert.AlertType.ERROR,e.getMessage()).show();
@@ -186,7 +182,7 @@ public class UpdateSupplierFormController {
     }
 
 
-    private void setFields(Supplier dto){
+    private void setFields(SupplierDto dto){
             txtSupplierId.setText(dto.getSupId());
             txtFirstName.setText(dto.getFirstName());
             txtLastName.setText(dto.getLastName());
@@ -198,7 +194,6 @@ public class UpdateSupplierFormController {
     }
 
     public void setSupplierFormController(SupplierFormController supplierFormController) {
-
         this.supplierFormController= supplierFormController;
     }
 

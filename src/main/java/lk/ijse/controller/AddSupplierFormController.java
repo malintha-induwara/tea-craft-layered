@@ -7,16 +7,15 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import lk.ijse.entity.Supplier;
-import lk.ijse.model.SupplierModel;
-
+import lk.ijse.bo.BOFactory;
+import lk.ijse.bo.custom.SupplierBO;
+import lk.ijse.dto.SupplierDto;
 import java.sql.SQLException;
 import java.util.regex.Pattern;
 
 public class AddSupplierFormController {
 
-
-    private final SupplierModel  supplierModel = new SupplierModel();
+    private final SupplierBO supplierModel = (SupplierBO) BOFactory.getInstance().getBO(BOFactory.BOTypes.SUPPLIER);
 
     @FXML
     private MFXButton btnAddSupplier;
@@ -71,7 +70,7 @@ public class AddSupplierFormController {
         String bankNo= txtBankNo.getText();
         String mobileNo= txtMobileNo.getText();
 
-        var dto = new Supplier(supId,firstName,lastName,address,bank,bankNo,mobileNo);
+        var dto = new SupplierDto(supId,firstName,lastName,address,bank,bankNo,mobileNo);
 
         try{
             boolean isSaved= supplierModel.saveSupplier(dto);

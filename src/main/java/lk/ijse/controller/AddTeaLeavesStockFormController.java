@@ -8,13 +8,13 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import lk.ijse.entity.Supplier;
+import lk.ijse.bo.BOFactory;
+import lk.ijse.bo.custom.SupplierBO;
+import lk.ijse.dto.SupplierDto;
 import lk.ijse.entity.TeaLeavesStock;
 import lk.ijse.model.AddTeaLeavesTransactionModel;
-import lk.ijse.model.SupplierModel;
 import lk.ijse.model.TeaBookModel;
 import lk.ijse.model.TeaLeavesStockModel;
-
 import java.sql.SQLException;
 import java.util.List;
 import java.util.Objects;
@@ -43,8 +43,7 @@ public class AddTeaLeavesStockFormController {
 
     private   TeaLeavesFormController teaLeavesFormController;
 
-
-    private final SupplierModel supplierModel = new SupplierModel();
+    private final SupplierBO supplierModel = (SupplierBO) BOFactory.getInstance().getBO(BOFactory.BOTypes.SUPPLIER);
 
     private  final TeaBookModel teaBookModel = new TeaBookModel();
 
@@ -79,9 +78,9 @@ public class AddTeaLeavesStockFormController {
         ObservableList <String> obList = FXCollections.observableArrayList();
 
         try{
-            List<Supplier> supplierList =  supplierModel.getAllSuppliers();
+            List<SupplierDto> supplierList =  supplierModel.getAllSuppliers();
 
-            for (Supplier supplier : supplierList){
+            for (SupplierDto supplier : supplierList){
                 obList.add(supplier.getSupId());
             }
 

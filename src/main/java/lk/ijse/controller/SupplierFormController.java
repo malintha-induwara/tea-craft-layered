@@ -17,10 +17,10 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
-import lk.ijse.entity.Supplier;
+import lk.ijse.bo.BOFactory;
+import lk.ijse.bo.custom.SupplierBO;
+import lk.ijse.dto.SupplierDto;
 import lk.ijse.view.tdm.SupplierTm;
-import lk.ijse.model.SupplierModel;
-
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
@@ -76,7 +76,8 @@ public class SupplierFormController {
     @FXML
     private MFXTextField txtSearch;
 
-    private  final SupplierModel supplierModel = new SupplierModel();
+
+    private final SupplierBO supplierModel = (SupplierBO) BOFactory.getInstance().getBO(BOFactory.BOTypes.SUPPLIER);
 
 
 
@@ -160,10 +161,10 @@ public class SupplierFormController {
 
         try {
 
-            List<Supplier> dtoList = supplierModel.getAllSuppliers();
+            List<SupplierDto> dtoList = supplierModel.getAllSuppliers();
 
 
-            for (Supplier dto: dtoList){
+            for (SupplierDto dto: dtoList){
 
                 obList.add(new SupplierTm(
                         dto.getSupId(),

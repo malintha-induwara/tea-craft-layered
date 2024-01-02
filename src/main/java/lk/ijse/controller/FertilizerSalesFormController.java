@@ -13,10 +13,12 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
+import lk.ijse.bo.BOFactory;
+import lk.ijse.bo.custom.SupplierBO;
 import lk.ijse.db.DbConnection;
+import lk.ijse.dto.SupplierDto;
 import lk.ijse.entity.Fertilizer;
 import lk.ijse.dto.PlaceFertilizerOrderDto;
-import lk.ijse.entity.Supplier;
 import lk.ijse.view.tdm.FertilizerSalesCartTm;
 import lk.ijse.model.*;
 import net.sf.jasperreports.engine.*;
@@ -24,7 +26,6 @@ import net.sf.jasperreports.engine.design.JRDesignQuery;
 import net.sf.jasperreports.engine.design.JasperDesign;
 import net.sf.jasperreports.engine.xml.JRXmlLoader;
 import net.sf.jasperreports.swing.JRViewer;
-
 import javax.swing.*;
 import java.awt.*;
 import java.io.IOException;
@@ -118,7 +119,7 @@ public class FertilizerSalesFormController {
 
     private final ObservableList<FertilizerSalesCartTm> obList = FXCollections.observableArrayList();
 
-    private final SupplierModel supplierModel = new SupplierModel();
+    private final SupplierBO supplierModel = (SupplierBO) BOFactory.getInstance().getBO(BOFactory.BOTypes.SUPPLIER);
 
     private final FertilizerModel fertilizerModel = new FertilizerModel();
 
@@ -223,9 +224,9 @@ public class FertilizerSalesFormController {
         ObservableList<String> obList = FXCollections.observableArrayList();
 
         try{
-            List<Supplier> supList = supplierModel.getAllSuppliers();
+            List<SupplierDto> supList = supplierModel.getAllSuppliers();
 
-            for (Supplier dto : supList){
+            for (SupplierDto dto : supList){
                 obList.add(dto.getSupId());
             }
             cmbCustomerId.setItems(obList);
@@ -526,7 +527,7 @@ public class FertilizerSalesFormController {
         String supId= cmbCustomerId.getValue();
 
         try {
-            Supplier dto = supplierModel.searchSupplier(supId);
+            SupplierDto dto = supplierModel.searchSupplier(supId);
             txtName.setText(dto.getFirstName());
         }
         catch (SQLException e){

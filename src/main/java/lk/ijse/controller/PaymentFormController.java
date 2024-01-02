@@ -15,11 +15,12 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
+import lk.ijse.bo.BOFactory;
+import lk.ijse.bo.custom.SupplierBO;
+import lk.ijse.dto.SupplierDto;
 import lk.ijse.entity.Payments;
-import lk.ijse.entity.Supplier;
 import lk.ijse.view.tdm.PaymentTm;
 import lk.ijse.model.*;
-
 import java.io.IOException;
 import java.sql.SQLException;
 import java.time.LocalDate;
@@ -76,7 +77,8 @@ public class PaymentFormController {
     private Text txtPaymentId;
 
     private TeaLeavesStockModel teaLeavesStockModel = new TeaLeavesStockModel();
-    private SupplierModel supplierModel = new SupplierModel();
+
+    private final SupplierBO supplierModel = (SupplierBO) BOFactory.getInstance().getBO(BOFactory.BOTypes.SUPPLIER);
 
     private PaymentsModel paymentsModel = new PaymentsModel();
 
@@ -124,9 +126,9 @@ public class PaymentFormController {
 
         try{
 
-            List<Supplier> supplierList = supplierModel.getAllSuppliers();
+            List<SupplierDto> supplierList = supplierModel.getAllSuppliers();
 
-            for (Supplier supplierDto : supplierList) {
+            for (SupplierDto supplierDto : supplierList) {
                 obList.add(supplierDto.getSupId());
             }
 
@@ -224,7 +226,7 @@ public class PaymentFormController {
     private void calculatePaymentAmount() throws SQLException {
 
         String supId = cmbSupId.getValue();
-        Supplier dto = supplierModel.searchSupplier(supId);
+        SupplierDto dto = supplierModel.searchSupplier(supId);
         txtName.setText(dto.getFirstName());
 
         //Calculate the amount

@@ -15,9 +15,10 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import lk.ijse.bo.BOFactory;
+import lk.ijse.bo.custom.SupplierBO;
 import lk.ijse.entity.TeaLeavesStock;
 import lk.ijse.view.tdm.TeaLeavesStockTm;
-import lk.ijse.model.SupplierModel;
 import lk.ijse.model.TeaBookModel;
 import lk.ijse.model.TeaLeavesStockModel;
 
@@ -65,7 +66,7 @@ public class TeaLeavesFormController {
 
     private TeaBookModel teaBookModel = new TeaBookModel();
 
-    private SupplierModel supplierModel = new SupplierModel();
+    private final SupplierBO supplierModel = (SupplierBO) BOFactory.getInstance().getBO(BOFactory.BOTypes.SUPPLIER);
 
     private TeaLeavesStockModel teaLeavesStockModel = new TeaLeavesStockModel();
 
