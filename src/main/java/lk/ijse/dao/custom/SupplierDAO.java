@@ -6,5 +6,5 @@ import lk.ijse.entity.Supplier;
 import java.sql.SQLException;
 
 public interface SupplierDAO extends CrudDAO<Supplier> {
-    String getSupplierName(String supId) throws SQLException, ClassNotFoundException;
+    String getSupplierName(String supId) throws SQLException;
 }

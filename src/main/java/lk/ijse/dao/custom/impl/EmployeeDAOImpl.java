@@ -12,7 +12,7 @@ import java.util.List;
 
 public class EmployeeDAOImpl implements EmployeeDAO {
     @Override
-    public ArrayList<Employee> getAll() throws SQLException, ClassNotFoundException {
+    public ArrayList<Employee> getAll() throws SQLException {
         ResultSet resultSet=SQLUtil.crudUtil("SELECT * FROM employee");
         ArrayList<Employee> allEmployee = new ArrayList<>();
         while (resultSet.next()){
@@ -29,27 +29,27 @@ public class EmployeeDAOImpl implements EmployeeDAO {
     }
 
     @Override
-    public boolean save(Employee dto) throws SQLException, ClassNotFoundException {
+    public boolean save(Employee dto) throws SQLException {
         return SQLUtil.crudUtil("INSERT INTO employee VALUES(?, ?, ?, ?, ?, ?, ?)",dto.getEmpId(),dto.getFirstName(),dto.getLastName(),dto.getAddress(),dto.getSex(),dto.getDateOfBirth(),dto.getMobileNo());
     }
 
     @Override
-    public boolean update(Employee dto) throws SQLException, ClassNotFoundException {
+    public boolean update(Employee dto) throws SQLException {
         return SQLUtil.crudUtil("UPDATE employee SET firstName = ? , lastName = ? , address = ? , sex = ? , dob = ? , mobileNo = ? WHERE empId = ?",dto.getFirstName(),dto.getLastName(),dto.getAddress(),dto.getSex(),dto.getMobileNo(),dto.getEmpId());
     }
 
     @Override
-    public boolean exist(String id) throws SQLException, ClassNotFoundException {
+    public boolean exist(String id) throws SQLException{
         return false;
     }
 
     @Override
-    public boolean delete(String id) throws SQLException, ClassNotFoundException {
+    public boolean delete(String id) throws SQLException{
         return SQLUtil.crudUtil("DELETE FROM employee WHERE empId = ?",id);
     }
 
     @Override
-    public String generateID() throws SQLException, ClassNotFoundException {
+    public String generateID() throws SQLException {
         ResultSet resultSet = SQLUtil.crudUtil("SELECT empId FROM employee ORDER BY empId DESC LIMIT 1");
 
         String currentEmployeeId = null;
@@ -61,7 +61,7 @@ public class EmployeeDAOImpl implements EmployeeDAO {
     }
 
     @Override
-    public Employee search(String id) throws SQLException, ClassNotFoundException {
+    public Employee search(String id) throws SQLException{
         ResultSet resultSet = SQLUtil.crudUtil("SELECT * FROM employee WHERE empId = ?");
         Employee entity= null;
         if (resultSet.next()){

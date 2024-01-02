@@ -14,7 +14,7 @@ import java.util.List;
 
 public class PackagingDAOImpl implements PackagingDAO {
     @Override
-    public ArrayList<Packaging> getAll() throws SQLException, ClassNotFoundException {
+    public ArrayList<Packaging> getAll() throws SQLException{
         ResultSet resultSet = SQLUtil.crudUtil("SELECT * FROM packaging");
         ArrayList<Packaging> entityList = new ArrayList<>();
         while (resultSet.next()){
@@ -30,7 +30,7 @@ public class PackagingDAOImpl implements PackagingDAO {
     }
 
     @Override
-    public boolean save(Packaging entity) throws SQLException, ClassNotFoundException {
+    public boolean save(Packaging entity) throws SQLException {
         return SQLUtil.crudUtil("INSERT INTO packaging VALUES(?,?,?,?,?)",
                 entity.getPackId(),
                 entity.getTypedId(),
@@ -40,7 +40,7 @@ public class PackagingDAOImpl implements PackagingDAO {
     }
 
     @Override
-    public boolean update(Packaging entity) throws SQLException, ClassNotFoundException {
+    public boolean update(Packaging entity) throws SQLException{
         return SQLUtil.crudUtil("UPDATE packaging SET typeId=?,description=?,packageCount=?,price=? WHERE packId=?",
                 entity.getTypedId(),
                 entity.getDescription(),
@@ -50,17 +50,17 @@ public class PackagingDAOImpl implements PackagingDAO {
     }
 
     @Override
-    public boolean exist(String id) throws SQLException, ClassNotFoundException {
+    public boolean exist(String id) throws SQLException{
         return false;
     }
 
     @Override
-    public boolean delete(String id) throws SQLException, ClassNotFoundException {
+    public boolean delete(String id) throws SQLException{
         return SQLUtil.crudUtil("DELETE FROM packaging WHERE packId=?",id);
     }
 
     @Override
-    public String generateID() throws SQLException, ClassNotFoundException {
+    public String generateID() throws SQLException{
         ResultSet resultSet = SQLUtil.crudUtil("SELECT packId FROM packaging ORDER BY packId DESC LIMIT 1");
         String currentPackId = null;
         if (resultSet.next()){
@@ -91,7 +91,7 @@ public class PackagingDAOImpl implements PackagingDAO {
     }
 
     @Override
-    public Packaging search(String id) throws SQLException, ClassNotFoundException {
+    public Packaging search(String id) throws SQLException {
         ResultSet resultSet = SQLUtil.crudUtil("SELECT * FROM packaging WHERE packId=?",id);
         if (resultSet.next()){
             return new Packaging(
@@ -105,7 +105,7 @@ public class PackagingDAOImpl implements PackagingDAO {
         return null;
     }
 
-    public List<Packaging> getAllPackaging(String teaType) throws SQLException, ClassNotFoundException {
+    public List<Packaging> getAllPackaging(String teaType) throws SQLException{
         ResultSet resultSet = SQLUtil.crudUtil("SELECT * FROM packaging WHERE typeId=?",teaType);
         List<Packaging> packagingList = new ArrayList<>();
         while (resultSet.next()){
@@ -121,14 +121,14 @@ public class PackagingDAOImpl implements PackagingDAO {
         return packagingList;
     }
 
-    public String getPackId(String teaTypeId, String packSize) throws SQLException, ClassNotFoundException {
+    public String getPackId(String teaTypeId, String packSize) throws SQLException {
         ResultSet resultSet = SQLUtil.crudUtil("SELECT packId FROM packaging WHERE typeId=? AND description=?",teaTypeId,packSize);
         resultSet.next();
         return resultSet.getString(1);
     }
 
 
-    public boolean updatePackagingCount(List<PackagingCountAmountDto> dtoList) throws SQLException, ClassNotFoundException {
+    public boolean updatePackagingCount(List<PackagingCountAmountDto> dtoList) throws SQLException {
         for (PackagingCountAmountDto dto : dtoList) {
             boolean isUpdated = SQLUtil.crudUtil("UPDATE packaging SET packageCount=packageCount-? WHERE packId=?",dto.getCount(),dto.getPackId());
             if (!isUpdated){
@@ -138,7 +138,7 @@ public class PackagingDAOImpl implements PackagingDAO {
         return true;
     }
 
-    public boolean updatePackaging(List<SalesCartTm> tmList) throws SQLException, ClassNotFoundException {
+    public boolean updatePackaging(List<SalesCartTm> tmList) throws SQLException{
         for (SalesCartTm tm : tmList) {
             if (!updatePackagingQty(tm)){
                 return false;
@@ -147,11 +147,11 @@ public class PackagingDAOImpl implements PackagingDAO {
         return true;
     }
 
-    private boolean updatePackagingQty(SalesCartTm tm) throws SQLException, ClassNotFoundException {
+    private boolean updatePackagingQty(SalesCartTm tm) throws SQLException {
         return SQLUtil.crudUtil("UPDATE packaging SET packageCount=packageCount-? WHERE packId=?",tm.getQty(),tm.getPackId());
     }
 
-    public String getTypeId(String packId) throws SQLException, ClassNotFoundException {
+    public String getTypeId(String packId) throws SQLException{
         ResultSet resultSet = SQLUtil.crudUtil("SELECT typeId FROM packaging WHERE packId=?",packId);
         resultSet.next();
         return resultSet.getString(1);

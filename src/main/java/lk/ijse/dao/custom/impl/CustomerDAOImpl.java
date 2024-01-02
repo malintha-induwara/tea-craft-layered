@@ -10,7 +10,7 @@ import java.util.ArrayList;
 
 public class CustomerDAOImpl implements CustomerDAO {
     @Override
-    public ArrayList<Customer> getAll() throws SQLException, ClassNotFoundException {
+    public ArrayList<Customer> getAll() throws SQLException{
         ResultSet resultSet = SQLUtil.crudUtil("SELECT * FROM customer");
         ArrayList<Customer> allCustomer = new ArrayList<>();
         while (resultSet.next()) {
@@ -28,27 +28,27 @@ public class CustomerDAOImpl implements CustomerDAO {
     }
 
     @Override
-    public boolean save(Customer entity) throws SQLException, ClassNotFoundException {
+    public boolean save(Customer entity) throws SQLException {
         return SQLUtil.crudUtil("INSERT INTO customer VALUES(?, ?, ?, ?, ?, ?)",entity.getCusId(),entity.getFirstName(),entity.getLastName(),entity.getAddress(),entity.getEmail(),entity.getMobileNo());
     }
 
     @Override
-    public boolean update(Customer entity) throws SQLException, ClassNotFoundException {
+    public boolean update(Customer entity) throws SQLException{
         return SQLUtil.crudUtil("UPDATE customer SET firstName = ? , lastName = ? , address = ?, email = ?, mobileNo = ? WHERE cusId = ?",entity.getFirstName(),entity.getLastName(),entity.getAddress(),entity.getEmail(),entity.getMobileNo(),entity.getCusId());
     }
 
     @Override
-    public boolean exist(String id) throws SQLException, ClassNotFoundException {
+    public boolean exist(String id) throws SQLException {
         return false;
     }
 
     @Override
-    public boolean delete(String id) throws SQLException, ClassNotFoundException {
+    public boolean delete(String id) throws SQLException {
         return SQLUtil.crudUtil("DELETE FROM Customer WHERE id=?",id);
     }
 
     @Override
-    public String generateID() throws SQLException, ClassNotFoundException {
+    public String generateID() throws SQLException {
         ResultSet resultSet = SQLUtil.crudUtil("SELECT cusId FROM customer ORDER BY cusId DESC LIMIT 1");
         String currentCustomerId = null;
         if (resultSet.next()){
@@ -59,7 +59,7 @@ public class CustomerDAOImpl implements CustomerDAO {
     }
 
     @Override
-    public Customer search(String id) throws SQLException, ClassNotFoundException {
+    public Customer search(String id) throws SQLException {
         ResultSet resultSet = SQLUtil.crudUtil("SELECT * FROM customer WHERE cusId = ?",id);
         Customer entity= null;
         if (resultSet.next()) {
@@ -74,7 +74,7 @@ public class CustomerDAOImpl implements CustomerDAO {
         return entity;
     }
 
-    public String searchCustomerId(String cusNum) throws SQLException, ClassNotFoundException {
+    public String searchCustomerId(String cusNum) throws SQLException{
         ResultSet resultSet = SQLUtil.crudUtil("SELECT * FROM customer WHERE cusId = ?",cusNum);
         resultSet.next();
         return resultSet.getString("cusId");

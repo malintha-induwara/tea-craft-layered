@@ -12,12 +12,12 @@ import java.util.List;
 
 public class SalaryDAOImpl implements SalaryDAO {
     @Override
-    public ArrayList<Salary> getAll() throws SQLException, ClassNotFoundException {
+    public ArrayList<Salary> getAll() throws SQLException{
         return null;
     }
 
     @Override
-    public boolean save(Salary entity) throws SQLException, ClassNotFoundException {
+    public boolean save(Salary entity) throws SQLException{
         return SQLUtil.crudUtil("INSERT INTO salary VALUES(?,?,?,?,?)",
                 entity.getSalaryId(),
                 entity.getEmpId(),
@@ -27,22 +27,22 @@ public class SalaryDAOImpl implements SalaryDAO {
     }
 
     @Override
-    public boolean update(Salary dto) throws SQLException, ClassNotFoundException {
+    public boolean update(Salary dto) throws SQLException {
         return false;
     }
 
     @Override
-    public boolean exist(String id) throws SQLException, ClassNotFoundException {
+    public boolean exist(String id) throws SQLException {
         return false;
     }
 
     @Override
-    public boolean delete(String id) throws SQLException, ClassNotFoundException {
+    public boolean delete(String id) throws SQLException{
         return false;
     }
 
     @Override
-    public String generateID() throws SQLException, ClassNotFoundException {
+    public String generateID() throws SQLException {
         ResultSet resultSet = SQLUtil.crudUtil("SELECT salaryId FROM salary ORDER BY salaryId DESC LIMIT 1");
         String currentSalaryId = null;
         if (resultSet.next()){
@@ -72,11 +72,11 @@ public class SalaryDAOImpl implements SalaryDAO {
     }
 
     @Override
-    public Salary search(String id) throws SQLException, ClassNotFoundException {
+    public Salary search(String id) throws SQLException {
         return null;
     }
 
-    public List<Salary> getPaymentDetails(String supplierId) throws SQLException, ClassNotFoundException {
+    public List<Salary> getPaymentDetails(String supplierId) throws SQLException{
         ResultSet resultSet = SQLUtil.crudUtil("SELECT * FROM salary WHERE empId=?", supplierId);
         List<Salary> salaryList = new ArrayList<>();
         while (resultSet.next()){

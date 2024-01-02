@@ -13,8 +13,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public interface PackagingDetailsDAO extends CrudDAO<PackagingDetails> {
-    public double getTotalDecreasedAmount(String teaTypeId) throws SQLException, ClassNotFoundException ;
-    public List<PackagingDetails> loadAllPackagingDetails(LocalDate date) throws SQLException, ClassNotFoundException;
-    public List<PackagingCountAmountDto> getTotalCountAmount(LocalDate date) throws SQLException, ClassNotFoundException;
-    public boolean confirmPackaging(LocalDate parse) throws SQLException, ClassNotFoundException;
+    public double getTotalDecreasedAmount(String teaTypeId) throws SQLException ;
+    public List<PackagingDetails> loadAllPackagingDetails(LocalDate date) throws SQLException;
+    public List<PackagingCountAmountDto> getTotalCountAmount(LocalDate date) throws SQLException;
+    public boolean confirmPackaging(LocalDate parse) throws SQLException;
 }

@@ -7,6 +7,6 @@ import java.sql.SQLException;
 import java.util.List;
 
 public interface SalaryDAO extends CrudDAO<Salary> {
-    List<Salary> getPaymentDetails(String supplierId) throws SQLException, ClassNotFoundException;
+    List<Salary> getPaymentDetails(String supplierId) throws SQLException;
 
 }

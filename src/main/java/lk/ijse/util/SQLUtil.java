@@ -7,7 +7,7 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 public class SQLUtil {
-    public static <T> T crudUtil(String sql, Object... args) throws SQLException, ClassNotFoundException{
+    public static <T> T crudUtil(String sql, Object... args) throws SQLException {
         Connection connection = DbConnection.getInstance().getConnection();
         PreparedStatement pstm = connection.prepareStatement(sql);
         for (int i = 0; i < args.length; i++) {

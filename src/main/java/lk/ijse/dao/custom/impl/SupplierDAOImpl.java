@@ -10,7 +10,7 @@ import java.util.ArrayList;
 
 public class SupplierDAOImpl implements SupplierDAO {
     @Override
-    public ArrayList<Supplier> getAll() throws SQLException, ClassNotFoundException {
+    public ArrayList<Supplier> getAll() throws SQLException {
         ResultSet resultSet = SQLUtil.crudUtil("SELECT * FROM tea_supplier");
         ArrayList<Supplier> dtoList = new ArrayList<>();
         while (resultSet.next()){
@@ -28,27 +28,27 @@ public class SupplierDAOImpl implements SupplierDAO {
     }
 
     @Override
-    public boolean save(Supplier entity) throws SQLException, ClassNotFoundException {
+    public boolean save(Supplier entity) throws SQLException{
         return SQLUtil.crudUtil("INSERT INTO tea_supplier VALUES(?, ?, ?, ?, ?, ?, ?)",entity.getSupId(),entity.getFirstName(),entity.getLastName(),entity.getAddress(),entity.getBank(),entity.getBankNo(),entity.getMobileNo());
     }
 
     @Override
-    public boolean update(Supplier entity) throws SQLException, ClassNotFoundException {
+    public boolean update(Supplier entity) throws SQLException {
         return SQLUtil.crudUtil("UPDATE tea_supplier SET firstName=?,lastName=?,address=?,bank=?,bankNo=?,mobileNo=? WHERE supId=?",entity.getFirstName(),entity.getLastName(),entity.getAddress(),entity.getBank(),entity.getBankNo(),entity.getMobileNo(),entity.getSupId());
     }
 
     @Override
-    public boolean exist(String id) throws SQLException, ClassNotFoundException {
+    public boolean exist(String id) throws SQLException {
         return false;
     }
 
     @Override
-    public boolean delete(String id) throws SQLException, ClassNotFoundException {
+    public boolean delete(String id) throws SQLException {
         return SQLUtil.crudUtil("DELETE FROM tea_supplier WHERE supId = ?",id);
     }
 
     @Override
-    public String generateID() throws SQLException, ClassNotFoundException {
+    public String generateID() throws SQLException {
         ResultSet resultSet = SQLUtil.crudUtil("SELECT supId FROM tea_supplier ORDER BY supId DESC LIMIT 1");
         String currentSupplierId = null;
 
@@ -80,7 +80,7 @@ public class SupplierDAOImpl implements SupplierDAO {
     }
 
     @Override
-    public Supplier search(String id) throws SQLException, ClassNotFoundException {
+    public Supplier search(String id) throws SQLException {
         ResultSet resultSet = SQLUtil.crudUtil("SELECT * FROM tea_supplier WHERE supId = ?",id);
         Supplier entity = null;
         if (resultSet.next()){
@@ -97,7 +97,7 @@ public class SupplierDAOImpl implements SupplierDAO {
     }
 
     @Override
-    public String getSupplierName(String supId) throws SQLException, ClassNotFoundException {
+    public String getSupplierName(String supId) throws SQLException {
         ResultSet resultSet = SQLUtil.crudUtil("SELECT firstName FROM tea_supplier WHERE supId = ?",supId);
         String name = null;
         if (resultSet.next()) {

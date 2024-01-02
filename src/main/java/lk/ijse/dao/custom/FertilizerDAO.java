@@ -8,6 +8,6 @@ import java.sql.SQLException;
 import java.util.List;
 
 public interface FertilizerDAO extends CrudDAO<Fertilizer> {
-    boolean updateFertilizer(List<FertilizerSalesCartTm> tmList) throws SQLException, ClassNotFoundException;
-    boolean updateQty(FertilizerSalesCartTm cartTm) throws SQLException, ClassNotFoundException;
+    boolean updateFertilizer(List<FertilizerSalesCartTm> tmList) throws SQLException;
+    boolean updateQty(FertilizerSalesCartTm cartTm) throws SQLException;
 }

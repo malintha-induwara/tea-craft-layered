@@ -11,12 +11,12 @@ import java.util.List;
 
 public class TeaLeavesStockDAOImpl implements TeaLeavesStockDAO {
     @Override
-    public ArrayList<TeaLeavesStock> getAll() throws SQLException, ClassNotFoundException {
+    public ArrayList<TeaLeavesStock> getAll() throws SQLException {
         return null;
     }
 
     @Override
-    public boolean save(TeaLeavesStock entity) throws SQLException, ClassNotFoundException {
+    public boolean save(TeaLeavesStock entity) throws SQLException {
         return SQLUtil.crudUtil("INSERT INTO tea_leaves_stock VALUES(?,?,?,?,?)",
                 entity.getTeaStockId(),
                 entity.getSupId(),
@@ -26,7 +26,7 @@ public class TeaLeavesStockDAOImpl implements TeaLeavesStockDAO {
     }
 
     @Override
-    public boolean update(TeaLeavesStock entity) throws SQLException, ClassNotFoundException {
+    public boolean update(TeaLeavesStock entity) throws SQLException {
         return SQLUtil.crudUtil("UPDATE tea_leaves_stock SET supId=?,teaBookId=?,amount=? WHERE teaStockId=?",
                 entity.getSupId(),
                 entity.getTeaBookId(),
@@ -35,17 +35,17 @@ public class TeaLeavesStockDAOImpl implements TeaLeavesStockDAO {
     }
 
     @Override
-    public boolean exist(String id) throws SQLException, ClassNotFoundException {
+    public boolean exist(String id) throws SQLException {
         return false;
     }
 
     @Override
-    public boolean delete(String id) throws SQLException, ClassNotFoundException {
+    public boolean delete(String id) throws SQLException {
         return SQLUtil.crudUtil("DELETE FROM tea_leaves_stock WHERE teaStockId=?",id);
     }
 
     @Override
-    public String generateID() throws SQLException, ClassNotFoundException {
+    public String generateID() throws SQLException {
         ResultSet resultSet = SQLUtil.crudUtil("SELECT teaStockId FROM tea_leaves_stock ORDER BY teaStockId DESC LIMIT 1");
         String currentTeaLeavesStockId = null;
         if (resultSet.next()){
@@ -75,7 +75,7 @@ public class TeaLeavesStockDAOImpl implements TeaLeavesStockDAO {
 
 
     @Override
-    public TeaLeavesStock search(String id) throws SQLException, ClassNotFoundException {
+    public TeaLeavesStock search(String id) throws SQLException {
         ResultSet resultSet = SQLUtil.crudUtil("SELECT * FROM tea_leaves_stock WHERE teaStockId=?",id);
         if (resultSet.next()){
             return new TeaLeavesStock(
@@ -89,11 +89,11 @@ public class TeaLeavesStockDAOImpl implements TeaLeavesStockDAO {
         return null;
     }
 
-    public boolean updatePayedStatus(String supId) throws SQLException, ClassNotFoundException {
+    public boolean updatePayedStatus(String supId) throws SQLException {
         return SQLUtil.crudUtil("UPDATE tea_leaves_stock SET isPayed=true WHERE supId=?",supId);
     }
 
-    public double getTotalTeaLeavesSuppliedAmount(String supId) throws SQLException, ClassNotFoundException {
+    public double getTotalTeaLeavesSuppliedAmount(String supId) throws SQLException {
         ResultSet resultSet =SQLUtil.crudUtil("SELECT SUM(amount) FROM tea_leaves_stock WHERE supId=? and isPayed=false",supId);
         if (resultSet.next()){
             return resultSet.getDouble(1);
@@ -101,7 +101,7 @@ public class TeaLeavesStockDAOImpl implements TeaLeavesStockDAO {
         return 0;
     }
 
-    public List<TeaLeavesStock> getAllStockDetails(String dateBookId) throws SQLException, ClassNotFoundException {
+    public List<TeaLeavesStock> getAllStockDetails(String dateBookId) throws SQLException {
         ResultSet resultSet = SQLUtil.crudUtil("SELECT * FROM tea_leaves_stock WHERE teaBookId=?",dateBookId);
         List<TeaLeavesStock> teaLeavesStocks = new ArrayList<>();
         while (resultSet.next()){

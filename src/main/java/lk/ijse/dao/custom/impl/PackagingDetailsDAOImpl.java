@@ -15,12 +15,12 @@ import java.util.List;
 
 public class PackagingDetailsDAOImpl implements PackagingDetailsDAO {
     @Override
-    public ArrayList<PackagingDetails> getAll() throws SQLException, ClassNotFoundException {
+    public ArrayList<PackagingDetails> getAll() throws SQLException {
         return null;
     }
 
     @Override
-    public boolean save(PackagingDetails entity) throws SQLException, ClassNotFoundException {
+    public boolean save(PackagingDetails entity) throws SQLException {
         return SQLUtil.crudUtil("INSERT INTO packaging_details VALUES (?,?,?,?,?,?)",
                 entity.getPackagingDetailsId(),
                 Date.valueOf(entity.getDate()),
@@ -31,22 +31,22 @@ public class PackagingDetailsDAOImpl implements PackagingDetailsDAO {
     }
 
     @Override
-    public boolean update(PackagingDetails dto) throws SQLException, ClassNotFoundException {
+    public boolean update(PackagingDetails dto) throws SQLException {
         return false;
     }
 
     @Override
-    public boolean exist(String id) throws SQLException, ClassNotFoundException {
+    public boolean exist(String id) throws SQLException {
         return false;
     }
 
     @Override
-    public boolean delete(String id) throws SQLException, ClassNotFoundException {
+    public boolean delete(String id) throws SQLException {
         return SQLUtil.crudUtil("DELETE FROM packaging_details WHERE packagingDetailsId=?", id);
     }
 
     @Override
-    public String generateID() throws SQLException, ClassNotFoundException {
+    public String generateID() throws SQLException {
 
         ResultSet resultSet = SQLUtil.crudUtil("SELECT packagingDetailsId FROM packaging_details ORDER BY packagingDetailsId DESC LIMIT 1");
 
@@ -83,12 +83,12 @@ public class PackagingDetailsDAOImpl implements PackagingDetailsDAO {
     }
 
     @Override
-    public PackagingDetails search(String id) throws SQLException, ClassNotFoundException {
+    public PackagingDetails search(String id) throws SQLException {
         return null;
     }
 
 
-    public double getTotalDecreasedAmount(String teaTypeId) throws SQLException, ClassNotFoundException {
+    public double getTotalDecreasedAmount(String teaTypeId) throws SQLException {
         ResultSet resultSet = SQLUtil.crudUtil("SELECT SUM(amount) FROM packaging_details WHERE packId IN (SELECT packId FROM packaging WHERE typeId=?) AND isConfirmed=0", teaTypeId);
         if (resultSet.next()){
             return resultSet.getDouble(1);
@@ -96,7 +96,7 @@ public class PackagingDetailsDAOImpl implements PackagingDetailsDAO {
         return 0;
     }
 
-    public List<PackagingDetails> loadAllPackagingDetails(LocalDate date) throws SQLException, ClassNotFoundException {
+    public List<PackagingDetails> loadAllPackagingDetails(LocalDate date) throws SQLException{
         ResultSet resultSet = SQLUtil.crudUtil("SELECT * FROM packaging_details WHERE date=?", Date.valueOf(date));
         List<PackagingDetails> packagingDetailsList = new ArrayList<>();
         while (resultSet.next()){
@@ -113,7 +113,7 @@ public class PackagingDetailsDAOImpl implements PackagingDetailsDAO {
     }
 
 
-    public List<PackagingCountAmountDto> getTotalCountAmount(LocalDate date) throws SQLException, ClassNotFoundException {
+    public List<PackagingCountAmountDto> getTotalCountAmount(LocalDate date) throws SQLException {
 
         ResultSet resultSet = SQLUtil.crudUtil("SELECT packId,SUM(count),SUM(amount) FROM packaging_details WHERE date=? AND isConfirmed=0 GROUP BY packId", Date.valueOf(date));
 
@@ -131,7 +131,7 @@ public class PackagingDetailsDAOImpl implements PackagingDetailsDAO {
     }
 
 
-    public boolean confirmPackaging(LocalDate parse) throws SQLException, ClassNotFoundException {
+    public boolean confirmPackaging(LocalDate parse) throws SQLException {
         return SQLUtil.crudUtil("UPDATE packaging_details SET isConfirmed=1 WHERE date=?", Date.valueOf(parse));
     }
 

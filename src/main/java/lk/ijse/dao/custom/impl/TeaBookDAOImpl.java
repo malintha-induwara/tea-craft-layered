@@ -10,7 +10,7 @@ import java.util.ArrayList;
 
 public class TeaBookDAOImpl implements TeaBookDAO {
     @Override
-    public ArrayList<TeaBook> getAll() throws SQLException, ClassNotFoundException {
+    public ArrayList<TeaBook> getAll() throws SQLException{
         ResultSet resultSet = SQLUtil.crudUtil("SELECT * FROM tea_book order by date");
         ArrayList<TeaBook> teaBooks = new ArrayList<>();
         while (resultSet.next()){
@@ -21,7 +21,7 @@ public class TeaBookDAOImpl implements TeaBookDAO {
     }
 
     @Override
-    public boolean save(TeaBook dto) throws SQLException, ClassNotFoundException {
+    public boolean save(TeaBook dto) throws SQLException {
         return SQLUtil.crudUtil("INSERT INTO tea_book VALUES(?,?,?)",
                 dto.getTeaBookId(),
                 dto.getDailyAmount(),
@@ -29,22 +29,22 @@ public class TeaBookDAOImpl implements TeaBookDAO {
     }
 
     @Override
-    public boolean update(TeaBook dto) throws SQLException, ClassNotFoundException {
+    public boolean update(TeaBook dto) throws SQLException {
         return false;
     }
 
     @Override
-    public boolean exist(String id) throws SQLException, ClassNotFoundException {
+    public boolean exist(String id) throws SQLException {
         return false;
     }
 
     @Override
-    public boolean delete(String id) throws SQLException, ClassNotFoundException {
+    public boolean delete(String id) throws SQLException{
         return false;
     }
 
     @Override
-    public String generateID() throws SQLException, ClassNotFoundException {
+    public String generateID() throws SQLException {
         ResultSet resultSet = SQLUtil.crudUtil("SELECT teaBookId FROM tea_book ORDER BY teaBookId DESC LIMIT 1");
         String currentTeaBookId = null;
 
@@ -75,39 +75,39 @@ public class TeaBookDAOImpl implements TeaBookDAO {
     }
 
     @Override
-    public TeaBook search(String id) throws SQLException, ClassNotFoundException {
+    public TeaBook search(String id) throws SQLException {
         return null;
     }
 
-    public boolean updateTeaBookAmount(String teaBookId,double amount) throws SQLException, ClassNotFoundException {
+    public boolean updateTeaBookAmount(String teaBookId,double amount) throws SQLException {
         return SQLUtil.crudUtil("UPDATE tea_book SET dailyAmount=? WHERE teaBookId=?",
                 amount,
                 teaBookId);
     }
 
-    public String getTeaBookId(String date) throws SQLException, ClassNotFoundException {
+    public String getTeaBookId(String date) throws SQLException {
         ResultSet resultSet = SQLUtil.crudUtil("SELECT teaBookId FROM tea_book WHERE date=?",date);
         resultSet.next();
         return resultSet.getString(1);
     }
 
-    public String getTeaBookDate(String teaBookId) throws SQLException, ClassNotFoundException {
+    public String getTeaBookDate(String teaBookId) throws SQLException{
         ResultSet resultSet = SQLUtil.crudUtil("SELECT date FROM tea_book WHERE teaBookId=?",teaBookId);
         resultSet.next();
         return resultSet.getString(1);
     }
 
-    public boolean searchDate(String date) throws SQLException, ClassNotFoundException {
+    public boolean searchDate(String date) throws SQLException{
         ResultSet resultSet = SQLUtil.crudUtil("SELECT * FROM tea_book WHERE date=?",date);
         return resultSet.next();
     }
-    public boolean createTeaBookRecord(String date) throws SQLException, ClassNotFoundException {
+    public boolean createTeaBookRecord(String date) throws SQLException {
         return SQLUtil.crudUtil("INSERT INTO tea_book VALUES(?,?,?)",
                 generateID(),
                 0.0,
                 date);
     }
-    public double getAmount(String date) throws SQLException, ClassNotFoundException {
+    public double getAmount(String date) throws SQLException{
         ResultSet resultSet = SQLUtil.crudUtil("SELECT dailyAmount FROM tea_book WHERE date=?",date);
         if (resultSet.next()){
             return resultSet.getDouble(1);

@@ -13,12 +13,12 @@ import java.util.List;
 
 public class PaymentsDAOImpl implements PaymentsDAO {
     @Override
-    public ArrayList<Payments> getAll() throws SQLException, ClassNotFoundException {
+    public ArrayList<Payments> getAll() throws SQLException{
         return null;
     }
 
     @Override
-    public boolean save(Payments entity) throws SQLException, ClassNotFoundException {
+    public boolean save(Payments entity) throws SQLException {
         return SQLUtil.crudUtil("INSERT INTO payments VALUES(?,?,?,?,?)",
                 entity.getPaymentId(),
                 entity.getSupId(),
@@ -29,22 +29,22 @@ public class PaymentsDAOImpl implements PaymentsDAO {
     }
 
     @Override
-    public boolean update(Payments dto) throws SQLException, ClassNotFoundException {
+    public boolean update(Payments dto) throws SQLException {
         return false;
     }
 
     @Override
-    public boolean exist(String id) throws SQLException, ClassNotFoundException {
+    public boolean exist(String id) throws SQLException{
         return false;
     }
 
     @Override
-    public boolean delete(String id) throws SQLException, ClassNotFoundException {
+    public boolean delete(String id) throws SQLException {
         return false;
     }
 
     @Override
-    public String generateID() throws SQLException, ClassNotFoundException {
+    public String generateID() throws SQLException{
         ResultSet resultSet = SQLUtil.crudUtil("SELECT paymentId FROM payments ORDER BY paymentId DESC LIMIT 1");
         String currentPaymentId = null;
         if (resultSet.next()) {
@@ -73,11 +73,11 @@ public class PaymentsDAOImpl implements PaymentsDAO {
     }
 
     @Override
-    public Payments search(String id) throws SQLException, ClassNotFoundException {
+    public Payments search(String id) throws SQLException{
         return null;
     }
 
-    public List<Payments> getAllPaymentsDetails(String supId) throws SQLException, ClassNotFoundException {
+    public List<Payments> getAllPaymentsDetails(String supId) throws SQLException {
         ResultSet resultSet = SQLUtil.crudUtil("SELECT * FROM payments WHERE supId=?",supId);
         List<Payments> entityList = new ArrayList<>();
         while (resultSet.next()){

@@ -8,10 +8,10 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public interface TeaBookDAO extends CrudDAO<TeaBook> {
-    public boolean updateTeaBookAmount(String teaBookId,double amount) throws SQLException, ClassNotFoundException;
-    public String getTeaBookId(String date) throws SQLException, ClassNotFoundException;
-    public String getTeaBookDate(String teaBookId) throws SQLException, ClassNotFoundException;
-    public boolean searchDate(String date) throws SQLException, ClassNotFoundException;
-    public boolean createTeaBookRecord(String date) throws SQLException, ClassNotFoundException;
-    public double getAmount(String date) throws SQLException, ClassNotFoundException;
+    public boolean updateTeaBookAmount(String teaBookId,double amount) throws SQLException;
+    public String getTeaBookId(String date) throws SQLException;
+    public String getTeaBookDate(String teaBookId) throws SQLException;
+    public boolean searchDate(String date) throws SQLException;
+    public boolean createTeaBookRecord(String date) throws SQLException;
+    public double getAmount(String date) throws SQLException;
 }

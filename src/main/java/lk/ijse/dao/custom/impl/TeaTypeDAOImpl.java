@@ -11,7 +11,7 @@ import java.util.List;
 
 public class TeaTypeDAOImpl implements TeaTypeDAO {
     @Override
-    public ArrayList<TeaTypes> getAll() throws SQLException, ClassNotFoundException {
+    public ArrayList<TeaTypes> getAll() throws SQLException {
         ResultSet resultSet = SQLUtil.crudUtil("SELECT * FROM tea_types");
         ArrayList<TeaTypes> dtoList = new ArrayList<>();
         while(resultSet.next()) {
@@ -22,43 +22,43 @@ public class TeaTypeDAOImpl implements TeaTypeDAO {
     }
 
     @Override
-    public boolean save(TeaTypes dto) throws SQLException, ClassNotFoundException {
+    public boolean save(TeaTypes dto) throws SQLException {
         return false;
     }
 
     @Override
-    public boolean update(TeaTypes dto) throws SQLException, ClassNotFoundException {
+    public boolean update(TeaTypes dto) throws SQLException{
         return false;
     }
 
     @Override
-    public boolean exist(String id) throws SQLException, ClassNotFoundException {
+    public boolean exist(String id) throws SQLException{
         return false;
     }
 
     @Override
-    public boolean delete(String id) throws SQLException, ClassNotFoundException {
+    public boolean delete(String id) throws SQLException{
         return false;
     }
 
     @Override
-    public String generateID() throws SQLException, ClassNotFoundException {
+    public String generateID() throws SQLException {
         return null;
     }
 
     @Override
-    public TeaTypes search(String id) throws SQLException, ClassNotFoundException {
+    public TeaTypes search(String id) throws SQLException {
         return null;
     }
 
     @Override
-    public String getTeaTypeId(String type) throws SQLException, ClassNotFoundException {
+    public String getTeaTypeId(String type) throws SQLException {
         ResultSet resultSet = SQLUtil.crudUtil("SELECT typeId FROM tea_types WHERE type=?",type);
         resultSet.next();
         return resultSet.getString(1);
     }
 
-    public String getTeaType(String typeId) throws SQLException, ClassNotFoundException {
+    public String getTeaType(String typeId) throws SQLException {
         ResultSet resultSet = SQLUtil.crudUtil("SELECT type FROM tea_types WHERE typeId=?",typeId);
         resultSet.next();
         return resultSet.getString(1);

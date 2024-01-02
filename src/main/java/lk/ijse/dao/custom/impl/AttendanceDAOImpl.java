@@ -12,32 +12,32 @@ import java.util.List;
 
 public class AttendanceDAOImpl implements AttendanceDAO {
     @Override
-    public ArrayList<Attendance> getAll() throws SQLException, ClassNotFoundException {
+    public ArrayList<Attendance> getAll() throws SQLException {
         return null;
     }
 
     @Override
-    public boolean save(Attendance entity) throws SQLException, ClassNotFoundException {
+    public boolean save(Attendance entity) throws SQLException {
         return SQLUtil.crudUtil("INSERT INTO attendance VALUES(?,?,?,?,?,?)",entity.getAttendanceId(),entity.getDate(),entity.getEmpId(),entity.getInTime(),entity.getOutTime(),entity.isPayed());
     }
 
     @Override
-    public boolean update(Attendance entity) throws SQLException, ClassNotFoundException {
+    public boolean update(Attendance entity) throws SQLException {
         return SQLUtil.crudUtil("UPDATE attendance SET outTime=? WHERE empId=? AND date=?",entity.getOutTime(),entity.getEmpId(),entity.getDate());
     }
 
     @Override
-    public boolean exist(String id) throws SQLException, ClassNotFoundException {
+    public boolean exist(String id) throws SQLException {
         return false;
     }
 
     @Override
-    public boolean delete(String id) throws SQLException, ClassNotFoundException {
+    public boolean delete(String id) throws SQLException{
         return SQLUtil.crudUtil("DELETE FROM attendance WHERE attendanceId=?",id);
     }
 
     @Override
-    public String generateID() throws SQLException, ClassNotFoundException {
+    public String generateID() throws SQLException {
         ResultSet resultSet = SQLUtil.crudUtil("SELECT attendanceId FROM attendance ORDER BY attendanceId DESC LIMIT 1");
         String currentAttendanceId = null;
 
@@ -50,13 +50,13 @@ public class AttendanceDAOImpl implements AttendanceDAO {
     }
 
     @Override
-    public Attendance search(String id) throws SQLException, ClassNotFoundException {
+    public Attendance search(String id) throws SQLException {
         return null;
     }
 
 
     @Override
-    public List<Attendance> getAllAttendanceDetails(LocalDate date) throws SQLException, ClassNotFoundException {
+    public List<Attendance> getAllAttendanceDetails(LocalDate date) throws SQLException {
         ResultSet resultSet = SQLUtil.crudUtil("SELECT * FROM attendance WHERE date=?",date);
         List<Attendance> attendanceList = new ArrayList<>();
 
@@ -75,12 +75,12 @@ public class AttendanceDAOImpl implements AttendanceDAO {
     }
 
     @Override
-    public boolean searchAttendance(String empId, LocalDate date) throws SQLException, ClassNotFoundException {
+    public boolean searchAttendance(String empId, LocalDate date) throws SQLException {
         return SQLUtil.crudUtil("SELECT * FROM attendance WHERE empId=? AND date=?",empId,date);
     }
 
     @Override
-    public int getWorkedHoursCount(String empId) throws SQLException, ClassNotFoundException {
+    public int getWorkedHoursCount(String empId) throws SQLException{
         ResultSet resultSet = SQLUtil.crudUtil("SELECT SUM(TIME_TO_SEC(TIMEDIFF(outTime,inTime)))/3600 FROM attendance WHERE empId=? AND isPayed=false",empId);
         if (resultSet.next()){
             return resultSet.getInt(1);
@@ -89,7 +89,7 @@ public class AttendanceDAOImpl implements AttendanceDAO {
     }
 
     @Override
-    public int getWorkedDaysCount(String empId) throws SQLException, ClassNotFoundException {
+    public int getWorkedDaysCount(String empId) throws SQLException {
         ResultSet resultSet = SQLUtil.crudUtil("SELECT COUNT(*) FROM attendance WHERE empId=? AND isPayed=false",empId);
         if (resultSet.next()){
             return resultSet.getInt(1);
@@ -98,12 +98,12 @@ public class AttendanceDAOImpl implements AttendanceDAO {
     }
 
     @Override
-    public boolean updatePayedStatus(String empId) throws SQLException, ClassNotFoundException {
+    public boolean updatePayedStatus(String empId) throws SQLException {
         return SQLUtil.crudUtil("UPDATE attendance SET isPayed=true WHERE empId=? AND isPayed=false",empId);
     }
 
     @Override
-    public int getAttendanceCount(String date) throws SQLException, ClassNotFoundException {
+    public int getAttendanceCount(String date) throws SQLException {
         ResultSet resultSet = SQLUtil.crudUtil("SELECT COUNT(*) FROM attendance WHERE date=?",date);
         int count = 0;
         if (resultSet.next()){
@@ -113,7 +113,7 @@ public class AttendanceDAOImpl implements AttendanceDAO {
     }
 
     @Override
-    public boolean searchOutTime(String empId, LocalDate date) throws SQLException, ClassNotFoundException {
+    public boolean searchOutTime(String empId, LocalDate date) throws SQLException {
         return SQLUtil.crudUtil("SELECT * FROM attendance WHERE empId=? AND date=? AND outTime IS NOT NULL",empId,date);
     }
 

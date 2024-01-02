@@ -14,12 +14,12 @@ import java.util.List;
 
 public class TeaBookTypeDAOImpl implements TeaBookTypeDAO {
     @Override
-    public ArrayList<TeaBookType> getAll() throws SQLException, ClassNotFoundException {
+    public ArrayList<TeaBookType> getAll() throws SQLException{
         return null;
     }
 
     @Override
-    public boolean save(TeaBookType entity) throws SQLException, ClassNotFoundException {
+    public boolean save(TeaBookType entity) throws SQLException{
         return SQLUtil.crudUtil("INSERT INTO tea_book_type_details VALUES(?,?,?,?,?)",
                 entity.getTeaBookTypeId(),
                 Date.valueOf(entity.getDate()),
@@ -30,22 +30,22 @@ public class TeaBookTypeDAOImpl implements TeaBookTypeDAO {
     }
 
     @Override
-    public boolean update(TeaBookType dto) throws SQLException, ClassNotFoundException {
+    public boolean update(TeaBookType dto) throws SQLException{
         return false;
     }
 
     @Override
-    public boolean exist(String id) throws SQLException, ClassNotFoundException {
+    public boolean exist(String id) throws SQLException {
         return false;
     }
 
     @Override
-    public boolean delete(String id) throws SQLException, ClassNotFoundException {
+    public boolean delete(String id) throws SQLException {
         return SQLUtil.crudUtil("DELETE FROM tea_book_type_details WHERE teaBookTypeId = ?",id);
     }
 
     @Override
-    public String generateID() throws SQLException, ClassNotFoundException {
+    public String generateID() throws SQLException {
         ResultSet resultSet = SQLUtil.crudUtil("SELECT teaBookTypeId FROM tea_book_type_details ORDER BY teaBookTypeId DESC LIMIT 1");
         String currentTeaBookTypeId = null;
         if (resultSet.next()){
@@ -74,12 +74,12 @@ public class TeaBookTypeDAOImpl implements TeaBookTypeDAO {
     }
 
     @Override
-    public TeaBookType search(String id) throws SQLException, ClassNotFoundException {
+    public TeaBookType search(String id) throws SQLException {
         return null;
     }
 
 
-    public List<TeaBookType> getAllTeaBookTypeDetails(String date) throws SQLException, ClassNotFoundException {
+    public List<TeaBookType> getAllTeaBookTypeDetails(String date) throws SQLException {
         ResultSet resultSet = SQLUtil.crudUtil("SELECT * FROM tea_book_type_details WHERE date=?",date);
         ArrayList<TeaBookType> teaBookTypeList = new ArrayList<>();
         while (resultSet.next()){
@@ -95,11 +95,11 @@ public class TeaBookTypeDAOImpl implements TeaBookTypeDAO {
     }
 
 
-    public boolean confirmTeaBook(LocalDate date) throws SQLException, ClassNotFoundException {
+    public boolean confirmTeaBook(LocalDate date) throws SQLException{
         return  SQLUtil.crudUtil("UPDATE tea_book_type_details SET isConfirmed= true WHERE date=?",date);
     }
 
-    public List<TeaBookTypeDetailDto> getTotalAmount(LocalDate date) throws SQLException, ClassNotFoundException {
+    public List<TeaBookTypeDetailDto> getTotalAmount(LocalDate date) throws SQLException {
         ResultSet resultSet = SQLUtil.crudUtil("SELECT typeId,SUM(amount) FROM tea_book_type_details WHERE date=? AND isConfirmed = false GROUP BY typeId",date);
         ArrayList<TeaBookTypeDetailDto> teaBookTypeDetailDtoList = new ArrayList<>();
         while (resultSet.next()){
