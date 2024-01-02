@@ -158,7 +158,6 @@ public class DashBoardMainFormController {
 
         try {
             List<TeaBookDto> dtoList = teaBookModel.getAllTeaBookDetails();
-
             //To limit for last 5 days
 
             int startIndex = Math.max(0, dtoList.size() - 7); // Ensure startIndex is not negative
