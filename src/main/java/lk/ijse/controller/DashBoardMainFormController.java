@@ -14,6 +14,8 @@ import javafx.scene.control.Alert;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
 import javafx.util.Duration;
+import lk.ijse.bo.BOFactory;
+import lk.ijse.bo.custom.AttendanceBO;
 import lk.ijse.bo.custom.impl.UserBOImpl;
 import lk.ijse.entity.TeaBook;
 import lk.ijse.entity.TeaTypes;
@@ -65,7 +67,7 @@ public class DashBoardMainFormController {
 
     private final TeaTypeModel teaTypeModel=new TeaTypeModel();
 
-    private final AttendanceModel attendanceModel = new AttendanceModel();
+    private final AttendanceBO attendanceBO = (AttendanceBO) BOFactory.getInstance().getBO(BOFactory.BOTypes.ATTENDANCE);
 
     private final PackagingDetailsModel packagingDetailsModel = new PackagingDetailsModel();
 
@@ -94,7 +96,7 @@ public class DashBoardMainFormController {
             int orderCount=teaOrderModel.getOrderCount(String.valueOf(LocalDate.now()));
             txtOrders.setText(String.valueOf(orderCount));
 
-            int attendanceCount=attendanceModel.getAttendanceCount(String.valueOf(LocalDate.now()));
+            int attendanceCount= attendanceBO.getAttendanceCount(String.valueOf(LocalDate.now()));
             txtAttendance.setText(String.valueOf(attendanceCount));
 
 

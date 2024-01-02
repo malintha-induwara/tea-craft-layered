@@ -15,6 +15,8 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
+import lk.ijse.bo.BOFactory;
+import lk.ijse.bo.custom.AttendanceBO;
 import lk.ijse.entity.Employee;
 import lk.ijse.entity.Salary;
 import lk.ijse.view.tdm.SalaryTm;
@@ -90,8 +92,7 @@ public class SalaryFormController {
 
     private final EmployeeModel employeeModel = new EmployeeModel();
 
-    private final AttendanceModel attendanceModel = new AttendanceModel();
-
+    private final AttendanceBO attendanceBO = (AttendanceBO) BOFactory.getInstance().getBO(BOFactory.BOTypes.ATTENDANCE);
 
     private final SalaryTransactionModel salaryTransactionModel = new SalaryTransactionModel();
 
@@ -241,7 +242,7 @@ public class SalaryFormController {
 
         int workedDaysCount = 0;
         try {
-             workedDaysCount = attendanceModel.getWorkedDaysCount(empId);
+             workedDaysCount = attendanceBO.getWorkedDaysCount(empId);
         } catch (SQLException e) {
             new Alert(Alert.AlertType.ERROR,e.getMessage()).show();
         }
@@ -348,8 +349,8 @@ public class SalaryFormController {
         String empId = cmbEmployeeId.getValue();
 
         //Getting Date From Test Fields
-        int workedHoursCount = attendanceModel.getWorkedHoursCount(empId);
-        int workedDaysCount = attendanceModel.getWorkedDaysCount(empId);
+        int workedHoursCount = attendanceBO.getWorkedHoursCount(empId);
+        int workedDaysCount = attendanceBO.getWorkedDaysCount(empId);
 
 
 
