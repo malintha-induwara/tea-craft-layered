@@ -15,9 +15,10 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
-import lk.ijse.entity.Fertilizer;
+import lk.ijse.bo.BOFactory;
+import lk.ijse.bo.custom.FertilizerBO;
+import lk.ijse.dto.FertilizerDto;
 import lk.ijse.view.tdm.FertilizerTm;
-import lk.ijse.model.FertilizerModel;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -66,7 +67,7 @@ public class FertilizerFormController {
     @FXML
     private AnchorPane fertilizerPane;
 
-    private final FertilizerModel fertilizerModel = new FertilizerModel();
+    private final FertilizerBO fertilizerBO = (FertilizerBO) BOFactory.getInstance().getBO(BOFactory.BOTypes.FERTILIZER);
 
     public void initialize(){
         loadAllFertilizers();
@@ -88,10 +89,10 @@ public class FertilizerFormController {
 
         ObservableList<FertilizerTm> obList = FXCollections.observableArrayList();
         try {
-            List<Fertilizer> dtoList = fertilizerModel.getAllFertilizers();
+            List<FertilizerDto> dtoList = fertilizerBO.getAllFertilizers();
 
 
-            for (Fertilizer dto : dtoList) {
+            for (FertilizerDto dto : dtoList) {
 
                 FertilizerTm tm = new FertilizerTm(
                         dto.getFertilizerId(),
@@ -148,7 +149,7 @@ public class FertilizerFormController {
     private void deleteFertilizer(String fertilizerId) {
 
         try{
-            boolean isDeleted = fertilizerModel.deleteFertilizer(fertilizerId);
+            boolean isDeleted = fertilizerBO.deleteFertilizer(fertilizerId);
 
             if (isDeleted){
                 new Alert(Alert.AlertType.CONFIRMATION,"Deleted Success").show();

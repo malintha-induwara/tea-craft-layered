@@ -14,10 +14,11 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
 import lk.ijse.bo.BOFactory;
+import lk.ijse.bo.custom.FertilizerBO;
 import lk.ijse.bo.custom.SupplierBO;
 import lk.ijse.db.DbConnection;
+import lk.ijse.dto.FertilizerDto;
 import lk.ijse.dto.SupplierDto;
-import lk.ijse.entity.Fertilizer;
 import lk.ijse.dto.PlaceFertilizerOrderDto;
 import lk.ijse.view.tdm.FertilizerSalesCartTm;
 import lk.ijse.model.*;
@@ -121,7 +122,7 @@ public class FertilizerSalesFormController {
 
     private final SupplierBO supplierModel = (SupplierBO) BOFactory.getInstance().getBO(BOFactory.BOTypes.SUPPLIER);
 
-    private final FertilizerModel fertilizerModel = new FertilizerModel();
+    private final FertilizerBO fertilizerBO = (FertilizerBO) BOFactory.getInstance().getBO(BOFactory.BOTypes.FERTILIZER);
 
     private final FertilizerOrderModel fertilizerOrderModel = new FertilizerOrderModel();
 
@@ -159,7 +160,7 @@ public class FertilizerSalesFormController {
 
         try{
 
-            List<Fertilizer> dtoList = fertilizerModel.getAllFertilizers();
+            List<FertilizerDto> dtoList = fertilizerBO.getAllFertilizers();
 
             for (int i = 0; i < dtoList.size(); i++){
                 fertilizerDetails.add(new ArrayList<>());
@@ -206,9 +207,9 @@ public class FertilizerSalesFormController {
         ObservableList<String> obList = FXCollections.observableArrayList();
 
         try{
-            List<Fertilizer> fertilizerList = fertilizerModel.getAllFertilizers();
+            List<FertilizerDto> fertilizerList = fertilizerBO.getAllFertilizers();
 
-            for (Fertilizer dto : fertilizerList){
+            for (FertilizerDto dto : fertilizerList){
                 obList.add(dto.getFertilizerId());
             }
             cmbFertilizer.setItems(obList);
@@ -542,7 +543,7 @@ public class FertilizerSalesFormController {
         String fertilizerId = cmbFertilizer.getValue();
 
         try{
-            Fertilizer dto = fertilizerModel.searchFertilizer(fertilizerId);
+            FertilizerDto dto = fertilizerBO.searchFertilizer(fertilizerId);
 
             int qty = getFertilizerCount(fertilizerId);
 

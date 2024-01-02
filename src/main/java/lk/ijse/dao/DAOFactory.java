@@ -10,31 +10,42 @@ public class DAOFactory {
     }
 
     public enum DAOTypes{
-        CUSTOMER,USER,ATTENDANCE,EMPLOYEE,SUPPLIER,SALARY
+        ATTENDANCE,CUSTOMER,EMPLOYEE,FERTILIZER,PACKAGING,PACKAGING_DETAILS,PAYMENTS,SALARY,SUPPLIER,TEA_BOOK,TEA_BOOK_TYPE,TEA_LEAF_STOCK,TEA_TYPE,USER
     }
 
     public SuperDAO getDAO(DAOTypes daoTypes){
         switch(daoTypes){
-            case CUSTOMER:
-                return new CustomerDAOImpl();
-            case USER:
-                return new UserDAOImpl();
             case ATTENDANCE:
                 return new AttendanceDAOImpl();
+            case CUSTOMER:
+                return new CustomerDAOImpl();
             case EMPLOYEE:
                 return new EmployeeDAOImpl();
-            case SUPPLIER:
-                return new SupplierDAOImpl();
+            case FERTILIZER:
+                return new FertilizerDAOImpl();
+            case PACKAGING:
+                return new PackagingDAOImpl();
+            case PACKAGING_DETAILS:
+                return new PackagingDetailsDAOImpl();
+            case PAYMENTS:
+                return new PaymentsDAOImpl();
             case SALARY:
                 return new SalaryDAOImpl();
+            case SUPPLIER:
+                return new SupplierDAOImpl();
+            case TEA_BOOK:
+                return new TeaBookDAOImpl();
+            case TEA_BOOK_TYPE:
+                return new TeaBookTypeDAOImpl();
+            case TEA_LEAF_STOCK:
+                return new TeaLeavesStockDAOImpl();
+            case TEA_TYPE:
+                return new TeaTypeDAOImpl();
+            case USER:
+                return new UserDAOImpl();
             default:
                 return null;
         }
     }
-
-
-
-
-
 }
 

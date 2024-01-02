@@ -7,8 +7,9 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import lk.ijse.entity.Fertilizer;
-import lk.ijse.model.FertilizerModel;
+import lk.ijse.bo.BOFactory;
+import lk.ijse.bo.custom.FertilizerBO;
+import lk.ijse.dto.FertilizerDto;
 
 import java.sql.SQLException;
 import java.util.regex.Pattern;
@@ -44,7 +45,7 @@ public class UpdateFertilizerController {
 
     private String fertilizerId;
 
-    private final FertilizerModel fertilizerModel = new FertilizerModel();
+    private final FertilizerBO fertilizerBO = (FertilizerBO) BOFactory.getInstance().getBO(BOFactory.BOTypes.FERTILIZER);
 
 
 
@@ -70,10 +71,10 @@ public class UpdateFertilizerController {
         int qty = Integer.parseInt(txtQty.getText());
         double price = Double.parseDouble(txtPrice.getText());
 
-        Fertilizer dto= new Fertilizer(fertilizerId, brand, description, size, price,qty );
+        FertilizerDto dto= new FertilizerDto(fertilizerId, brand, description, size, price,qty );
 
         try {
-            boolean isUpdated = fertilizerModel.updateFertilizer(dto);
+            boolean isUpdated = fertilizerBO.updateFertilizer(dto);
             if (isUpdated){
 
                 //Close
@@ -120,7 +121,7 @@ public class UpdateFertilizerController {
 
     public void loadFertilizerDetails(){
         try{
-            Fertilizer dto = fertilizerModel.getFertilizer(fertilizerId);
+            FertilizerDto dto = fertilizerBO.getFertilizer(fertilizerId);
             setField(dto);
         }catch (SQLException e){
             new Alert(Alert.AlertType.ERROR,e.getMessage()).show();
@@ -128,7 +129,7 @@ public class UpdateFertilizerController {
     }
 
 
-    private void setField(Fertilizer dto){
+    private void setField(FertilizerDto dto){
         txtFertilizerId.setText(dto.getFertilizerId());
         txtBrand.setText(dto.getBrand());
         txtDescription.setText(dto.getDescription());
