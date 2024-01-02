@@ -10,11 +10,10 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import lk.ijse.bo.BOFactory;
 import lk.ijse.bo.custom.SupplierBO;
+import lk.ijse.bo.custom.TeaLeavesStockBO;
 import lk.ijse.dto.SupplierDto;
-import lk.ijse.entity.TeaLeavesStock;
+import lk.ijse.dto.TeaLeavesStockDto;
 import lk.ijse.model.TeaBookModel;
-import lk.ijse.model.TeaLeavesStockModel;
-
 import java.sql.SQLException;
 import java.util.List;
 import java.util.Objects;
@@ -42,7 +41,8 @@ public class UpdateTeaStockFormController {
     @FXML
     private Text txtTeaLeavesStockId;
 
-    private final TeaLeavesStockModel teaLeavesStockModel = new TeaLeavesStockModel();
+
+    private final TeaLeavesStockBO teaLeavesStockModel = (TeaLeavesStockBO) BOFactory.getInstance().getBO(BOFactory.BOTypes.TEA_LEAVES_STOCK);
 
     private final TeaBookModel teaBookModel = new TeaBookModel();
 
@@ -100,7 +100,7 @@ public class UpdateTeaStockFormController {
 
             String teaBookId = teaBookModel.getTeaBookId(date);
 
-            boolean isUpdated = teaLeavesStockModel.updateTeaLeavesStock(new TeaLeavesStock(teaStockId,supId,teaBookId,amount,false));
+            boolean isUpdated = teaLeavesStockModel.updateTeaLeavesStock(new TeaLeavesStockDto(teaStockId,supId,teaBookId,amount,false));
             //Update Daily Amount On UI
             double dailyAmount= teaLeavesStockModel.getTotalAmount(teaBookId);
 
@@ -163,7 +163,7 @@ public class UpdateTeaStockFormController {
     public void loadTeaLeavesStockDetails(){
 
         try{
-            TeaLeavesStock dto= teaLeavesStockModel.searchTeaLeavesStock(txtTeaLeavesStockId.getText());
+            TeaLeavesStockDto dto= teaLeavesStockModel.searchTeaLeavesStock(txtTeaLeavesStockId.getText());
             setFields(dto);
 
         }
@@ -176,7 +176,7 @@ public class UpdateTeaStockFormController {
 
     }
 
-    private void setFields(TeaLeavesStock teaLeavesStock) {
+    private void setFields(TeaLeavesStockDto teaLeavesStock) {
 
         String date = null;
 
