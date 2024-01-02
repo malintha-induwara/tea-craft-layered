@@ -11,6 +11,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
 import lk.ijse.bo.BOFactory;
 import lk.ijse.bo.custom.UserBO;
+import lk.ijse.dto.UserDto;
 import lk.ijse.entity.User;
 
 import java.io.IOException;
@@ -75,7 +76,7 @@ public class CreateAccountFormController {
         String reEnterPassword = txtReEnterPassword.getText();
 
 
-        User dto = new User(userName,password,email);
+        UserDto dto = new UserDto(userName,password,email);
 
 
         //TO switch the UI
@@ -108,7 +109,7 @@ public class CreateAccountFormController {
         try {
             isEmailExist = userBO.searchEmail(email);
 
-        } catch (SQLException | ClassNotFoundException e) {
+        } catch (SQLException e) {
             throw new RuntimeException(e);
         }
 
@@ -139,7 +140,7 @@ public class CreateAccountFormController {
 
         try {
             isUsernameExist = userBO.searchUser(userName);
-        } catch (SQLException | ClassNotFoundException e) {
+        } catch (SQLException e) {
             throw new RuntimeException(e);
         }
 

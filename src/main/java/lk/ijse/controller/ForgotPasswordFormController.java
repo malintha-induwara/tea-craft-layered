@@ -81,7 +81,7 @@ public class ForgotPasswordFormController {
 
         try {
             isUsernameExist = userBO.searchUser(userName);
-        } catch (SQLException | ClassNotFoundException e) {
+        } catch (SQLException e) {
             throw new RuntimeException(e);
         }
 
@@ -105,7 +105,7 @@ public class ForgotPasswordFormController {
 
         try {
           isEmailExist = userBO.searchEmailAndUsername(userName,email);
-        } catch (SQLException | ClassNotFoundException e) {
+        } catch (SQLException e) {
             throw new RuntimeException(e);
         }
 

@@ -145,7 +145,7 @@ public class LoginFormController {
         try {
             isUsernameExist = userBO.searchUser(userName);
         }
-        catch (SQLException | ClassNotFoundException e){
+        catch (SQLException e){
             new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
         }
 
@@ -167,7 +167,7 @@ public class LoginFormController {
         try {
             isUserExist = userBO.searchUsernameAndPassword(userName,password);
         }
-        catch (SQLException | ClassNotFoundException e){
+        catch (SQLException e){
             new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
         }
 

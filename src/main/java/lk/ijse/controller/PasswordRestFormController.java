@@ -75,7 +75,7 @@ public class PasswordRestFormController {
                 switchToLogin();
             }
         }
-        catch (SQLException | ClassNotFoundException e){
+        catch (SQLException e){
             new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
         }
 

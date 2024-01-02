@@ -11,6 +11,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
 import lk.ijse.bo.BOFactory;
 import lk.ijse.bo.custom.UserBO;
+import lk.ijse.dto.UserDto;
 import lk.ijse.entity.User;
 import lk.ijse.util.EmailService;
 
@@ -44,7 +45,7 @@ public class CreateAccountOtpFormController {
 
 
 
-    private User userDto;
+    private UserDto userDto;
 
     private String otp;
 
@@ -83,7 +84,7 @@ public class CreateAccountOtpFormController {
                 new Alert(Alert.AlertType.CONFIRMATION, "Account Created").show();
                 switchToLogin();
             }
-        }catch (SQLException | ClassNotFoundException e){
+        }catch (SQLException e){
             new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
         }
 
@@ -96,7 +97,7 @@ public class CreateAccountOtpFormController {
         otpPane.getChildren().add(registerPane);
     }
 
-    public void setUserDto(User userDto) {
+    public void setUserDto(UserDto userDto) {
         this.userDto = userDto;
     }
 
