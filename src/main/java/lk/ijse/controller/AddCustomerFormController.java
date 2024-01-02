@@ -7,15 +7,16 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import lk.ijse.bo.BOFactory;
+import lk.ijse.bo.custom.CustomerBO;
 import lk.ijse.dto.CustomerDto;
-import lk.ijse.model.CustomerModel;
 
 import java.sql.SQLException;
 import java.util.regex.Pattern;
 
 public class AddCustomerFormController {
 
-    private  final CustomerModel customerModel = new CustomerModel();
+    private  final CustomerBO customerBO = (CustomerBO) BOFactory.getInstance().getBO(BOFactory.BOTypes.CUSTOMER);
 
 
     @FXML
@@ -72,7 +73,7 @@ public class AddCustomerFormController {
 
 
         try {
-            boolean isSaved = customerModel.saveCustomer(dto);
+            boolean isSaved = customerBO.saveCustomer(dto);
             if (isSaved) {
                 new Alert(Alert.AlertType.CONFIRMATION, "Customer saved!").show();
                 clearFields();
@@ -81,10 +82,9 @@ public class AddCustomerFormController {
                     customerFormController.loadAllCustomers();
                 }
             }
-        } catch (SQLException e) {
+        } catch (SQLException | ClassNotFoundException e) {
             new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
         }
-
 
     }
 
@@ -163,9 +163,9 @@ public class AddCustomerFormController {
 
     private void generateNextCustomerId(){
         try{
-            String customerId=customerModel.generateNextCustomerId();
+            String customerId= customerBO.generateCustomerID();
             txtCustomerId.setText(customerId);
-        }catch (SQLException e){
+        }catch (SQLException | ClassNotFoundException e){
             new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
         }
     }
