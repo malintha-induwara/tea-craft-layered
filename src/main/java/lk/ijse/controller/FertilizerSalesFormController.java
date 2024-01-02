@@ -15,6 +15,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
 import lk.ijse.bo.BOFactory;
 import lk.ijse.bo.custom.FertilizerBO;
+import lk.ijse.bo.custom.FertilizerOrderBO;
 import lk.ijse.bo.custom.SupplierBO;
 import lk.ijse.db.DbConnection;
 import lk.ijse.dto.FertilizerDto;
@@ -124,9 +125,7 @@ public class FertilizerSalesFormController {
 
     private final FertilizerBO fertilizerBO = (FertilizerBO) BOFactory.getInstance().getBO(BOFactory.BOTypes.FERTILIZER);
 
-    private final FertilizerOrderModel fertilizerOrderModel = new FertilizerOrderModel();
-
-    private final PlaceFertilizerOrderModel placeFertilizerOrderModel = new PlaceFertilizerOrderModel();
+    private final FertilizerOrderBO fertilizerOrderBO = (FertilizerOrderBO) BOFactory.getInstance().getBO(BOFactory.BOTypes.FERTILIZER_ORDER);
 
 
 
@@ -185,7 +184,7 @@ public class FertilizerSalesFormController {
     private void generateNextFertilizerOrderId() {
 
         try{
-            String orderId =fertilizerOrderModel.generateNextFertilizerOrderId();
+            String orderId =fertilizerOrderBO.generateNextFertilizerOrderId();
             txtOrderId.setText(orderId);
         }catch (SQLException e){
             new Alert(Alert.AlertType.ERROR,e.getMessage()).show();
@@ -471,7 +470,7 @@ public class FertilizerSalesFormController {
 
        try{
 
-           boolean isSuccess = placeFertilizerOrderModel.placeFertilizerOrder(dto);
+           boolean isSuccess = fertilizerOrderBO .placeFertilizerOrder(dto);
 
            if (isSuccess){
                new Alert(Alert.AlertType.CONFIRMATION,"Order Placed Successfully").show();
