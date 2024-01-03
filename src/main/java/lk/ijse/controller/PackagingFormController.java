@@ -21,6 +21,7 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import lk.ijse.bo.BOFactory;
 import lk.ijse.bo.custom.PackagingBO;
+import lk.ijse.bo.custom.PackagingDetailsBO;
 import lk.ijse.bo.custom.TeaBookBO;
 import lk.ijse.dto.*;
 import lk.ijse.entity.PackagingDetails;
@@ -99,21 +100,15 @@ public class PackagingFormController {
     private final TeaTypeModel teaTypeModel = new TeaTypeModel();
 
     private final PackagingBO packagingBO = (PackagingBO) BOFactory.getInstance().getBO(BOFactory.BOTypes.PACKAGING);
+    private final PackagingDetailsBO packagingDetailsModel = (PackagingDetailsBO) BOFactory.getInstance().getBO(BOFactory.BOTypes.PACKAGING_DETAILS);
 
-    private final PackagingDetailsModel packagingDetailsModel = new PackagingDetailsModel();
-
-    private final PackagingTransactionModel packagingTransactionModel = new PackagingTransactionModel();
 
     public void initialize() {
-
         loadDates();
         generateNextPackingId();
         loadTeaTypes();
         setCellValueFactory();
         loadTeaTypeAmounts();
-
-
-
     }
 
     private void setCellValueFactory() {
@@ -129,12 +124,12 @@ public class PackagingFormController {
 
 
         try{
-            List<PackagingDetails> dtoList = packagingDetailsModel.loadAllPackagingDetails(LocalDate.parse(date));
+            List<PackagingDetailsDto> dtoList = packagingDetailsModel.loadAllPackagingDetails(LocalDate.parse(date));
 
             ObservableList<PackagingTm> obList = FXCollections.observableArrayList();
 
 
-            for (PackagingDetails dto : dtoList){
+            for (PackagingDetailsDto dto : dtoList){
 
                 PackagingDto packagingDto = packagingBO.searchPackaging(dto.getPackId());
 
@@ -318,7 +313,7 @@ public class PackagingFormController {
 
 
 
-            PackagingDetails dto = new PackagingDetails(packagingDetailsId,LocalDate.parse( cmbDate.getText()),packId, count, decreasedAmount, false);
+            PackagingDetailsDto dto = new PackagingDetailsDto(packagingDetailsId,LocalDate.parse( cmbDate.getText()),packId, count, decreasedAmount, false);
 
             boolean isAdded = packagingDetailsModel.addPackagingDetails(dto);
 
@@ -422,7 +417,7 @@ public class PackagingFormController {
             List<PackagingCountAmountDto> dtoList = packagingDetailsModel.getTotalCountAmount(LocalDate.parse(cmbDate.getSelectionModel().getSelectedItem()));
 
             //To Update the confirmed status
-            boolean isConfirmed = packagingTransactionModel.confirmPackaging(LocalDate.parse(cmbDate.getSelectionModel().getSelectedItem()),dtoList);
+            boolean isConfirmed = packagingDetailsModel.confirmPackaging(LocalDate.parse(cmbDate.getSelectionModel().getSelectedItem()),dtoList);
 
             if (isConfirmed){
                 new Alert(Alert.AlertType.CONFIRMATION,"Confirmed").show();
