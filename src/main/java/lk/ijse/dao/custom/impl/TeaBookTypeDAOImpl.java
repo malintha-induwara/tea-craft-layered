@@ -3,6 +3,7 @@ package lk.ijse.dao.custom.impl;
 import lk.ijse.dao.custom.TeaBookTypeDAO;
 import lk.ijse.dto.TeaBookTypeDetailDto;
 import lk.ijse.entity.TeaBookType;
+import lk.ijse.entity.TeaBookTypeDetails;
 import lk.ijse.util.SQLUtil;
 
 import java.sql.Date;
@@ -99,11 +100,11 @@ public class TeaBookTypeDAOImpl implements TeaBookTypeDAO {
         return  SQLUtil.crudUtil("UPDATE tea_book_type_details SET isConfirmed= true WHERE date=?",date);
     }
 
-    public List<TeaBookTypeDetailDto> getTotalAmount(LocalDate date) throws SQLException {
+    public List<TeaBookTypeDetails> getTotalAmount(LocalDate date) throws SQLException {
         ResultSet resultSet = SQLUtil.crudUtil("SELECT typeId,SUM(amount) FROM tea_book_type_details WHERE date=? AND isConfirmed = false GROUP BY typeId",date);
-        ArrayList<TeaBookTypeDetailDto> teaBookTypeDetailDtoList = new ArrayList<>();
+        ArrayList<TeaBookTypeDetails> teaBookTypeDetailDtoList = new ArrayList<>();
         while (resultSet.next()){
-            teaBookTypeDetailDtoList.add(new TeaBookTypeDetailDto(
+            teaBookTypeDetailDtoList.add(new TeaBookTypeDetails(
                     resultSet.getString(1),
                     resultSet.getDouble(2)
             ));
