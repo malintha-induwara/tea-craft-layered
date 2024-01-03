@@ -4,8 +4,10 @@ import lk.ijse.dao.custom.AttendanceDAO;
 import lk.ijse.entity.Attendance;
 import lk.ijse.util.SQLUtil;
 
+import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Time;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
@@ -62,14 +64,22 @@ public class AttendanceDAOImpl implements AttendanceDAO {
         List<Attendance> attendanceList = new ArrayList<>();
 
         while (resultSet.next()){
+            //The Value Can Either Be null or not null
+//            Time outTime = resultSet.getTime(5);
+//            LocalTime checkNullOutTime = null;
+//
+//            if (outTime!=null) {
+//                checkNullOutTime= outTime.toLocalTime();
+//            }
+
             Attendance attendance = new Attendance(
-                    resultSet.getString("attendanceId"),
-                    resultSet.getDate("date").toLocalDate(),
-                    resultSet.getString("empId"),
-                    resultSet.getTime("inTime").toLocalTime(),
-                    resultSet.getTime("outTime").toLocalTime(),
-                    resultSet.getBoolean("isPayed")
-            );
+                    resultSet.getString(1),
+                    resultSet.getDate(2).toLocalDate()
+                    ,resultSet.getString(3)
+                    ,resultSet.getTime(4).toLocalTime()
+                    ,(resultSet.getObject(5, LocalTime.class) != null) ? resultSet.getTime(5).toLocalTime() : null,
+                    resultSet.getBoolean(6));
+
             attendanceList.add(attendance);
         }
         return attendanceList;
@@ -77,7 +87,8 @@ public class AttendanceDAOImpl implements AttendanceDAO {
 
     @Override
     public boolean searchAttendance(String empId, LocalDate date) throws SQLException {
-        return SQLUtil.crudUtil("SELECT * FROM attendance WHERE empId=? AND date=?",empId,date);
+        ResultSet resultSet=SQLUtil.crudUtil("SELECT * FROM attendance WHERE empId=? AND date=?",empId, date);
+        return resultSet.next();
     }
 
     @Override
@@ -115,7 +126,8 @@ public class AttendanceDAOImpl implements AttendanceDAO {
 
     @Override
     public boolean searchOutTime(String empId, LocalDate date) throws SQLException {
-        return SQLUtil.crudUtil("SELECT * FROM attendance WHERE empId=? AND date=? AND outTime IS NOT NULL",empId,date);
+        ResultSet resultSet=SQLUtil.crudUtil("SELECT * FROM attendance WHERE empId=? AND date=? AND outTime IS NOT NULL",empId,date);
+        return resultSet.next();
     }
 
     private String splitAttendanceId(String currentAttendanceId) {
