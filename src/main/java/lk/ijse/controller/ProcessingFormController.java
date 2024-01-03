@@ -14,12 +14,12 @@ import javafx.scene.text.Text;
 import lk.ijse.bo.BOFactory;
 import lk.ijse.bo.custom.ProcessingBO;
 import lk.ijse.bo.custom.TeaBookBO;
+import lk.ijse.bo.custom.TeaBookTypeBO;
 import lk.ijse.dto.TeaBookDto;
 import lk.ijse.dto.TeaBookTypeDetailDto;
-import lk.ijse.entity.TeaBookType;
+import lk.ijse.dto.TeaBookTypeDto;
 import lk.ijse.entity.TeaTypes;
 import lk.ijse.view.tdm.TeaBookTypeTm;
-import lk.ijse.model.TeaBookTypeModel;
 import lk.ijse.model.TeaTypeModel;
 
 import java.sql.SQLException;
@@ -68,7 +68,8 @@ public class ProcessingFormController {
     private Text txtTeaBookTypeId;
 
 
-    private final TeaBookTypeModel teaBookTypeModel = new TeaBookTypeModel();
+
+    private final TeaBookTypeBO teaBookTypeBO = (TeaBookTypeBO) BOFactory.getInstance().getBO(BOFactory.BOTypes.TEA_BOOK_TYPE);
 
     private  final TeaBookBO teaBookBO = (TeaBookBO) BOFactory.getInstance().getBO(BOFactory.BOTypes.TEA_BOOK);
 
@@ -101,12 +102,12 @@ public class ProcessingFormController {
 
         try {
 
-            List<TeaBookType> dtoList = teaBookTypeModel.getAllTeaBookTypeDetails(date);
+            List<TeaBookTypeDto> dtoList = teaBookTypeBO.getAllTeaBookTypeDetails(date);
 
             ObservableList <TeaBookTypeTm> obList = FXCollections.observableArrayList();
 
 
-            for (TeaBookType dto :dtoList){
+            for (TeaBookTypeDto dto :dtoList){
 
                 //Getting The Name from databace
                 String teaType= teaTypeModel.getTeaType(dto.getTypeId());
@@ -153,7 +154,7 @@ public class ProcessingFormController {
 
 
         try{
-            boolean isDeleted = teaBookTypeModel.deleteTeaBookType(teaBookTypeId);
+            boolean isDeleted = teaBookTypeBO.deleteTeaBookType(teaBookTypeId);
 
             if (isDeleted){
                 new Alert(Alert.AlertType.CONFIRMATION,"Deleted").show();
@@ -170,7 +171,7 @@ public class ProcessingFormController {
     private void generateNextTeaBookTypeId() {
 
         try{
-            String teaBookTypeId = teaBookTypeModel.generateNextTeaBookTypeId();
+            String teaBookTypeId = teaBookTypeBO.generateNextTeaBookTypeId();
             txtTeaBookTypeId.setText(teaBookTypeId);
         }
         catch (SQLException e){
@@ -256,9 +257,9 @@ public class ProcessingFormController {
         try {
 
             String teaTypeId=teaTypeModel.getTeaTypeId(type);
-            TeaBookType dto = new TeaBookType(teaBookTypeId,date,teaTypeId,amount,false);
+            TeaBookTypeDto dto = new TeaBookTypeDto(teaBookTypeId,date,teaTypeId,amount,false);
 
-            boolean isSaved = teaBookTypeModel.saveTeaBookType(dto);
+            boolean isSaved = teaBookTypeBO.saveTeaBookType(dto);
 
             if (isSaved){
                     new Alert(Alert.AlertType.CONFIRMATION,"Details Saved").show();
@@ -327,7 +328,7 @@ public class ProcessingFormController {
         try{
 
             //To Calculate the total amount
-            List<TeaBookTypeDetailDto> dtoList = teaBookTypeModel.getTotalAmount(LocalDate.parse(cmbDate.getValue()));
+            List<TeaBookTypeDetailDto> dtoList = teaBookTypeBO.getTotalAmount(LocalDate.parse(cmbDate.getValue()));
 
             //To Update the confirmed status
             boolean isConfirmed = processingBO.updateDetails(LocalDate.parse(cmbDate.getSelectionModel().getSelectedItem()),dtoList);
