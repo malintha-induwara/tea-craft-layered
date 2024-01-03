@@ -16,6 +16,8 @@ import lk.ijse.bo.custom.CustomerBO;
 import lk.ijse.bo.custom.PackagingBO;
 import lk.ijse.bo.custom.TeaOrderBO;
 import lk.ijse.bo.custom.TeaTypeBO;
+import lk.ijse.dao.DAOFactory;
+import lk.ijse.dao.custom.TeaOrderDAO;
 import lk.ijse.db.DbConnection;
 import lk.ijse.dto.CustomerDto;
 import lk.ijse.dto.PackagingDto;
@@ -110,10 +112,7 @@ public class SalesFormController {
 
     ArrayList<ArrayList<String> >packageDetails = new ArrayList<>();
 
-
     private final ObservableList<SalesCartTm> obList = FXCollections.observableArrayList();
-
-    private final TeaOrderModel teaOrderModel = new TeaOrderModel();
 
     private  final CustomerBO customerBO = (CustomerBO) BOFactory.getInstance().getBO(BOFactory.BOTypes.CUSTOMER);
     private final TeaTypeBO teaTypeBO = (TeaTypeBO) BOFactory.getInstance().getBO(BOFactory.BOTypes.TEA_TYPE);
@@ -219,7 +218,7 @@ public class SalesFormController {
     private void generateNextOrderId() {
 
         try{
-            String orderId = teaOrderModel.generateNextOrderId();
+            String orderId = teaOrderBO.generateNextOrderId();
             txtOrderId.setText(orderId);
         }
         catch (SQLException e){

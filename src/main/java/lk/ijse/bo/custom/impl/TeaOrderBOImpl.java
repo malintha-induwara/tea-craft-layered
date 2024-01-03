@@ -7,9 +7,7 @@ import lk.ijse.dao.custom.TeaOrderDAO;
 import lk.ijse.dao.custom.TeaOrderDetailDAO;
 import lk.ijse.db.DbConnection;
 import lk.ijse.dto.PlaceTeaOrderDto;
-import lk.ijse.model.TeaOrderModel;
 import lk.ijse.view.tdm.SalesCartTm;
-
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.time.LocalDate;
@@ -56,7 +54,6 @@ public class TeaOrderBOImpl implements TeaOrderBO {
     public boolean placeOrder(PlaceTeaOrderDto dto) throws SQLException {
 
 
-
         boolean result = false;
         Connection connection = null;
 
@@ -66,7 +63,7 @@ public class TeaOrderBOImpl implements TeaOrderBO {
             connection.setAutoCommit(false);
 
 
-            boolean isOrderSaved = TeaOrderModel.saveOrder(dto.getOrderId(), dto.getCusId(), dto.getDate());
+            boolean isOrderSaved = teaOrderDAO.saveOrder(dto.getOrderId(),dto.getCusId(),dto.getDate());
 
             if (isOrderSaved){
                 boolean isUpdated = packagingDAO.updatePackaging(dto.getTmList());
@@ -82,7 +79,6 @@ public class TeaOrderBOImpl implements TeaOrderBO {
                 }
 
             }
-
         }
         catch (SQLException e) {
             connection.rollback();
@@ -91,8 +87,6 @@ public class TeaOrderBOImpl implements TeaOrderBO {
         }
         return result;
     }
-
-
 
 }
 

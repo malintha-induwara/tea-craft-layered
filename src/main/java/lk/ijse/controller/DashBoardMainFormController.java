@@ -20,9 +20,11 @@ import lk.ijse.bo.custom.PackagingDetailsBO;
 import lk.ijse.bo.custom.TeaBookBO;
 import lk.ijse.bo.custom.TeaTypeBO;
 import lk.ijse.bo.custom.impl.UserBOImpl;
+import lk.ijse.dao.DAOFactory;
+import lk.ijse.dao.custom.TeaOrderDAO;
 import lk.ijse.dto.TeaBookDto;
 import lk.ijse.dto.TeaTypesDto;
-import lk.ijse.model.*;
+
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
@@ -65,8 +67,7 @@ public class DashBoardMainFormController {
 
     private  final TeaBookBO teaBookBO = (TeaBookBO) BOFactory.getInstance().getBO(BOFactory.BOTypes.TEA_BOOK);
 
-    private final TeaOrderModel teaOrderModel=new TeaOrderModel();
-
+    private final TeaOrderDAO teaOrderBO = (TeaOrderDAO) DAOFactory.getInstance().getDAO(DAOFactory.DAOTypes.TEA_ORDER);
 
     private final TeaTypeBO teaTypeBO = (TeaTypeBO) BOFactory.getInstance().getBO(BOFactory.BOTypes.TEA_TYPE);
 
@@ -96,7 +97,7 @@ public class DashBoardMainFormController {
             int amount= (int) teaBookBO.getAmount(String.valueOf(LocalDate.now()));
             txtLeafStock.setText(amount+" Kg");
 
-            int orderCount=teaOrderModel.getOrderCount(String.valueOf(LocalDate.now()));
+            int orderCount= teaOrderBO.getOrderCount(String.valueOf(LocalDate.now()));
             txtOrders.setText(String.valueOf(orderCount));
 
             int attendanceCount= attendanceBO.getAttendanceCount(String.valueOf(LocalDate.now()));
