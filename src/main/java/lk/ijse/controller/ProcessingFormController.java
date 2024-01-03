@@ -12,13 +12,13 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.text.Text;
 import lk.ijse.bo.BOFactory;
+import lk.ijse.bo.custom.ProcessingBO;
 import lk.ijse.bo.custom.TeaBookBO;
 import lk.ijse.dto.TeaBookDto;
 import lk.ijse.dto.TeaBookTypeDetailDto;
 import lk.ijse.entity.TeaBookType;
 import lk.ijse.entity.TeaTypes;
 import lk.ijse.view.tdm.TeaBookTypeTm;
-import lk.ijse.model.ProcessingModel;
 import lk.ijse.model.TeaBookTypeModel;
 import lk.ijse.model.TeaTypeModel;
 
@@ -74,7 +74,7 @@ public class ProcessingFormController {
 
     private final TeaTypeModel teaTypeModel = new TeaTypeModel();
 
-    private final ProcessingModel processingModel = new ProcessingModel();
+    private final ProcessingBO processingBO = (ProcessingBO) BOFactory.getInstance().getBO(BOFactory.BOTypes.PROCESSING);
 
 
 
@@ -330,7 +330,7 @@ public class ProcessingFormController {
             List<TeaBookTypeDetailDto> dtoList = teaBookTypeModel.getTotalAmount(LocalDate.parse(cmbDate.getValue()));
 
             //To Update the confirmed status
-            boolean isConfirmed = processingModel.updateDetails(LocalDate.parse(cmbDate.getSelectionModel().getSelectedItem()),dtoList);
+            boolean isConfirmed = processingBO.updateDetails(LocalDate.parse(cmbDate.getSelectionModel().getSelectedItem()),dtoList);
 
 
             if (isConfirmed){
