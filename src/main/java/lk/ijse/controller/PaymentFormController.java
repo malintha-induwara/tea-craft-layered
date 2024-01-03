@@ -18,12 +18,12 @@ import javafx.scene.text.Text;
 import lk.ijse.bo.BOFactory;
 import lk.ijse.bo.custom.PaymentBO;
 import lk.ijse.bo.custom.SupplierBO;
+import lk.ijse.bo.custom.TeaCraftDetailBO;
 import lk.ijse.bo.custom.TeaLeavesStockBO;
 import lk.ijse.dto.PaymentsDto;
 import lk.ijse.dto.SupplierDto;
-import lk.ijse.entity.Payments;
 import lk.ijse.view.tdm.PaymentTm;
-import lk.ijse.model.*;
+
 import java.io.IOException;
 import java.sql.SQLException;
 import java.time.LocalDate;
@@ -81,9 +81,9 @@ public class PaymentFormController {
 
     private final TeaLeavesStockBO teaLeavesStockBO = (TeaLeavesStockBO) BOFactory.getInstance().getBO(BOFactory.BOTypes.TEA_LEAVES_STOCK);
 
-    private final SupplierBO supplierModel = (SupplierBO) BOFactory.getInstance().getBO(BOFactory.BOTypes.SUPPLIER);
+    private final SupplierBO supplierBO = (SupplierBO) BOFactory.getInstance().getBO(BOFactory.BOTypes.SUPPLIER);
 
-    private final TeaCraftDetailModel teaCraftDetailModel = new TeaCraftDetailModel();
+    private final TeaCraftDetailBO teaCraftDetailBO = (TeaCraftDetailBO) BOFactory.getInstance().getBO(BOFactory.BOTypes.TEA_CRAFT_DETAIL);
 
     private final PaymentBO paymentBO = (PaymentBO) BOFactory.getInstance().getBO(BOFactory.BOTypes.PAYMENTS);
 
@@ -100,7 +100,7 @@ public class PaymentFormController {
 
     private void loadTeaLeavesPrice() {
         try{
-            double teaLeavesPrice = teaCraftDetailModel.getTeaLeavesPrice();
+            double teaLeavesPrice = teaCraftDetailBO.getTeaLeavesPrice();
             txtFieldTeaLeavesPrice.setText(String.valueOf(teaLeavesPrice));
         }
         catch (SQLException e){
@@ -125,7 +125,7 @@ public class PaymentFormController {
 
         try{
 
-            List<SupplierDto> supplierList = supplierModel.getAllSuppliers();
+            List<SupplierDto> supplierList = supplierBO.getAllSuppliers();
 
             for (SupplierDto supplierDto : supplierList) {
                 obList.add(supplierDto.getSupId());
@@ -225,7 +225,7 @@ public class PaymentFormController {
     private void calculatePaymentAmount() throws SQLException {
 
         String supId = cmbSupId.getValue();
-        SupplierDto dto = supplierModel.searchSupplier(supId);
+        SupplierDto dto = supplierBO.searchSupplier(supId);
         txtName.setText(dto.getFirstName());
 
         //Calculate the amount
@@ -322,7 +322,7 @@ public class PaymentFormController {
         txtFieldTeaLeavesPrice.getStyleClass().removeAll("mfx-text-field-error");
 
         try {
-            boolean isUpdated=   teaCraftDetailModel.updateTeaLeavesPrice(Double.parseDouble(teaLeavesPrice));
+            boolean isUpdated=   teaCraftDetailBO.updateTeaLeavesPrice(Double.parseDouble(teaLeavesPrice));
 
             if (isUpdated){
                 new Alert(Alert.AlertType.CONFIRMATION,"Tea Leaves Price Updated").show();

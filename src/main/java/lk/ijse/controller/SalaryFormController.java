@@ -19,10 +19,10 @@ import lk.ijse.bo.BOFactory;
 import lk.ijse.bo.custom.AttendanceBO;
 import lk.ijse.bo.custom.EmployeeBO;
 import lk.ijse.bo.custom.SalaryBO;
+import lk.ijse.bo.custom.TeaCraftDetailBO;
 import lk.ijse.dto.EmployeeDto;
 import lk.ijse.dto.SalaryDto;
 import lk.ijse.view.tdm.SalaryTm;
-import lk.ijse.model.*;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -92,13 +92,13 @@ public class SalaryFormController {
     @FXML
     private Text txtTotal;
 
-    private final EmployeeBO employeeModel= (EmployeeBO) BOFactory.getInstance().getBO(BOFactory.BOTypes.EMPLOYEE);
+    private final EmployeeBO employeeBO = (EmployeeBO) BOFactory.getInstance().getBO(BOFactory.BOTypes.EMPLOYEE);
 
     private final AttendanceBO attendanceBO = (AttendanceBO) BOFactory.getInstance().getBO(BOFactory.BOTypes.ATTENDANCE);
 
-    private final TeaCraftDetailModel teaCraftDetailModel = new TeaCraftDetailModel();
+    private final TeaCraftDetailBO teaCraftDetailBO = (TeaCraftDetailBO) BOFactory.getInstance().getBO(BOFactory.BOTypes.TEA_CRAFT_DETAIL);
 
-    private final SalaryBO salaryModel = (SalaryBO) BOFactory.getInstance().getBO(BOFactory.BOTypes.SALARY);
+    private final SalaryBO salaryBO = (SalaryBO) BOFactory.getInstance().getBO(BOFactory.BOTypes.SALARY);
 
     public void initialize(){
 
@@ -125,7 +125,7 @@ public class SalaryFormController {
 
         try{
 
-            List<SalaryDto> salaryList = salaryModel.getPaymentDetails(empId);
+            List<SalaryDto> salaryList = salaryBO.getPaymentDetails(empId);
 
 
             for (SalaryDto dto: salaryList){
@@ -152,8 +152,8 @@ public class SalaryFormController {
 
 
         try{
-            double hourlyRate = teaCraftDetailModel.getHourlyRate();
-            double otRate = teaCraftDetailModel.getOtRate();
+            double hourlyRate = teaCraftDetailBO.getHourlyRate();
+            double otRate = teaCraftDetailBO.getOtRate();
 
             txtFieldHourlyRate.setText(String.valueOf(hourlyRate));
             txtFieldOt.setText(String.valueOf(otRate));
@@ -169,7 +169,7 @@ public class SalaryFormController {
     private void generateNextSalaryId() {
 
         try{
-            String salaryId= salaryModel.generateNextSalaryId();
+            String salaryId= salaryBO.generateNextSalaryId();
             txtSalaryId.setText(salaryId);
         }
         catch (SQLException e){
@@ -185,7 +185,7 @@ public class SalaryFormController {
 
         try{
 
-            List<EmployeeDto> employeeList = employeeModel.getAllEmployees();
+            List<EmployeeDto> employeeList = employeeBO.getAllEmployees();
 
             for (EmployeeDto dto : employeeList){
                 employeeIdList.add(dto.getEmpId());
@@ -252,7 +252,7 @@ public class SalaryFormController {
 
         try {
 
-            boolean isAdded = salaryModel.saveSalary(dto);
+            boolean isAdded = salaryBO.saveSalary(dto);
             if (isAdded){
                 new Alert(Alert.AlertType.CONFIRMATION, "Payment Added Successfully").show();
                 loadEmployeePaymentDetails(empId);
@@ -334,7 +334,7 @@ public class SalaryFormController {
 
         try {
             loadEmployeePaymentDetails(empId);
-            EmployeeDto employee = employeeModel.searchEmployee(empId);
+            EmployeeDto employee = employeeBO.searchEmployee(empId);
             txtName.setText(employee.getFirstName());
             calculateSalary();
 
@@ -441,7 +441,7 @@ public class SalaryFormController {
 
 
         try{
-            boolean isUpdated = teaCraftDetailModel.updateHourlyRateAndOt(Double.parseDouble(hourlyRate), Double.parseDouble(otRate));
+            boolean isUpdated = teaCraftDetailBO.updateHourlyRateAndOt(Double.parseDouble(hourlyRate), Double.parseDouble(otRate));
 
             if (isUpdated){
                 new Alert(Alert.AlertType.CONFIRMATION,"Hourly Rate and OT Rate Updated").show();
