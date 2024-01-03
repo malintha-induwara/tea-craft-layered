@@ -12,7 +12,7 @@ public class BOFactory {
     }
 
     public enum BOTypes{
-        CUSTOMER,USER,ATTENDANCE,EMPLOYEE,SUPPLIER,SALARY,FERTILIZER,PACKAGING,FERTILIZER_ORDER,PAYMENTS,TEA_LEAVES_STOCK,TEA_BOOK,TEA_BOOK_TYPE,PROCESSING,TEA_TYPE,PACKAGING_DETAILS;
+        CUSTOMER,USER,ATTENDANCE,EMPLOYEE,SUPPLIER,SALARY,FERTILIZER,PACKAGING,FERTILIZER_ORDER,PAYMENTS,TEA_LEAVES_STOCK,TEA_BOOK,TEA_BOOK_TYPE,PROCESSING,TEA_TYPE,PACKAGING_DETAILS,TEA_CRAFT_DETAIL;
     }
 
     public SuperBO getBO(BOTypes boTypes){
@@ -49,6 +49,8 @@ public class BOFactory {
                 return new TeaTypeBOImpl();
             case PACKAGING_DETAILS:
                 return new PackagingDetailsBOImpl();
+            case TEA_CRAFT_DETAIL:
+                return new TeaCraftDetailBOImpl();
             default:
                 return null;
         }
