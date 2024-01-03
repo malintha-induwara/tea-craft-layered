@@ -80,14 +80,10 @@ public class ProcessingFormController {
 
 
     public void initialize(){
-
         loadDates();
         loadTypes();
         setCellValueFactory();
         generateNextTeaBookTypeId();
-
-
-
     }
 
     private void setCellValueFactory() {

@@ -2,6 +2,7 @@ package lk.ijse.dao.custom.impl;
 
 import lk.ijse.dao.custom.PackagingDetailsDAO;
 import lk.ijse.dto.PackagingCountAmountDto;
+import lk.ijse.entity.PackagingCountAmount;
 import lk.ijse.entity.PackagingDetails;
 import lk.ijse.util.SQLUtil;
 import lombok.Data;
@@ -113,21 +114,21 @@ public class PackagingDetailsDAOImpl implements PackagingDetailsDAO {
     }
 
 
-    public List<PackagingCountAmountDto> getTotalCountAmount(LocalDate date) throws SQLException {
+    public List<PackagingCountAmount> getTotalCountAmount(LocalDate date) throws SQLException {
 
         ResultSet resultSet = SQLUtil.crudUtil("SELECT packId,SUM(count),SUM(amount) FROM packaging_details WHERE date=? AND isConfirmed=0 GROUP BY packId", Date.valueOf(date));
 
-        List<PackagingCountAmountDto> packagingCountAmountDtoList = new ArrayList<>();
+        List<PackagingCountAmount> packagingCountAmountList = new ArrayList<>();
 
         while (resultSet.next()){
-            packagingCountAmountDtoList.add(new PackagingCountAmountDto(
+            packagingCountAmountList.add(new PackagingCountAmount(
                     resultSet.getString(1),
                     resultSet.getInt(2),
                     resultSet.getDouble(3)
             ));
         }
 
-        return packagingCountAmountDtoList;
+        return packagingCountAmountList;
     }
 
 
