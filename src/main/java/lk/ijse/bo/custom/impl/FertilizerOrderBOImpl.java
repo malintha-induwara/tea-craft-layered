@@ -8,7 +8,7 @@ import lk.ijse.dao.custom.FertilizerOrderDAO;
 import lk.ijse.dao.custom.FertilizerOrderDetailDAO;
 import lk.ijse.db.DbConnection;
 import lk.ijse.dto.PlaceFertilizerOrderDto;
-import lk.ijse.entity.PlaceFertilizerOrder;
+import lk.ijse.entity.FertilizerOrder;
 
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -27,7 +27,7 @@ public class FertilizerOrderBOImpl implements FertilizerOrderBO {
 
     @Override
     public boolean saveFertilizerOrder(PlaceFertilizerOrderDto dto) throws SQLException {
-        return fertilizerOrderDAO.save(new PlaceFertilizerOrder(
+        return fertilizerOrderDAO.save(new FertilizerOrder(
                 dto.getFertilizerOrderId(),
                 dto.getCustomerId(),
                 dto.getDate()

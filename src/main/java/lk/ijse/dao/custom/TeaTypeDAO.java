@@ -15,6 +15,6 @@ public interface TeaTypeDAO extends CrudDAO<TeaTypes> {
     String getTeaType(String typeId) throws SQLException;
     boolean updateTeaTypeAmount(TeaBookTypeDetails entity) throws SQLException;
     double getTeaAmount(String teaType) throws SQLException;
-     boolean updateAmount(double amount,String typeId) throws SQLException ;
+    boolean updateAmount(double amount,String typeId) throws SQLException ;
 
 }

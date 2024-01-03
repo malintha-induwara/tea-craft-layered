@@ -7,6 +7,7 @@ import lk.ijse.dao.custom.TeaOrderDAO;
 import lk.ijse.dao.custom.TeaOrderDetailDAO;
 import lk.ijse.db.DbConnection;
 import lk.ijse.dto.PlaceTeaOrderDto;
+import lk.ijse.entity.TeaOrder;
 import lk.ijse.view.tdm.SalesCartTm;
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -26,10 +27,6 @@ public class TeaOrderBOImpl implements TeaOrderBO {
         return teaOrderDAO.generateNextOrderId();
     }
 
-    @Override
-    public boolean saveOrder(String orderId, String cusId, LocalDate date) throws SQLException {
-        return teaOrderDAO.saveOrder(orderId,cusId,date);
-    }
 
     @Override
     public int getOrderCount(String date) throws SQLException {
@@ -63,7 +60,7 @@ public class TeaOrderBOImpl implements TeaOrderBO {
             connection.setAutoCommit(false);
 
 
-            boolean isOrderSaved = teaOrderDAO.saveOrder(dto.getOrderId(),dto.getCusId(),dto.getDate());
+            boolean isOrderSaved = teaOrderDAO.saveOrder(new TeaOrder(dto.getOrderId(),dto.getCusId(),dto.getDate()));
 
             if (isOrderSaved){
                 boolean isUpdated = packagingDAO.updatePackaging(dto.getTmList());

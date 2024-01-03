@@ -1,6 +1,7 @@
 package lk.ijse.dao.custom.impl;
 
 import lk.ijse.dao.custom.TeaOrderDAO;
+import lk.ijse.entity.TeaOrder;
 import lk.ijse.util.SQLUtil;
 
 import java.sql.ResultSet;
@@ -40,8 +41,8 @@ public class TeaOrderDAOImpl implements TeaOrderDAO {
 
 
     @Override
-    public boolean saveOrder(String orderId, String cusId, LocalDate date) throws SQLException {
-        return SQLUtil.crudUtil("INSERT INTO tea_orders VALUES(?,?,?)",orderId,cusId,java.sql.Date.valueOf(date));
+    public boolean saveOrder(TeaOrder entity) throws SQLException {
+        return SQLUtil.crudUtil("INSERT INTO tea_orders VALUES(?,?,?)",entity.getOrderId(),entity.getCustomerId(),java.sql.Date.valueOf(entity.getDate()));
     }
 
     @Override

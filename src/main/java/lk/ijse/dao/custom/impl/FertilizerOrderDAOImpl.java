@@ -1,7 +1,7 @@
 package lk.ijse.dao.custom.impl;
 
 import lk.ijse.dao.custom.FertilizerOrderDAO;
-import lk.ijse.entity.PlaceFertilizerOrder;
+import lk.ijse.entity.FertilizerOrder;
 import lk.ijse.util.SQLUtil;
 
 import java.sql.ResultSet;
@@ -10,12 +10,12 @@ import java.util.ArrayList;
 
 public class FertilizerOrderDAOImpl implements FertilizerOrderDAO {
     @Override
-    public ArrayList<PlaceFertilizerOrder> getAll() throws SQLException {
+    public ArrayList<FertilizerOrder> getAll() throws SQLException {
         return null;
     }
 
     @Override
-    public boolean save(PlaceFertilizerOrder entity) throws SQLException {
+    public boolean save(FertilizerOrder entity) throws SQLException {
         return SQLUtil.crudUtil("INSERT INTO fertilizer_orders VALUES(?,?,?)",
                 entity.getFertilizerOrderId(),
                 entity.getCustomerId(),
@@ -23,7 +23,7 @@ public class FertilizerOrderDAOImpl implements FertilizerOrderDAO {
     }
 
     @Override
-    public boolean update(PlaceFertilizerOrder entity) throws SQLException {
+    public boolean update(FertilizerOrder entity) throws SQLException {
         return false;
     }
 
@@ -70,7 +70,7 @@ public class FertilizerOrderDAOImpl implements FertilizerOrderDAO {
     }
 
     @Override
-    public PlaceFertilizerOrder search(String id) throws SQLException {
+    public FertilizerOrder search(String id) throws SQLException {
         return null;
     }
 }
