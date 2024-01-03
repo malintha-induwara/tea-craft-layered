@@ -75,7 +75,7 @@ public class CustomerDAOImpl implements CustomerDAO {
     }
 
     public String searchCustomerId(String cusNum) throws SQLException{
-        ResultSet resultSet = SQLUtil.crudUtil("SELECT * FROM customer WHERE cusId = ?",cusNum);
+        ResultSet resultSet = SQLUtil.crudUtil("SELECT cusId FROM customer WHERE mobileNo = ?",cusNum);
         resultSet.next();
         return resultSet.getString("cusId");
     }
