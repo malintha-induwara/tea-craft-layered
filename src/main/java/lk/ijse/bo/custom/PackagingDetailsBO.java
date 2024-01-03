@@ -15,4 +15,5 @@ public interface PackagingDetailsBO extends SuperBO {
     boolean deletePackageDetails(String packageDetailsId) throws SQLException;
     List<PackagingCountAmountDto> getTotalCountAmount(LocalDate parse) throws SQLException;
     boolean confirmPackaging(LocalDate parse) throws SQLException;
+    boolean confirmPackaging(LocalDate date, List<PackagingCountAmountDto> dtoList) throws SQLException;
 }
