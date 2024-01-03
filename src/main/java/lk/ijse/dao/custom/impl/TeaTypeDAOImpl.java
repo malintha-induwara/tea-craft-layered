@@ -1,6 +1,11 @@
 package lk.ijse.dao.custom.impl;
 
+import lk.ijse.dao.DAOFactory;
+import lk.ijse.dao.custom.PackagingDAO;
 import lk.ijse.dao.custom.TeaTypeDAO;
+import lk.ijse.dto.TeaBookTypeDetailDto;
+import lk.ijse.entity.PackagingCountAmount;
+import lk.ijse.entity.TeaBookTypeDetails;
 import lk.ijse.entity.TeaTypes;
 import lk.ijse.util.SQLUtil;
 
@@ -10,6 +15,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class TeaTypeDAOImpl implements TeaTypeDAO {
+
+    PackagingDAO packagingDAO = (PackagingDAO) DAOFactory.getInstance().getDAO(DAOFactory.DAOTypes.PACKAGING);
+
+
     @Override
     public ArrayList<TeaTypes> getAll() throws SQLException {
         ResultSet resultSet = SQLUtil.crudUtil("SELECT * FROM tea_types");
@@ -64,8 +73,37 @@ public class TeaTypeDAOImpl implements TeaTypeDAO {
         return resultSet.getString(1);
     }
 
+    @Override
+    public boolean updateTeaTypeAmount(List<TeaBookTypeDetails> dtoList) throws SQLException {
+        for (TeaBookTypeDetails entity : dtoList) {
+            boolean isUpdated = SQLUtil.crudUtil("UPDATE tea_types SET amount=? WHERE typeId=?", entity.getAmount(), entity.getTypeId());
+            if (!isUpdated){
+                return false;
+            }
+        }
+        return true;
+    }
 
+    @Override
+    public double getTeaAmount(String teaType) throws SQLException {
+        ResultSet resultSet = SQLUtil.crudUtil("SELECT amount FROM tea_types WHERE type=?",teaType);
+        if (resultSet.next()){
+            return resultSet.getDouble(1);
+        }
+        return 0;
+    }
 
+    @Override
+    public boolean updateAmount(List<PackagingCountAmount> dtoList) throws SQLException {
+        for (PackagingCountAmount entity : dtoList) {
+            String typeId = packagingDAO.getTypeId(entity.getPackId());
+            boolean isUpdated = SQLUtil.crudUtil("UPDATE tea_types SET amount = amount - ? WHERE typeId = ?", entity.getAmount(), typeId);
+            if (!isUpdated){
+                return false;
+            }
+        }
+        return true;
+    }
 
 }
 
