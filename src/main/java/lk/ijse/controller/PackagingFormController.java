@@ -23,10 +23,10 @@ import lk.ijse.bo.BOFactory;
 import lk.ijse.bo.custom.PackagingBO;
 import lk.ijse.bo.custom.PackagingDetailsBO;
 import lk.ijse.bo.custom.TeaBookBO;
+import lk.ijse.bo.custom.TeaTypeBO;
 import lk.ijse.dto.*;
-import lk.ijse.entity.TeaTypes;
 import lk.ijse.view.tdm.PackagingTm;
-import lk.ijse.model.*;
+
 import java.io.IOException;
 import java.sql.SQLException;
 import java.time.LocalDate;
@@ -95,9 +95,7 @@ public class PackagingFormController {
 
 
     private  final TeaBookBO teaBookBO = (TeaBookBO) BOFactory.getInstance().getBO(BOFactory.BOTypes.TEA_BOOK);
-
-    private final TeaTypeModel teaTypeModel = new TeaTypeModel();
-
+    private final TeaTypeBO teaTypeBO = (TeaTypeBO) BOFactory.getInstance().getBO(BOFactory.BOTypes.TEA_TYPE);
     private final PackagingBO packagingBO = (PackagingBO) BOFactory.getInstance().getBO(BOFactory.BOTypes.PACKAGING);
     private final PackagingDetailsBO packagingDetailsBO = (PackagingDetailsBO) BOFactory.getInstance().getBO(BOFactory.BOTypes.PACKAGING_DETAILS);
 
@@ -132,7 +130,7 @@ public class PackagingFormController {
 
                 PackagingDto packagingDto = packagingBO.searchPackaging(dto.getPackId());
 
-                String type = teaTypeModel.getTeaType(packagingDto.getTypedId());
+                String type = teaTypeBO.getTeaType(packagingDto.getTypedId());
 
 
                 PackagingTm tm = new PackagingTm(dto.getPackagingDetailsId(), type, packagingDto.getDescription(), dto.getCount());
@@ -203,7 +201,7 @@ public class PackagingFormController {
         try{
 
 
-            List<TeaTypes> dto = teaTypeModel.getAllTeaTypes();
+            List<TeaTypesDto> dto = teaTypeBO.getAllTeaTypes();
 
             double blackAmount= dto.get(0).getAmount()- packagingDetailsBO.getTotalDecreasedAmount(dto.get(0).getTypeId());
             double greenAmount= dto.get(1).getAmount()- packagingDetailsBO.getTotalDecreasedAmount(dto.get(1).getTypeId());
@@ -225,9 +223,9 @@ public class PackagingFormController {
         ObservableList<String> obList = FXCollections.observableArrayList();
 
         try{
-            List<TeaTypes> teaTypesList = teaTypeModel.getAllTeaTypes();
+            List<TeaTypesDto> teaTypesList = teaTypeBO.getAllTeaTypes();
 
-            for (TeaTypes dto : teaTypesList){
+            for (TeaTypesDto dto : teaTypesList){
                 obList.add(dto.getType());
             }
             cmbTeaType.setItems(obList);
@@ -295,9 +293,9 @@ public class PackagingFormController {
         try {
 
             //To Get Tea Type ID
-            String teaTypeId = teaTypeModel.getTeaTypeId(teaType);
+            String teaTypeId = teaTypeBO.getTeaTypeId(teaType);
 
-            double currentAmount = teaTypeModel.getTeaAmount(teaType);
+            double currentAmount = teaTypeBO.getTeaAmount(teaType);
             double currentPackageDetailsAmount = packagingDetailsBO.getTotalDecreasedAmount(teaTypeId);
             double decreasedAmount = calculateDecreasedAmount(packSize, count);
 
@@ -307,7 +305,7 @@ public class PackagingFormController {
                 return;
             }
 
-            String typeId = teaTypeModel.getTeaTypeId(teaType);
+            String typeId = teaTypeBO.getTeaTypeId(teaType);
             String packId = packagingBO.getPackId(typeId,packSize);
 
 
@@ -455,7 +453,7 @@ public class PackagingFormController {
         ObservableList<String> obList = FXCollections.observableArrayList();
 
         try{
-            String teaTypeId= teaTypeModel.getTeaTypeId(teaType);
+            String teaTypeId= teaTypeBO.getTeaTypeId(teaType);
 
             List<PackagingDto> packagingList = packagingBO.getAllPackaging(teaTypeId);
 

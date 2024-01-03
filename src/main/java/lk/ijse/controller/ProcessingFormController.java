@@ -15,12 +15,12 @@ import lk.ijse.bo.BOFactory;
 import lk.ijse.bo.custom.ProcessingBO;
 import lk.ijse.bo.custom.TeaBookBO;
 import lk.ijse.bo.custom.TeaBookTypeBO;
+import lk.ijse.bo.custom.TeaTypeBO;
 import lk.ijse.dto.TeaBookDto;
 import lk.ijse.dto.TeaBookTypeDetailDto;
 import lk.ijse.dto.TeaBookTypeDto;
-import lk.ijse.entity.TeaTypes;
+import lk.ijse.dto.TeaTypesDto;
 import lk.ijse.view.tdm.TeaBookTypeTm;
-import lk.ijse.model.TeaTypeModel;
 
 import java.sql.SQLException;
 import java.time.LocalDate;
@@ -73,7 +73,7 @@ public class ProcessingFormController {
 
     private  final TeaBookBO teaBookBO = (TeaBookBO) BOFactory.getInstance().getBO(BOFactory.BOTypes.TEA_BOOK);
 
-    private final TeaTypeModel teaTypeModel = new TeaTypeModel();
+    private final TeaTypeBO teaTypeBO = (TeaTypeBO) BOFactory.getInstance().getBO(BOFactory.BOTypes.TEA_TYPE);
 
     private final ProcessingBO processingBO = (ProcessingBO) BOFactory.getInstance().getBO(BOFactory.BOTypes.PROCESSING);
 
@@ -106,7 +106,7 @@ public class ProcessingFormController {
             for (TeaBookTypeDto dto :dtoList){
 
                 //Getting The Name from databace
-                String teaType= teaTypeModel.getTeaType(dto.getTypeId());
+                String teaType= teaTypeBO.getTeaType(dto.getTypeId());
 
                 TeaBookTypeTm tm = new TeaBookTypeTm(dto.getTeaBookTypeId(),teaType,dto.getAmount());
                 obList.add(tm);
@@ -181,9 +181,9 @@ public class ProcessingFormController {
         ObservableList <String> obList = FXCollections.observableArrayList();
 
         try {
-            List<TeaTypes> teaTypesList = teaTypeModel.getAllTeaTypes();
+            List<TeaTypesDto> teaTypesList = teaTypeBO.getAllTeaTypes();
 
-            for (TeaTypes teaTypes : teaTypesList) {
+            for (TeaTypesDto teaTypes : teaTypesList) {
                 obList.add(teaTypes.getType());
             }
 
@@ -252,7 +252,7 @@ public class ProcessingFormController {
 
         try {
 
-            String teaTypeId=teaTypeModel.getTeaTypeId(type);
+            String teaTypeId= teaTypeBO.getTeaTypeId(type);
             TeaBookTypeDto dto = new TeaBookTypeDto(teaBookTypeId,date,teaTypeId,amount,false);
 
             boolean isSaved = teaBookTypeBO.saveTeaBookType(dto);
@@ -352,11 +352,6 @@ public class ProcessingFormController {
         btnAddDetailsOnAction(event);
 
     }
-
-
-
-
-
 
 
 }

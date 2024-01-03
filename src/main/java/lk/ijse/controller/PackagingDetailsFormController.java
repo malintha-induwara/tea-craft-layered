@@ -12,11 +12,10 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.text.Text;
 import lk.ijse.bo.BOFactory;
 import lk.ijse.bo.custom.PackagingBO;
+import lk.ijse.bo.custom.TeaTypeBO;
 import lk.ijse.dto.PackagingDto;
-import lk.ijse.entity.TeaTypes;
+import lk.ijse.dto.TeaTypesDto;
 import lk.ijse.view.tdm.PackagingDetailsTm;
-import lk.ijse.model.TeaTypeModel;
-
 import java.sql.SQLException;
 import java.util.List;
 import java.util.Objects;
@@ -72,7 +71,7 @@ public class PackagingDetailsFormController {
 
     private final PackagingBO packagingBO = (PackagingBO) BOFactory.getInstance().getBO(BOFactory.BOTypes.PACKAGING);
 
-    private final TeaTypeModel teaTypeModel=new TeaTypeModel();
+    private final TeaTypeBO teaTypeModel = (TeaTypeBO) BOFactory.getInstance().getBO(BOFactory.BOTypes.TEA_TYPE);
 
 
 
@@ -212,9 +211,9 @@ public class PackagingDetailsFormController {
 
         try{
 
-            List<TeaTypes> teaTypesList =  teaTypeModel.getAllTeaTypes();
+            List<TeaTypesDto> teaTypesList =  teaTypeModel.getAllTeaTypes();
 
-            for (TeaTypes teaTypes : teaTypesList) {
+            for (TeaTypesDto teaTypes : teaTypesList) {
                 oblist.add(teaTypes.getType());
             }
 

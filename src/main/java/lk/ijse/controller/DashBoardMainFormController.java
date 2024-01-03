@@ -18,9 +18,10 @@ import lk.ijse.bo.BOFactory;
 import lk.ijse.bo.custom.AttendanceBO;
 import lk.ijse.bo.custom.PackagingDetailsBO;
 import lk.ijse.bo.custom.TeaBookBO;
+import lk.ijse.bo.custom.TeaTypeBO;
 import lk.ijse.bo.custom.impl.UserBOImpl;
 import lk.ijse.dto.TeaBookDto;
-import lk.ijse.entity.TeaTypes;
+import lk.ijse.dto.TeaTypesDto;
 import lk.ijse.model.*;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
@@ -66,12 +67,12 @@ public class DashBoardMainFormController {
 
     private final TeaOrderModel teaOrderModel=new TeaOrderModel();
 
-    private final TeaTypeModel teaTypeModel=new TeaTypeModel();
+
+    private final TeaTypeBO teaTypeBO = (TeaTypeBO) BOFactory.getInstance().getBO(BOFactory.BOTypes.TEA_TYPE);
 
     private final AttendanceBO attendanceBO = (AttendanceBO) BOFactory.getInstance().getBO(BOFactory.BOTypes.ATTENDANCE);
 
-
-    private final PackagingDetailsBO packagingDetailsModel = (PackagingDetailsBO) BOFactory.getInstance().getBO(BOFactory.BOTypes.PACKAGING_DETAILS);
+    private final PackagingDetailsBO packagingDetailsBO = (PackagingDetailsBO) BOFactory.getInstance().getBO(BOFactory.BOTypes.PACKAGING_DETAILS);
 
 
     public void initialize() {
@@ -115,11 +116,11 @@ public class DashBoardMainFormController {
         double oolongTea =0;
         try {
 
-            List<TeaTypes> dto = teaTypeModel.getAllTeaTypes();
+            List<TeaTypesDto> dto = teaTypeBO.getAllTeaTypes();
 
-            blackTea= dto.get(0).getAmount()-packagingDetailsModel.getTotalDecreasedAmount(dto.get(0).getTypeId());
-            greenTea= dto.get(1).getAmount()-packagingDetailsModel.getTotalDecreasedAmount(dto.get(1).getTypeId());
-            oolongTea= dto.get(2).getAmount()-packagingDetailsModel.getTotalDecreasedAmount(dto.get(2).getTypeId());
+            blackTea= dto.get(0).getAmount()- packagingDetailsBO.getTotalDecreasedAmount(dto.get(0).getTypeId());
+            greenTea= dto.get(1).getAmount()- packagingDetailsBO.getTotalDecreasedAmount(dto.get(1).getTypeId());
+            oolongTea= dto.get(2).getAmount()- packagingDetailsBO.getTotalDecreasedAmount(dto.get(2).getTypeId());
 
 
         } catch (SQLException e) {

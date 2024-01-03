@@ -14,9 +14,11 @@ import javafx.scene.text.Text;
 import lk.ijse.bo.BOFactory;
 import lk.ijse.bo.custom.CustomerBO;
 import lk.ijse.bo.custom.PackagingBO;
+import lk.ijse.bo.custom.TeaTypeBO;
 import lk.ijse.db.DbConnection;
 import lk.ijse.dto.CustomerDto;
 import lk.ijse.dto.PackagingDto;
+import lk.ijse.dto.TeaTypesDto;
 import lk.ijse.entity.Packaging;
 import lk.ijse.dto.PlaceTeaOrderDto;
 import lk.ijse.entity.TeaTypes;
@@ -115,7 +117,7 @@ public class SalesFormController {
     private final TeaOrderModel teaOrderModel = new TeaOrderModel();
 
     private  final CustomerBO customerModel = (CustomerBO) BOFactory.getInstance().getBO(BOFactory.BOTypes.CUSTOMER);
-    private final TeaTypeModel teaTypeModel = new TeaTypeModel();
+    private final TeaTypeBO teaTypeModel = (TeaTypeBO) BOFactory.getInstance().getBO(BOFactory.BOTypes.TEA_TYPE);
     private final PackagingBO packagingModel= (PackagingBO) BOFactory.getInstance().getBO(BOFactory.BOTypes.PACKAGING);
 
     private final PlaceTeaOrderModel placeOrderModel = new PlaceTeaOrderModel();
@@ -181,9 +183,9 @@ public class SalesFormController {
         ObservableList<String> obList = FXCollections.observableArrayList();
 
         try{
-            List<TeaTypes> teaTypesList = teaTypeModel.getAllTeaTypes();
+            List<TeaTypesDto> teaTypesList = teaTypeModel.getAllTeaTypes();
 
-            for (TeaTypes dto : teaTypesList){
+            for (TeaTypesDto dto : teaTypesList){
                 obList.add(dto.getType());
             }
             cmbTeaType.setItems(obList);
