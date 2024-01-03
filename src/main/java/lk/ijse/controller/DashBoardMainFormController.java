@@ -16,6 +16,7 @@ import javafx.scene.text.Text;
 import javafx.util.Duration;
 import lk.ijse.bo.BOFactory;
 import lk.ijse.bo.custom.AttendanceBO;
+import lk.ijse.bo.custom.PackagingDetailsBO;
 import lk.ijse.bo.custom.TeaBookBO;
 import lk.ijse.bo.custom.impl.UserBOImpl;
 import lk.ijse.dto.TeaBookDto;
@@ -69,7 +70,8 @@ public class DashBoardMainFormController {
 
     private final AttendanceBO attendanceBO = (AttendanceBO) BOFactory.getInstance().getBO(BOFactory.BOTypes.ATTENDANCE);
 
-    private final PackagingDetailsModel packagingDetailsModel = new PackagingDetailsModel();
+
+    private final PackagingDetailsBO packagingDetailsModel = (PackagingDetailsBO) BOFactory.getInstance().getBO(BOFactory.BOTypes.PACKAGING_DETAILS);
 
 
     public void initialize() {

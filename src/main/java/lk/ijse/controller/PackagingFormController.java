@@ -24,7 +24,6 @@ import lk.ijse.bo.custom.PackagingBO;
 import lk.ijse.bo.custom.PackagingDetailsBO;
 import lk.ijse.bo.custom.TeaBookBO;
 import lk.ijse.dto.*;
-import lk.ijse.entity.PackagingDetails;
 import lk.ijse.entity.TeaTypes;
 import lk.ijse.view.tdm.PackagingTm;
 import lk.ijse.model.*;
@@ -100,7 +99,7 @@ public class PackagingFormController {
     private final TeaTypeModel teaTypeModel = new TeaTypeModel();
 
     private final PackagingBO packagingBO = (PackagingBO) BOFactory.getInstance().getBO(BOFactory.BOTypes.PACKAGING);
-    private final PackagingDetailsBO packagingDetailsModel = (PackagingDetailsBO) BOFactory.getInstance().getBO(BOFactory.BOTypes.PACKAGING_DETAILS);
+    private final PackagingDetailsBO packagingDetailsBO = (PackagingDetailsBO) BOFactory.getInstance().getBO(BOFactory.BOTypes.PACKAGING_DETAILS);
 
 
     public void initialize() {
@@ -124,7 +123,7 @@ public class PackagingFormController {
 
 
         try{
-            List<PackagingDetailsDto> dtoList = packagingDetailsModel.loadAllPackagingDetails(LocalDate.parse(date));
+            List<PackagingDetailsDto> dtoList = packagingDetailsBO.loadAllPackagingDetails(LocalDate.parse(date));
 
             ObservableList<PackagingTm> obList = FXCollections.observableArrayList();
 
@@ -178,7 +177,7 @@ public class PackagingFormController {
 
             try{
 
-                boolean isDeleted = packagingDetailsModel.deletePackageDetails(packageDetailsId);
+                boolean isDeleted = packagingDetailsBO.deletePackageDetails(packageDetailsId);
 
                 if (isDeleted){
                     loadTeaTypeAmounts();
@@ -206,9 +205,9 @@ public class PackagingFormController {
 
             List<TeaTypes> dto = teaTypeModel.getAllTeaTypes();
 
-            double blackAmount= dto.get(0).getAmount()-packagingDetailsModel.getTotalDecreasedAmount(dto.get(0).getTypeId());
-            double greenAmount= dto.get(1).getAmount()-packagingDetailsModel.getTotalDecreasedAmount(dto.get(1).getTypeId());
-            double oolongAmount= dto.get(2).getAmount()-packagingDetailsModel.getTotalDecreasedAmount(dto.get(2).getTypeId());
+            double blackAmount= dto.get(0).getAmount()- packagingDetailsBO.getTotalDecreasedAmount(dto.get(0).getTypeId());
+            double greenAmount= dto.get(1).getAmount()- packagingDetailsBO.getTotalDecreasedAmount(dto.get(1).getTypeId());
+            double oolongAmount= dto.get(2).getAmount()- packagingDetailsBO.getTotalDecreasedAmount(dto.get(2).getTypeId());
 
             txtBlack.setText(blackAmount +" Kg");
             txtGreen.setText(greenAmount + " Kg");
@@ -244,7 +243,7 @@ public class PackagingFormController {
     private void generateNextPackingId() {
 
         try{
-            String packagingId = packagingDetailsModel.generateNextPackingId();
+            String packagingId = packagingDetailsBO.generateNextPackingId();
             txtSupplierId.setText(packagingId);
         }
         catch (SQLException e){
@@ -299,7 +298,7 @@ public class PackagingFormController {
             String teaTypeId = teaTypeModel.getTeaTypeId(teaType);
 
             double currentAmount = teaTypeModel.getTeaAmount(teaType);
-            double currentPackageDetailsAmount = packagingDetailsModel.getTotalDecreasedAmount(teaTypeId);
+            double currentPackageDetailsAmount = packagingDetailsBO.getTotalDecreasedAmount(teaTypeId);
             double decreasedAmount = calculateDecreasedAmount(packSize, count);
 
             //Check whether the amount is enough
@@ -315,7 +314,7 @@ public class PackagingFormController {
 
             PackagingDetailsDto dto = new PackagingDetailsDto(packagingDetailsId,LocalDate.parse( cmbDate.getText()),packId, count, decreasedAmount, false);
 
-            boolean isAdded = packagingDetailsModel.addPackagingDetails(dto);
+            boolean isAdded = packagingDetailsBO.addPackagingDetails(dto);
 
             if (isAdded){
                 generateNextPackingId();
@@ -414,10 +413,10 @@ public class PackagingFormController {
         try{
 
             //To Calculate the total amount and count
-            List<PackagingCountAmountDto> dtoList = packagingDetailsModel.getTotalCountAmount(LocalDate.parse(cmbDate.getSelectionModel().getSelectedItem()));
+            List<PackagingCountAmountDto> dtoList = packagingDetailsBO.getTotalCountAmount(LocalDate.parse(cmbDate.getSelectionModel().getSelectedItem()));
 
             //To Update the confirmed status
-            boolean isConfirmed = packagingDetailsModel.confirmPackaging(LocalDate.parse(cmbDate.getSelectionModel().getSelectedItem()),dtoList);
+            boolean isConfirmed = packagingDetailsBO.confirmPackaging(LocalDate.parse(cmbDate.getSelectionModel().getSelectedItem()),dtoList);
 
             if (isConfirmed){
                 new Alert(Alert.AlertType.CONFIRMATION,"Confirmed").show();
