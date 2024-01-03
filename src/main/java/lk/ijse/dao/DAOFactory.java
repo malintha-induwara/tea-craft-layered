@@ -10,7 +10,7 @@ public class DAOFactory {
     }
 
     public enum DAOTypes{
-        ATTENDANCE,CUSTOMER,EMPLOYEE,FERTILIZER,PACKAGING, FERTILIZER_ORDER,FERTILIZER_ORDER_DETAIL,PACKAGING_DETAILS,PAYMENTS,SALARY,SUPPLIER,TEA_BOOK,TEA_BOOK_TYPE,TEA_LEAVES_STOCK,TEA_TYPE,TEA_CRAFT_DETAIL,USER
+        ATTENDANCE,CUSTOMER,EMPLOYEE,FERTILIZER,PACKAGING, FERTILIZER_ORDER,FERTILIZER_ORDER_DETAIL,PACKAGING_DETAILS,PAYMENTS,SALARY,SUPPLIER,TEA_ORDER,TEA_BOOK,TEA_BOOK_TYPE,TEA_LEAVES_STOCK,TEA_TYPE,TEA_ORDER_DETAIL,TEA_CRAFT_DETAIL,USER
     }
 
     public SuperDAO getDAO(DAOTypes daoTypes){
@@ -37,6 +37,8 @@ public class DAOFactory {
                 return new SalaryDAOImpl();
             case SUPPLIER:
                 return new SupplierDAOImpl();
+            case TEA_ORDER:
+                return new TeaOrderDAOImpl();
             case TEA_BOOK:
                 return new TeaBookDAOImpl();
             case TEA_BOOK_TYPE:
@@ -47,6 +49,8 @@ public class DAOFactory {
                 return new TeaTypeDAOImpl();
             case TEA_CRAFT_DETAIL:
                 return new TeaCraftDetailDAOImpl();
+            case TEA_ORDER_DETAIL:
+                return new TeaOrderDetailDAOImpl();
             case USER:
                 return new UserDAOImpl();
             default:

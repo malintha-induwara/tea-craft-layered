@@ -11,16 +11,6 @@ import java.util.List;
 public class TeaOrderDetailModel {
 
 
-    public boolean saveOrderDetail(String orderId, List<SalesCartTm> tmList) throws SQLException {
-
-        for (SalesCartTm salesCartTm : tmList) {
-            if (!saveOrderDetail(orderId,salesCartTm)){
-                return false;
-            }
-        }
-
-        return true;
-    }
 
 
 

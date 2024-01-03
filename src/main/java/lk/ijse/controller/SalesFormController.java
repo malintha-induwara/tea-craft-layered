@@ -14,14 +14,13 @@ import javafx.scene.text.Text;
 import lk.ijse.bo.BOFactory;
 import lk.ijse.bo.custom.CustomerBO;
 import lk.ijse.bo.custom.PackagingBO;
+import lk.ijse.bo.custom.TeaOrderBO;
 import lk.ijse.bo.custom.TeaTypeBO;
 import lk.ijse.db.DbConnection;
 import lk.ijse.dto.CustomerDto;
 import lk.ijse.dto.PackagingDto;
 import lk.ijse.dto.TeaTypesDto;
-import lk.ijse.entity.Packaging;
 import lk.ijse.dto.PlaceTeaOrderDto;
-import lk.ijse.entity.TeaTypes;
 import lk.ijse.view.tdm.SalesCartTm;
 import lk.ijse.model.*;
 import net.sf.jasperreports.engine.*;
@@ -116,11 +115,10 @@ public class SalesFormController {
 
     private final TeaOrderModel teaOrderModel = new TeaOrderModel();
 
-    private  final CustomerBO customerModel = (CustomerBO) BOFactory.getInstance().getBO(BOFactory.BOTypes.CUSTOMER);
-    private final TeaTypeBO teaTypeModel = (TeaTypeBO) BOFactory.getInstance().getBO(BOFactory.BOTypes.TEA_TYPE);
-    private final PackagingBO packagingModel= (PackagingBO) BOFactory.getInstance().getBO(BOFactory.BOTypes.PACKAGING);
-
-    private final PlaceTeaOrderModel placeOrderModel = new PlaceTeaOrderModel();
+    private  final CustomerBO customerBO = (CustomerBO) BOFactory.getInstance().getBO(BOFactory.BOTypes.CUSTOMER);
+    private final TeaTypeBO teaTypeBO = (TeaTypeBO) BOFactory.getInstance().getBO(BOFactory.BOTypes.TEA_TYPE);
+    private final PackagingBO packagingBO = (PackagingBO) BOFactory.getInstance().getBO(BOFactory.BOTypes.PACKAGING);
+    private final TeaOrderBO teaOrderBO = (TeaOrderBO) BOFactory.getInstance().getBO(BOFactory.BOTypes.TEA_ORDER);
 
 
     //For Report Generation
@@ -150,7 +148,7 @@ public class SalesFormController {
 
         try{
 
-            List<PackagingDto> dtoList = packagingModel.getAllPackaging();
+            List<PackagingDto> dtoList = packagingBO.getAllPackaging();
 
             for (int i = 0; i < dtoList.size(); i++) {
                 packageDetails.add(new ArrayList<>());
@@ -183,7 +181,7 @@ public class SalesFormController {
         ObservableList<String> obList = FXCollections.observableArrayList();
 
         try{
-            List<TeaTypesDto> teaTypesList = teaTypeModel.getAllTeaTypes();
+            List<TeaTypesDto> teaTypesList = teaTypeBO.getAllTeaTypes();
 
             for (TeaTypesDto dto : teaTypesList){
                 obList.add(dto.getType());
@@ -203,7 +201,7 @@ public class SalesFormController {
         ObservableList<String> obList = FXCollections.observableArrayList();
 
         try{
-            List<CustomerDto> cusList = customerModel.getAllCustomer();
+            List<CustomerDto> cusList = customerBO.getAllCustomer();
             for (CustomerDto dto : cusList){
                 obList.add(dto.getMobileNo());
             }
@@ -282,8 +280,8 @@ public class SalesFormController {
         //To find the pack id
         String packId = null;
         try {
-            String teaTypeId = teaTypeModel.getTeaTypeId(teaType);
-             packId= packagingModel.getPackId(teaTypeId,packSize);
+            String teaTypeId = teaTypeBO.getTeaTypeId(teaType);
+             packId= packagingBO.getPackId(teaTypeId,packSize);
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
@@ -322,13 +320,13 @@ public class SalesFormController {
 
         try {
             //Getting Tea Type id
-            String teaTypeId = teaTypeModel.getTeaTypeId(teaType);
+            String teaTypeId = teaTypeBO.getTeaTypeId(teaType);
 
 
             //Finding Pack id According to Tea Type id and Pack Size
-            String packId = packagingModel.getPackId(teaTypeId,packSize);
+            String packId = packagingBO.getPackId(teaTypeId,packSize);
 
-            PackagingDto dto = packagingModel.searchPackaging(packId);
+            PackagingDto dto = packagingBO.searchPackaging(packId);
 
             //Get Details From Packaging Details Array List
 
@@ -442,10 +440,10 @@ public class SalesFormController {
 
         try{
             //Getting Tea Type id
-            String teaTypeId = teaTypeModel.getTeaTypeId(teaType);
+            String teaTypeId = teaTypeBO.getTeaTypeId(teaType);
 
             //Finding Pack id According to Tea Type id and Pack Size
-            String packId = packagingModel.getPackId(teaTypeId,packSize);
+            String packId = packagingBO.getPackId(teaTypeId,packSize);
 
             //Get Details From Packaging Details Array List
              count = getPackageCount(packId);
@@ -503,7 +501,7 @@ public class SalesFormController {
 
         String cusId = null;
         try {
-            cusId = customerModel.searchCustomerID(cusNum);
+            cusId = customerBO.searchCustomerID(cusNum);
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
@@ -528,7 +526,7 @@ public class SalesFormController {
 
         try{
 
-            boolean isSuccess = placeOrderModel.placeOrder(dto);
+            boolean isSuccess = teaOrderBO.placeOrder(dto);
 
             if (isSuccess){
                 new Alert(Alert.AlertType.CONFIRMATION, "Order Completed").show();
@@ -590,8 +588,8 @@ public class SalesFormController {
         String cusNum= cmbCustomerNum.getValue();
 
         try {
-            String cusId = customerModel.searchCustomerID(cusNum);
-            CustomerDto dto = customerModel.searchCustomer(cusId);
+            String cusId = customerBO.searchCustomerID(cusNum);
+            CustomerDto dto = customerBO.searchCustomer(cusId);
             txtName.setText(dto.getFirstName());
         }
         catch (SQLException  e){
@@ -621,9 +619,9 @@ public class SalesFormController {
         ObservableList<String> obList = FXCollections.observableArrayList();
 
         try{
-            String teaTypeId= teaTypeModel.getTeaTypeId(teaType);
+            String teaTypeId= teaTypeBO.getTeaTypeId(teaType);
 
-            List<PackagingDto> packagingList = packagingModel.getAllPackaging(teaTypeId);
+            List<PackagingDto> packagingList = packagingBO.getAllPackaging(teaTypeId);
 
             for (PackagingDto dto : packagingList){
                 obList.add(dto.getDescription());
@@ -658,13 +656,13 @@ public class SalesFormController {
         try{
 
             //Getting Tea Type id
-            String teaTypeId = teaTypeModel.getTeaTypeId(teaType);
+            String teaTypeId = teaTypeBO.getTeaTypeId(teaType);
 
 
             //Finding Pack id According to Tea Type id and Pack Size
-            String packId = packagingModel.getPackId(teaTypeId,packSize);
+            String packId = packagingBO.getPackId(teaTypeId,packSize);
 
-            PackagingDto dto = packagingModel.searchPackaging(packId);
+            PackagingDto dto = packagingBO.searchPackaging(packId);
 
 
             //Get Details From Packaging Details Array List
