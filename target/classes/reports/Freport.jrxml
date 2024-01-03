@@ -57,7 +57,7 @@
 		<band height="94" splitType="Stretch">
 			<image>
 				<reportElement x="250" y="0" width="68" height="60" uuid="89b1263c-e5d9-4187-9cf3-2b07cdf7b79b"/>
-				<imageExpression><![CDATA["C:\\Users\\SYREX\\Desktop\\tea-craft\\src\\main\\resources\\assets\\images\\leafLogo.png"]]></imageExpression>
+				<imageExpression><![CDATA["/home/syrex/Desktop/tea-craft-layered/src/main/resources/assets/images/leafLogo.png"]]></imageExpression>
 			</image>
 			<staticText>
 				<reportElement x="240" y="60" width="84" height="30" uuid="5dfe028b-3c8c-47eb-b32f-cb9ed715fd87"/>

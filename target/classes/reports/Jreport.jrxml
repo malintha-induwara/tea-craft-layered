@@ -53,7 +53,7 @@ WHERE tea_order_details.tea_order_id = "O001"]]>
 		<band height="90" splitType="Stretch">
 			<image>
 				<reportElement x="250" y="0" width="68" height="60" uuid="1ff317d9-601c-432c-a43a-9910ab086dda"/>
-				<imageExpression><![CDATA["C:\\Users\\SYREX\\Desktop\\tea-craft\\src\\main\\resources\\assets\\images\\leafLogo.png"]]></imageExpression>
+				<imageExpression><![CDATA["/home/syrex/Desktop/tea-craft-layered/src/main/resources/assets/images/leafLogo.png"]]></imageExpression>
 			</image>
 			<staticText>
 				<reportElement x="240" y="60" width="84" height="30" uuid="25f8a464-e8ce-497a-bd09-270f7bc14406"/>
