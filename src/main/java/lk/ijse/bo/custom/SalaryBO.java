@@ -14,9 +14,5 @@ public interface SalaryBO extends SuperBO {
     boolean addSalary(SalaryDto dto) throws SQLException;
     String generateNextSalaryId() throws SQLException;
     List<SalaryDto> getPaymentDetails(String supplierId) throws SQLException;
-
     boolean saveSalary(SalaryDto dto) throws SQLException;
-
-
-
 }

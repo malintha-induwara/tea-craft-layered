@@ -16,7 +16,6 @@ public interface TeaBookTypeBO extends SuperBO {
     boolean saveTeaBookType(TeaBookTypeDto dto) throws SQLException;
     List<TeaBookTypeDto> getAllTeaBookTypeDetails(String date) throws SQLException;
     boolean deleteTeaBookType(String teaBookTypeId) throws SQLException;
-    //Transaction
     boolean confirmTeaBook(LocalDate date) throws SQLException;
     List<TeaBookTypeDetailDto> getTotalAmount(LocalDate date) throws SQLException;
 }

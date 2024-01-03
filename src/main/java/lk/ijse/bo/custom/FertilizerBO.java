@@ -14,10 +14,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public interface FertilizerBO extends SuperBO {
-    public String generateNextFertilizerId() throws SQLException;
-    public boolean addFertilizer(FertilizerDto dto) throws SQLException;
-    public List<FertilizerDto> getAllFertilizers() throws SQLException;
-    public FertilizerDto getFertilizer(String fertilizerId) throws SQLException;
+    String generateNextFertilizerId() throws SQLException;
+    boolean addFertilizer(FertilizerDto dto) throws SQLException;
+    List<FertilizerDto> getAllFertilizers() throws SQLException;
+    FertilizerDto getFertilizer(String fertilizerId) throws SQLException;
     boolean deleteFertilizer(String fertilizerId) throws SQLException;
     boolean updateFertilizer(FertilizerDto dto) throws SQLException;
     FertilizerDto searchFertilizer(String fertilizerId) throws SQLException;

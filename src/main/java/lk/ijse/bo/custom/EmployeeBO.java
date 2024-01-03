@@ -13,9 +13,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public interface EmployeeBO extends SuperBO {
-    public boolean saveEmployee(EmployeeDto dto) throws SQLException;
-    public String generateNextEmployeeId() throws SQLException;
-    public boolean updateEmployee(EmployeeDto employee) throws SQLException;
+    boolean saveEmployee(EmployeeDto dto) throws SQLException;
+    String generateNextEmployeeId() throws SQLException;
+    boolean updateEmployee(EmployeeDto employee) throws SQLException;
     EmployeeDto searchEmployee(String empId) throws SQLException;
     List<EmployeeDto> getAllEmployees() throws SQLException;
     boolean deleteEmployee(String empId) throws SQLException;
