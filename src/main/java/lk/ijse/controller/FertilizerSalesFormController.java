@@ -22,7 +22,6 @@ import lk.ijse.dto.FertilizerDto;
 import lk.ijse.dto.SupplierDto;
 import lk.ijse.dto.PlaceFertilizerOrderDto;
 import lk.ijse.view.tdm.FertilizerSalesCartTm;
-import lk.ijse.model.*;
 import net.sf.jasperreports.engine.*;
 import net.sf.jasperreports.engine.design.JRDesignQuery;
 import net.sf.jasperreports.engine.design.JasperDesign;

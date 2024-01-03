@@ -1,10 +1,12 @@
 package lk.ijse.bo.custom.impl;
 
+import lk.ijse.bo.BOFactory;
 import lk.ijse.bo.custom.PackagingDetailsBO;
 import lk.ijse.bo.custom.TeaTypeBO;
 import lk.ijse.dao.DAOFactory;
 import lk.ijse.dao.custom.PackagingDAO;
 import lk.ijse.dao.custom.PackagingDetailsDAO;
+import lk.ijse.dao.custom.TeaTypeDAO;
 import lk.ijse.db.DbConnection;
 import lk.ijse.dto.PackagingCountAmountDto;
 import lk.ijse.dto.PackagingDetailsDto;
@@ -19,12 +21,9 @@ import java.util.List;
 
 public class PackagingDetailsBOImpl implements PackagingDetailsBO {
 
-
-    PackagingDetailsDAO packagingDetailsDAO = (PackagingDetailsDAO) DAOFactory.getInstance().getDAO(DAOFactory.DAOTypes.PACKAGING_DETAILS);
-
-    PackagingDAO packagingDAO = (PackagingDAO) DAOFactory.getInstance().getDAO(DAOFactory.DAOTypes.PACKAGING);
-
-    TeaTypeBO teaTypeBO = (TeaTypeBO) DAOFactory.getInstance().getDAO(DAOFactory.DAOTypes.TEA_TYPE);
+    private final PackagingDetailsDAO packagingDetailsDAO = (PackagingDetailsDAO) DAOFactory.getInstance().getDAO(DAOFactory.DAOTypes.PACKAGING_DETAILS);
+    private final PackagingDAO packagingDAO = (PackagingDAO) DAOFactory.getInstance().getDAO(DAOFactory.DAOTypes.PACKAGING);
+    private final TeaTypeBO teaTypeDAO = (TeaTypeBO) BOFactory.getInstance().getBO(BOFactory.BOTypes.TEA_TYPE);
 
 
     @Override
@@ -109,8 +108,7 @@ public class PackagingDetailsBOImpl implements PackagingDetailsBO {
             if (isConfirmed){
                 boolean isSaved = packagingDAO.updatePackagingCount(dtoList);
                 if (isSaved){
-                    boolean isUpdated = teaTypeBO.updateAmount(dtoList);
-
+                    boolean isUpdated = teaTypeDAO.updateAmount(dtoList);
                     if (isUpdated){
                         connection.commit();
                         result = true;
