@@ -2,6 +2,7 @@ package lk.ijse.bo.custom.impl;
 
 import lk.ijse.bo.custom.TeaTypeBO;
 import lk.ijse.dao.DAOFactory;
+import lk.ijse.dao.custom.PackagingDAO;
 import lk.ijse.dao.custom.TeaTypeDAO;
 import lk.ijse.dto.PackagingCountAmountDto;
 import lk.ijse.dto.TeaBookTypeDetailDto;
@@ -9,7 +10,6 @@ import lk.ijse.dto.TeaTypesDto;
 import lk.ijse.entity.PackagingCountAmount;
 import lk.ijse.entity.TeaBookTypeDetails;
 import lk.ijse.entity.TeaTypes;
-
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
@@ -17,6 +17,8 @@ import java.util.List;
 public class TeaTypeBOImpl implements TeaTypeBO {
 
     private final TeaTypeDAO teaTypeDAO = (TeaTypeDAO) DAOFactory.getInstance().getDAO(DAOFactory.DAOTypes.TEA_TYPE);
+
+    private final PackagingDAO packagingDAO = (PackagingDAO) DAOFactory.getInstance().getDAO(DAOFactory.DAOTypes.PACKAGING);
 
 
     @Override
@@ -54,8 +56,13 @@ public class TeaTypeBOImpl implements TeaTypeBO {
                    dto.getTypeId(),dto.getAmount()
             ));
         }
-
-        return teaTypeDAO.updateTeaTypeAmount(teaBookTypeDetailsList);
+        for (TeaBookTypeDetails teaBookTypeDetails : teaBookTypeDetailsList) {
+           boolean isUpdated=teaTypeDAO.updateTeaTypeAmount(teaBookTypeDetails);
+           if(!isUpdated){
+               return false;
+           }
+        }
+        return true;
     }
 
     @Override
@@ -73,7 +80,15 @@ public class TeaTypeBOImpl implements TeaTypeBO {
                     dto.getAmount()
             ));
         }
-        return teaTypeDAO.updateAmount(packagingCountAmountList);
+
+        for (PackagingCountAmount packagingCountAmount : packagingCountAmountList) {
+            String typeId = packagingDAO.getTypeId(packagingCountAmount.getPackId());
+            boolean isUpdated=teaTypeDAO.updateAmount(packagingCountAmount.getAmount(),typeId);
+            if(!isUpdated){
+                return false;
+            }
+        }
+        return true;
     }
 }
 

@@ -16,8 +16,6 @@ import java.util.List;
 
 public class TeaTypeDAOImpl implements TeaTypeDAO {
 
-    PackagingDAO packagingDAO = (PackagingDAO) DAOFactory.getInstance().getDAO(DAOFactory.DAOTypes.PACKAGING);
-
 
     @Override
     public ArrayList<TeaTypes> getAll() throws SQLException {
@@ -74,14 +72,8 @@ public class TeaTypeDAOImpl implements TeaTypeDAO {
     }
 
     @Override
-    public boolean updateTeaTypeAmount(List<TeaBookTypeDetails> dtoList) throws SQLException {
-        for (TeaBookTypeDetails entity : dtoList) {
-            boolean isUpdated = SQLUtil.crudUtil("UPDATE tea_types SET amount=? WHERE typeId=?", entity.getAmount(), entity.getTypeId());
-            if (!isUpdated){
-                return false;
-            }
-        }
-        return true;
+    public boolean updateTeaTypeAmount(TeaBookTypeDetails entity) throws SQLException {
+            return SQLUtil.crudUtil("UPDATE tea_types SET amount=? WHERE typeId=?", entity.getAmount(), entity.getTypeId());
     }
 
     @Override
@@ -94,15 +86,8 @@ public class TeaTypeDAOImpl implements TeaTypeDAO {
     }
 
     @Override
-    public boolean updateAmount(List<PackagingCountAmount> dtoList) throws SQLException {
-        for (PackagingCountAmount entity : dtoList) {
-            String typeId = packagingDAO.getTypeId(entity.getPackId());
-            boolean isUpdated = SQLUtil.crudUtil("UPDATE tea_types SET amount = amount - ? WHERE typeId = ?", entity.getAmount(), typeId);
-            if (!isUpdated){
-                return false;
-            }
-        }
-        return true;
+    public boolean updateAmount(double amount,String typeId) throws SQLException {
+        return SQLUtil.crudUtil("UPDATE tea_types SET amount = amount - ? WHERE typeId = ?", amount, typeId);
     }
 
 }

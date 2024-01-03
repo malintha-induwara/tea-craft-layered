@@ -13,8 +13,8 @@ import java.util.List;
 public interface TeaTypeDAO extends CrudDAO<TeaTypes> {
     String getTeaTypeId(String type) throws SQLException;
     String getTeaType(String typeId) throws SQLException;
-    boolean updateTeaTypeAmount(List<TeaBookTypeDetails> dtoList) throws SQLException;
+    boolean updateTeaTypeAmount(TeaBookTypeDetails entity) throws SQLException;
     double getTeaAmount(String teaType) throws SQLException;
-    boolean updateAmount(List<PackagingCountAmount> dtoList) throws SQLException;
+    public boolean updateAmount(double amount,String typeId) throws SQLException ;
 
 }
