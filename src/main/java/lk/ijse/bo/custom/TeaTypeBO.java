@@ -11,7 +11,6 @@ public interface TeaTypeBO extends SuperBO {
     List<TeaTypesDto> getAllTeaTypes() throws SQLException;
     String getTeaTypeId(String type) throws SQLException;
     String getTeaType(String typeId) throws SQLException;
-    boolean updateTeaTypeAmount(List<TeaBookTypeDetailDto> dtoList) throws SQLException;
     double getTeaAmount(String teaType) throws SQLException;
     boolean updateAmount(List<PackagingCountAmountDto> dtoList) throws SQLException;
 

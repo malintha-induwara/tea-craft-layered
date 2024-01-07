@@ -12,6 +12,7 @@ import lk.ijse.dto.PackagingCountAmountDto;
 import lk.ijse.dto.PackagingDetailsDto;
 import lk.ijse.entity.PackagingCountAmount;
 import lk.ijse.entity.PackagingDetails;
+import lk.ijse.util.TransactionUtil;
 
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -97,11 +98,9 @@ public class PackagingDetailsBOImpl implements PackagingDetailsBO {
     public boolean confirmPackaging(LocalDate date, List<PackagingCountAmountDto> dtoList) throws SQLException{
         boolean result = false;
 
-        Connection connection = null;
-
         try{
-            connection = DbConnection.getInstance().getConnection();
-            connection.setAutoCommit(false);
+
+            TransactionUtil.autoCommitFalse();
 
             boolean isConfirmed = confirmPackaging(date);
 
@@ -110,15 +109,13 @@ public class PackagingDetailsBOImpl implements PackagingDetailsBO {
                 if (isSaved){
                     boolean isUpdated = teaTypeDAO.updateAmount(dtoList);
                     if (isUpdated){
-                        connection.commit();
+                        TransactionUtil.commit();
                         result = true;
                     }
                 }
             }
         }catch (SQLException e){
-            connection.rollback();
-        } finally {
-            connection.setAutoCommit(true);
+            TransactionUtil.rollback();
         }
 
         return result;

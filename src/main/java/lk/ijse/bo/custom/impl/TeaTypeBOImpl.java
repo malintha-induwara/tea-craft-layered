@@ -48,22 +48,6 @@ public class TeaTypeBOImpl implements TeaTypeBO {
         return teaTypeDAO.getTeaType(typeId);
     }
 
-    @Override
-    public boolean updateTeaTypeAmount(List<TeaBookTypeDetailDto> dtoList) throws SQLException {
-        List<TeaBookTypeDetails> teaBookTypeDetailsList = new ArrayList<>();
-        for (TeaBookTypeDetailDto dto : dtoList) {
-            teaBookTypeDetailsList.add(new TeaBookTypeDetails(
-                   dto.getTypeId(),dto.getAmount()
-            ));
-        }
-        for (TeaBookTypeDetails teaBookTypeDetails : teaBookTypeDetailsList) {
-           boolean isUpdated=teaTypeDAO.updateTeaTypeAmount(teaBookTypeDetails);
-           if(!isUpdated){
-               return false;
-           }
-        }
-        return true;
-    }
 
     @Override
     public double getTeaAmount(String teaType) throws SQLException {
