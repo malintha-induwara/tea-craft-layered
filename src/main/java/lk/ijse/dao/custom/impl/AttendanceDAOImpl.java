@@ -64,6 +64,7 @@ public class AttendanceDAOImpl implements AttendanceDAO {
         List<Attendance> attendanceList = new ArrayList<>();
 
         while (resultSet.next()){
+
             //The Value Can Either Be null or not null
 //            Time outTime = resultSet.getTime(5);
 //            LocalTime checkNullOutTime = null;

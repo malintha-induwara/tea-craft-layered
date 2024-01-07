@@ -8,7 +8,7 @@ import javax.mail.internet.*;
 import javax.mail.internet.MimeMessage;
 import java.util.Properties;
 
-public class EmailService {
+public class EmailServiceUtil {
 
     public static String sendMail(String email){
 

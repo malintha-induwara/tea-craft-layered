@@ -12,8 +12,7 @@ import javafx.scene.text.Text;
 import lk.ijse.bo.BOFactory;
 import lk.ijse.bo.custom.UserBO;
 import lk.ijse.dto.UserDto;
-import lk.ijse.entity.User;
-import lk.ijse.util.EmailService;
+import lk.ijse.util.EmailServiceUtil;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -102,7 +101,7 @@ public class CreateAccountOtpFormController {
     }
 
     public void sendOtp(){
-        this.otp=EmailService.sendMail(userDto.getEmail());
+        this.otp= EmailServiceUtil.sendMail(userDto.getEmail());
     }
 
 

@@ -8,7 +8,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
-import lk.ijse.util.EmailService;
+import lk.ijse.util.EmailServiceUtil;
 
 import java.io.IOException;
 
@@ -77,7 +77,7 @@ public class PasswordResetOtpFormController {
     }
 
     public void sendOtp(){
-        this.otp= EmailService.sendMail(email);
+        this.otp= EmailServiceUtil.sendMail(email);
     }
 
 
