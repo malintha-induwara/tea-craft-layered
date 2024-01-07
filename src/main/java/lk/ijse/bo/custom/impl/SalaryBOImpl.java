@@ -7,7 +7,9 @@ import lk.ijse.dao.custom.SalaryDAO;
 import lk.ijse.db.DbConnection;
 import lk.ijse.dto.SalaryDto;
 import lk.ijse.entity.Salary;
+import lk.ijse.util.TransactionUtil;
 
+import javax.sql.rowset.spi.TransactionalWriter;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -53,11 +55,8 @@ public class SalaryBOImpl implements SalaryBO {
     public boolean saveSalary(SalaryDto dto) throws SQLException {
         boolean result = false;
 
-        Connection connection = null;
-
         try {
-            connection = DbConnection.getInstance().getConnection();
-            connection.setAutoCommit(false);
+            TransactionUtil.autoCommitFalse();
 
             boolean isSalarySaved = addSalary(dto);
 
@@ -65,14 +64,12 @@ public class SalaryBOImpl implements SalaryBO {
                 boolean isUpdated = attendanceDAO.updatePayedStatus(dto.getEmpId());
 
                 if (isUpdated) {
-                    connection.commit();
+                    TransactionUtil.commit();
                     result = true;
                 }
             }
         } catch (SQLException e){
-            connection.rollback();
-        } finally {
-            connection.setAutoCommit(true);
+            TransactionUtil.rollback();
         }
 
         return result;
