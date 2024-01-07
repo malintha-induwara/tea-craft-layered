@@ -7,6 +7,7 @@ import lk.ijse.dao.custom.TeaLeavesStockDAO;
 import lk.ijse.db.DbConnection;
 import lk.ijse.dto.TeaLeavesStockDto;
 import lk.ijse.entity.TeaLeavesStock;
+import lk.ijse.util.TransactionUtil;
 
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -100,12 +101,10 @@ public class TeaLeavesStockBOImpl implements TeaLeavesStockBO {
     public boolean addTeaLeavesStock(TeaLeavesStockDto teaLeavesStockDto, String teaBookId) throws SQLException {
 
         boolean result = false;
-        Connection connection = null;
+
 
         try{
-            connection = DbConnection.getInstance().getConnection();
-            connection.setAutoCommit(false);
-
+            TransactionUtil.autoCommitFalse();
 
             boolean isSaved = saveTeaLeavesStock(teaLeavesStockDto);
 
@@ -116,17 +115,16 @@ public class TeaLeavesStockBOImpl implements TeaLeavesStockBO {
                 boolean isUpdated = teaBookDAO.updateTeaBookAmount(teaBookId,dailyAmount);
 
                 if (isUpdated){
-                    connection.commit();
+                    TransactionUtil.commit();
                     result = true;
                 }
             }
 
 
         }catch (SQLException e){
-            connection.rollback();
-        }finally {
-            connection.setAutoCommit(true);
+            TransactionUtil.rollback();
         }
+
         return result;
 
     }
