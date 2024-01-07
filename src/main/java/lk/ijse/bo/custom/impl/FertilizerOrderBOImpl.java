@@ -9,6 +9,7 @@ import lk.ijse.dao.custom.FertilizerOrderDetailDAO;
 import lk.ijse.db.DbConnection;
 import lk.ijse.dto.PlaceFertilizerOrderDto;
 import lk.ijse.entity.FertilizerOrder;
+import lk.ijse.util.TransactionUtil;
 
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -37,10 +38,10 @@ public class FertilizerOrderBOImpl implements FertilizerOrderBO {
     @Override
     public boolean placeFertilizerOrder(PlaceFertilizerOrderDto dto) throws SQLException {
         boolean result = false;
-        Connection connection = null;
+
         try{
-            connection = DbConnection.getInstance().getConnection();
-            connection.setAutoCommit(false);
+
+            TransactionUtil.autoCommitFalse();
 
             boolean isOrderSaved = saveFertilizerOrder(dto);
 
@@ -50,7 +51,7 @@ public class FertilizerOrderBOImpl implements FertilizerOrderBO {
                 if (isUpdated){
                     boolean isFertilizerOrderDetailSaved = fertilizerOrderDetailDAO.saveFertilizerOrderDetail(dto.getFertilizerOrderId(),dto.getTmList());
                     if (isFertilizerOrderDetailSaved){
-                        connection.commit();
+                        TransactionUtil.commit();
                         result = true;
 
                     }
@@ -58,10 +59,9 @@ public class FertilizerOrderBOImpl implements FertilizerOrderBO {
             }
         }catch (SQLException e){
             new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
-            connection.rollback();
-        }finally {
-            connection.setAutoCommit(true);
+            TransactionUtil.rollback();
         }
+
         return result;
     }
 
