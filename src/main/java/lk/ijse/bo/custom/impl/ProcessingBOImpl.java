@@ -6,6 +6,7 @@ import lk.ijse.bo.custom.TeaBookTypeBO;
 import lk.ijse.bo.custom.TeaTypeBO;
 import lk.ijse.db.DbConnection;
 import lk.ijse.dto.TeaBookTypeDetailDto;
+import lk.ijse.util.TransactionUtil;
 
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -22,26 +23,20 @@ public class ProcessingBOImpl implements ProcessingBO {
     public boolean updateDetails(LocalDate date, List<TeaBookTypeDetailDto> dtoList) throws SQLException {
 
         boolean result = false;
-
-        Connection connection = null;
-
         try{
-            connection = DbConnection.getInstance().getConnection();
-            connection.setAutoCommit(false);
+            TransactionUtil.autoCommitFalse();
             boolean isConfirmed = teaBookTypeBO.confirmTeaBook(date);
 
             if (isConfirmed){
                 boolean isUpdated = teaTypeBO.updateTeaTypeAmount(dtoList);
 
                 if (isUpdated){
-                    connection.commit();
+                    TransactionUtil.commit();
                     result = true;
                 }
             }
         }catch (SQLException e){
-            connection.rollback();
-        } finally {
-            connection.setAutoCommit(true);
+            TransactionUtil.rollback();
         }
 
         return result;
