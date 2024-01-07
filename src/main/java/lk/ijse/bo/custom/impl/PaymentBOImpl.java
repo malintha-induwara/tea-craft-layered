@@ -7,6 +7,7 @@ import lk.ijse.dao.custom.TeaLeavesStockDAO;
 import lk.ijse.db.DbConnection;
 import lk.ijse.dto.PaymentsDto;
 import lk.ijse.entity.Payments;
+import lk.ijse.util.TransactionUtil;
 
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -57,10 +58,8 @@ public class PaymentBOImpl implements PaymentBO {
     public boolean addPayment(PaymentsDto dto) throws SQLException {
         boolean result = false;
 
-        Connection connection = null;
         try{
-            connection = DbConnection.getInstance().getConnection();
-            connection.setAutoCommit(false);
+            TransactionUtil.autoCommitFalse();
 
             boolean isPaymentSaved = savePayments(dto);
 
@@ -68,14 +67,12 @@ public class PaymentBOImpl implements PaymentBO {
                 boolean isUpdated = teaLeavesStockDAO.updatePayedStatus(dto.getSupId());
 
                 if (isUpdated){
-                    connection.commit();
+                    TransactionUtil.commit();
                     result = true;
                 }
             }
         }catch (SQLException e){
-            connection.rollback();
-        } finally {
-            connection.setAutoCommit(true);
+            TransactionUtil.rollback();
         }
         return result;
     }
