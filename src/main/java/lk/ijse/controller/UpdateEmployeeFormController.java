@@ -56,7 +56,6 @@ public class UpdateEmployeeFormController {
     private String empId;
 
 
-
     public void initialize(){
         setGender();
     }

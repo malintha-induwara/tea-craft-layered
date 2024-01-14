@@ -44,7 +44,7 @@ public class CustomerDAOImpl implements CustomerDAO {
 
     @Override
     public boolean delete(String id) throws SQLException {
-        return SQLUtil.crudUtil("DELETE FROM Customer WHERE id=?",id);
+        return SQLUtil.crudUtil("DELETE FROM customer WHERE cusId=?",id);
     }
 
     @Override

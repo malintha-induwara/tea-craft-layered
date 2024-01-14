@@ -114,9 +114,6 @@ public class UpdateTeaStockFormController {
             }
             if (isUpdated){
                 new Alert(Alert.AlertType.CONFIRMATION,"Updated Successfully").show();
-
-
-
             }
 
         }
