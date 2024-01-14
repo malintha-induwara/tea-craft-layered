@@ -96,6 +96,7 @@ public class PackagingDetailsBOImpl implements PackagingDetailsBO {
 
 
     public boolean confirmPackaging(LocalDate date, List<PackagingCountAmountDto> dtoList) throws SQLException{
+
         boolean result = false;
 
         try{

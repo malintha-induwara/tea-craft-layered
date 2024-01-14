@@ -130,7 +130,7 @@ public class PackagingDAOImpl implements PackagingDAO {
 
     public boolean updatePackagingCount(List<PackagingCountAmountDto> dtoList) throws SQLException {
         for (PackagingCountAmountDto dto : dtoList) {
-            boolean isUpdated = SQLUtil.crudUtil("UPDATE packaging SET packageCount=packageCount-? WHERE packId=?",dto.getCount(),dto.getPackId());
+            boolean isUpdated = SQLUtil.crudUtil("UPDATE packaging SET packageCount= packageCount + ? WHERE packId=?",dto.getCount(),dto.getPackId());
             if (!isUpdated){
                 return false;
             }
