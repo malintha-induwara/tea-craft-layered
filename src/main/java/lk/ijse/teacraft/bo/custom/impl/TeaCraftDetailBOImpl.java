@@ -1,8 +1,8 @@
-package lk.ijse.bo.custom.impl;
+package lk.ijse.teacraft.bo.custom.impl;
 
-import lk.ijse.bo.custom.TeaCraftDetailBO;
-import lk.ijse.dao.DAOFactory;
-import lk.ijse.dao.custom.TeaCraftDetailDAO;
+import lk.ijse.teacraft.bo.custom.TeaCraftDetailBO;
+import lk.ijse.teacraft.dao.DAOFactory;
+import lk.ijse.teacraft.dao.custom.TeaCraftDetailDAO;
 
 import java.sql.SQLException;
 

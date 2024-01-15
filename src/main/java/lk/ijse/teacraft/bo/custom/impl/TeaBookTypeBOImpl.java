@@ -1,12 +1,12 @@
-package lk.ijse.bo.custom.impl;
+package lk.ijse.teacraft.bo.custom.impl;
 
-import lk.ijse.bo.custom.TeaBookTypeBO;
-import lk.ijse.dao.DAOFactory;
-import lk.ijse.dao.custom.TeaBookTypeDAO;
-import lk.ijse.dto.TeaBookTypeDetailDto;
-import lk.ijse.dto.TeaBookTypeDto;
-import lk.ijse.entity.TeaBookType;
-import lk.ijse.entity.TeaBookTypeDetails;
+import lk.ijse.teacraft.bo.custom.TeaBookTypeBO;
+import lk.ijse.teacraft.dao.DAOFactory;
+import lk.ijse.teacraft.dao.custom.TeaBookTypeDAO;
+import lk.ijse.teacraft.dto.TeaBookTypeDetailDto;
+import lk.ijse.teacraft.dto.TeaBookTypeDto;
+import lk.ijse.teacraft.entity.TeaBookType;
+import lk.ijse.teacraft.entity.TeaBookTypeDetails;
 
 import java.sql.SQLException;
 import java.time.LocalDate;

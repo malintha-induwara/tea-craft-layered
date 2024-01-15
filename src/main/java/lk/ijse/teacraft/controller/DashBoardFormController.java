@@ -1,4 +1,4 @@
-package lk.ijse.controller;
+package lk.ijse.teacraft.controller;
 
 import io.github.palexdev.materialfx.controls.MFXButton;
 import io.github.palexdev.materialfx.css.themes.MFXThemeManager;

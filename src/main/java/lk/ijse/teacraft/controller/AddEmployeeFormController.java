@@ -1,4 +1,4 @@
-package lk.ijse.controller;
+package lk.ijse.teacraft.controller;
 
 import io.github.palexdev.materialfx.controls.MFXButton;
 import io.github.palexdev.materialfx.controls.MFXComboBox;
@@ -9,9 +9,9 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import lk.ijse.bo.BOFactory;
-import lk.ijse.bo.custom.EmployeeBO;
-import lk.ijse.dto.EmployeeDto;
+import lk.ijse.teacraft.bo.BOFactory;
+import lk.ijse.teacraft.bo.custom.EmployeeBO;
+import lk.ijse.teacraft.dto.EmployeeDto;
 
 import java.sql.SQLException;
 import java.time.LocalDate;

@@ -1,13 +1,13 @@
-package lk.ijse.bo.custom.impl;
+package lk.ijse.teacraft.bo.custom.impl;
 
-import lk.ijse.bo.custom.TeaLeavesStockBO;
-import lk.ijse.dao.DAOFactory;
-import lk.ijse.dao.custom.TeaBookDAO;
-import lk.ijse.dao.custom.TeaLeavesStockDAO;
-import lk.ijse.db.DbConnection;
-import lk.ijse.dto.TeaLeavesStockDto;
-import lk.ijse.entity.TeaLeavesStock;
-import lk.ijse.util.TransactionUtil;
+import lk.ijse.teacraft.bo.custom.TeaLeavesStockBO;
+import lk.ijse.teacraft.dao.DAOFactory;
+import lk.ijse.teacraft.dao.custom.TeaBookDAO;
+import lk.ijse.teacraft.dao.custom.TeaLeavesStockDAO;
+import lk.ijse.teacraft.db.DbConnection;
+import lk.ijse.teacraft.dto.TeaLeavesStockDto;
+import lk.ijse.teacraft.entity.TeaLeavesStock;
+import lk.ijse.teacraft.util.TransactionUtil;
 
 import java.sql.Connection;
 import java.sql.SQLException;

@@ -1,4 +1,4 @@
-package lk.ijse.controller;
+package lk.ijse.teacraft.controller;
 
 import io.github.palexdev.materialfx.controls.MFXButton;
 import io.github.palexdev.materialfx.controls.MFXDatePicker;
@@ -15,11 +15,11 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import lk.ijse.bo.BOFactory;
-import lk.ijse.bo.custom.SupplierBO;
-import lk.ijse.bo.custom.TeaBookBO;
-import lk.ijse.bo.custom.TeaLeavesStockBO;
-import lk.ijse.dto.TeaLeavesStockDto;
+import lk.ijse.teacraft.bo.BOFactory;
+import lk.ijse.teacraft.bo.custom.SupplierBO;
+import lk.ijse.teacraft.bo.custom.TeaBookBO;
+import lk.ijse.teacraft.bo.custom.TeaLeavesStockBO;
+import lk.ijse.teacraft.dto.TeaLeavesStockDto;
 import lk.ijse.teacraft.view.tdm.TeaLeavesStockTm;
 import java.io.IOException;
 import java.sql.SQLException;

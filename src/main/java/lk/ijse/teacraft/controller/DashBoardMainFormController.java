@@ -1,4 +1,4 @@
-package lk.ijse.controller;
+package lk.ijse.teacraft.controller;
 
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
@@ -14,16 +14,16 @@ import javafx.scene.control.Alert;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
 import javafx.util.Duration;
-import lk.ijse.bo.BOFactory;
-import lk.ijse.bo.custom.AttendanceBO;
-import lk.ijse.bo.custom.PackagingDetailsBO;
-import lk.ijse.bo.custom.TeaBookBO;
-import lk.ijse.bo.custom.TeaTypeBO;
-import lk.ijse.bo.custom.impl.UserBOImpl;
-import lk.ijse.dao.DAOFactory;
-import lk.ijse.dao.custom.TeaOrderDAO;
-import lk.ijse.dto.TeaBookDto;
-import lk.ijse.dto.TeaTypesDto;
+import lk.ijse.teacraft.bo.BOFactory;
+import lk.ijse.teacraft.bo.custom.AttendanceBO;
+import lk.ijse.teacraft.bo.custom.PackagingDetailsBO;
+import lk.ijse.teacraft.bo.custom.TeaBookBO;
+import lk.ijse.teacraft.bo.custom.TeaTypeBO;
+import lk.ijse.teacraft.bo.custom.impl.UserBOImpl;
+import lk.ijse.teacraft.dao.DAOFactory;
+import lk.ijse.teacraft.dao.custom.TeaOrderDAO;
+import lk.ijse.teacraft.dto.TeaBookDto;
+import lk.ijse.teacraft.dto.TeaTypesDto;
 
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;

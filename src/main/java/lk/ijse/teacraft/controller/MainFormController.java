@@ -1,4 +1,4 @@
-package lk.ijse.controller;
+package lk.ijse.teacraft.controller;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;

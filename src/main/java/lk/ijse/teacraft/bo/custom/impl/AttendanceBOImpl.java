@@ -1,10 +1,10 @@
-package lk.ijse.bo.custom.impl;
+package lk.ijse.teacraft.bo.custom.impl;
 
-import lk.ijse.bo.custom.AttendanceBO;
-import lk.ijse.dao.DAOFactory;
-import lk.ijse.dao.custom.AttendanceDAO;
-import lk.ijse.dto.AttendanceDto;
-import lk.ijse.entity.Attendance;
+import lk.ijse.teacraft.bo.custom.AttendanceBO;
+import lk.ijse.teacraft.dao.DAOFactory;
+import lk.ijse.teacraft.dao.custom.AttendanceDAO;
+import lk.ijse.teacraft.dto.AttendanceDto;
+import lk.ijse.teacraft.entity.Attendance;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.LocalTime;

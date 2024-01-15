@@ -1,4 +1,4 @@
-package lk.ijse.controller;
+package lk.ijse.teacraft.controller;
 
 import io.github.palexdev.materialfx.controls.MFXButton;
 import io.github.palexdev.materialfx.controls.MFXComboBox;
@@ -15,13 +15,13 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
-import lk.ijse.bo.BOFactory;
-import lk.ijse.bo.custom.PaymentBO;
-import lk.ijse.bo.custom.SupplierBO;
-import lk.ijse.bo.custom.TeaCraftDetailBO;
-import lk.ijse.bo.custom.TeaLeavesStockBO;
-import lk.ijse.dto.PaymentsDto;
-import lk.ijse.dto.SupplierDto;
+import lk.ijse.teacraft.bo.BOFactory;
+import lk.ijse.teacraft.bo.custom.PaymentBO;
+import lk.ijse.teacraft.bo.custom.SupplierBO;
+import lk.ijse.teacraft.bo.custom.TeaCraftDetailBO;
+import lk.ijse.teacraft.bo.custom.TeaLeavesStockBO;
+import lk.ijse.teacraft.dto.PaymentsDto;
+import lk.ijse.teacraft.dto.SupplierDto;
 import lk.ijse.teacraft.view.tdm.PaymentTm;
 
 import java.io.IOException;

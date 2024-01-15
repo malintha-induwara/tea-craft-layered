@@ -1,4 +1,4 @@
-package lk.ijse.controller;
+package lk.ijse.teacraft.controller;
 
 import io.github.palexdev.materialfx.controls.MFXButton;
 import io.github.palexdev.materialfx.controls.MFXFilterComboBox;
@@ -15,13 +15,13 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
-import lk.ijse.bo.BOFactory;
-import lk.ijse.bo.custom.AttendanceBO;
-import lk.ijse.bo.custom.EmployeeBO;
-import lk.ijse.bo.custom.SalaryBO;
-import lk.ijse.bo.custom.TeaCraftDetailBO;
-import lk.ijse.dto.EmployeeDto;
-import lk.ijse.dto.SalaryDto;
+import lk.ijse.teacraft.bo.BOFactory;
+import lk.ijse.teacraft.bo.custom.AttendanceBO;
+import lk.ijse.teacraft.bo.custom.EmployeeBO;
+import lk.ijse.teacraft.bo.custom.SalaryBO;
+import lk.ijse.teacraft.bo.custom.TeaCraftDetailBO;
+import lk.ijse.teacraft.dto.EmployeeDto;
+import lk.ijse.teacraft.dto.SalaryDto;
 import lk.ijse.teacraft.view.tdm.SalaryTm;
 
 import java.io.IOException;

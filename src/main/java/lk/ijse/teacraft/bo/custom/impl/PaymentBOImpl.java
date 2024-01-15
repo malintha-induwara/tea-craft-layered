@@ -1,13 +1,13 @@
-package lk.ijse.bo.custom.impl;
+package lk.ijse.teacraft.bo.custom.impl;
 
-import lk.ijse.bo.custom.PaymentBO;
-import lk.ijse.dao.DAOFactory;
-import lk.ijse.dao.custom.PaymentsDAO;
-import lk.ijse.dao.custom.TeaLeavesStockDAO;
-import lk.ijse.db.DbConnection;
-import lk.ijse.dto.PaymentsDto;
-import lk.ijse.entity.Payments;
-import lk.ijse.util.TransactionUtil;
+import lk.ijse.teacraft.bo.custom.PaymentBO;
+import lk.ijse.teacraft.dao.DAOFactory;
+import lk.ijse.teacraft.dao.custom.PaymentsDAO;
+import lk.ijse.teacraft.dao.custom.TeaLeavesStockDAO;
+import lk.ijse.teacraft.db.DbConnection;
+import lk.ijse.teacraft.dto.PaymentsDto;
+import lk.ijse.teacraft.entity.Payments;
+import lk.ijse.teacraft.util.TransactionUtil;
 
 import java.sql.Connection;
 import java.sql.SQLException;

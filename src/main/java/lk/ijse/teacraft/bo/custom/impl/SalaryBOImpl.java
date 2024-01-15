@@ -1,13 +1,13 @@
-package lk.ijse.bo.custom.impl;
+package lk.ijse.teacraft.bo.custom.impl;
 
-import lk.ijse.bo.BOFactory;
-import lk.ijse.bo.custom.SalaryBO;
-import lk.ijse.dao.custom.AttendanceDAO;
-import lk.ijse.dao.custom.SalaryDAO;
-import lk.ijse.db.DbConnection;
-import lk.ijse.dto.SalaryDto;
-import lk.ijse.entity.Salary;
-import lk.ijse.util.TransactionUtil;
+import lk.ijse.teacraft.bo.BOFactory;
+import lk.ijse.teacraft.bo.custom.SalaryBO;
+import lk.ijse.teacraft.dao.custom.AttendanceDAO;
+import lk.ijse.teacraft.dao.custom.SalaryDAO;
+import lk.ijse.teacraft.db.DbConnection;
+import lk.ijse.teacraft.dto.SalaryDto;
+import lk.ijse.teacraft.entity.Salary;
+import lk.ijse.teacraft.util.TransactionUtil;
 
 import javax.sql.rowset.spi.TransactionalWriter;
 import java.sql.Connection;

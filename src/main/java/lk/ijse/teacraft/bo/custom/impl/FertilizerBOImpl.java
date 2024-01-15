@@ -1,10 +1,10 @@
-package lk.ijse.bo.custom.impl;
+package lk.ijse.teacraft.bo.custom.impl;
 
-import lk.ijse.bo.custom.FertilizerBO;
-import lk.ijse.dao.DAOFactory;
-import lk.ijse.dao.custom.FertilizerDAO;
-import lk.ijse.dto.FertilizerDto;
-import lk.ijse.entity.Fertilizer;
+import lk.ijse.teacraft.bo.custom.FertilizerBO;
+import lk.ijse.teacraft.dao.DAOFactory;
+import lk.ijse.teacraft.dao.custom.FertilizerDAO;
+import lk.ijse.teacraft.dto.FertilizerDto;
+import lk.ijse.teacraft.entity.Fertilizer;
 import lk.ijse.teacraft.view.tdm.FertilizerSalesCartTm;
 
 import java.sql.SQLException;

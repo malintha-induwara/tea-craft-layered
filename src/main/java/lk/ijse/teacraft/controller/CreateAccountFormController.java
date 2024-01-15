@@ -1,4 +1,4 @@
-package lk.ijse.controller;
+package lk.ijse.teacraft.controller;
 
 import io.github.palexdev.materialfx.controls.MFXButton;
 import io.github.palexdev.materialfx.controls.MFXPasswordField;
@@ -9,10 +9,10 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
-import lk.ijse.bo.BOFactory;
-import lk.ijse.bo.custom.UserBO;
-import lk.ijse.dto.UserDto;
-import lk.ijse.entity.User;
+import lk.ijse.teacraft.bo.BOFactory;
+import lk.ijse.teacraft.bo.custom.UserBO;
+import lk.ijse.teacraft.dto.UserDto;
+import lk.ijse.teacraft.entity.User;
 
 import java.io.IOException;
 import java.sql.SQLException;

@@ -1,4 +1,4 @@
-package lk.ijse.controller;
+package lk.ijse.teacraft.controller;
 
 import com.github.sarxos.webcam.Webcam;
 import javafx.event.ActionEvent;

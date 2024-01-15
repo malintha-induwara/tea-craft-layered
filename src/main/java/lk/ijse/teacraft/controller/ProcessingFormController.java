@@ -1,4 +1,4 @@
-package lk.ijse.controller;
+package lk.ijse.teacraft.controller;
 
 import io.github.palexdev.materialfx.controls.MFXButton;
 import io.github.palexdev.materialfx.controls.MFXComboBox;
@@ -11,15 +11,15 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.text.Text;
-import lk.ijse.bo.BOFactory;
-import lk.ijse.bo.custom.ProcessingBO;
-import lk.ijse.bo.custom.TeaBookBO;
-import lk.ijse.bo.custom.TeaBookTypeBO;
-import lk.ijse.bo.custom.TeaTypeBO;
-import lk.ijse.dto.TeaBookDto;
-import lk.ijse.dto.TeaBookTypeDetailDto;
-import lk.ijse.dto.TeaBookTypeDto;
-import lk.ijse.dto.TeaTypesDto;
+import lk.ijse.teacraft.bo.BOFactory;
+import lk.ijse.teacraft.bo.custom.ProcessingBO;
+import lk.ijse.teacraft.bo.custom.TeaBookBO;
+import lk.ijse.teacraft.bo.custom.TeaBookTypeBO;
+import lk.ijse.teacraft.bo.custom.TeaTypeBO;
+import lk.ijse.teacraft.dto.TeaBookDto;
+import lk.ijse.teacraft.dto.TeaBookTypeDetailDto;
+import lk.ijse.teacraft.dto.TeaBookTypeDto;
+import lk.ijse.teacraft.dto.TeaTypesDto;
 import lk.ijse.teacraft.view.tdm.TeaBookTypeTm;
 
 import java.sql.SQLException;
