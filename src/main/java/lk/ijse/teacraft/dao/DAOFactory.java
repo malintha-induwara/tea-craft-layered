@@ -1,6 +1,6 @@
-package lk.ijse.dao;
+package lk.ijse.teacraft.dao;
 
-import lk.ijse.dao.custom.impl.*;
+import lk.ijse.teacraft.dao.custom.impl.*;
 
 public class DAOFactory {
     private static DAOFactory daoFactory;

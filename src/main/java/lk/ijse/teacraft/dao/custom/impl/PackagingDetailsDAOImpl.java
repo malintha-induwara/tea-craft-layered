@@ -1,10 +1,10 @@
-package lk.ijse.dao.custom.impl;
+package lk.ijse.teacraft.dao.custom.impl;
 
-import lk.ijse.dao.custom.PackagingDetailsDAO;
-import lk.ijse.dto.PackagingCountAmountDto;
-import lk.ijse.entity.PackagingCountAmount;
-import lk.ijse.entity.PackagingDetails;
-import lk.ijse.util.SQLUtil;
+import lk.ijse.teacraft.dao.custom.PackagingDetailsDAO;
+import lk.ijse.teacraft.dto.PackagingCountAmountDto;
+import lk.ijse.teacraft.entity.PackagingCountAmount;
+import lk.ijse.teacraft.entity.PackagingDetails;
+import lk.ijse.teacraft.util.SQLUtil;
 import lombok.Data;
 
 import java.sql.Date;

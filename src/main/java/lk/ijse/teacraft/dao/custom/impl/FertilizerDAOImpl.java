@@ -1,8 +1,9 @@
-package lk.ijse.dao.custom.impl;
+package lk.ijse.teacraft.dao.custom.impl;
 
-import lk.ijse.dao.custom.FertilizerDAO;
-import lk.ijse.entity.Fertilizer;
-import lk.ijse.util.SQLUtil;
+import lk.ijse.teacraft.dao.custom.FertilizerDAO;
+import lk.ijse.teacraft.entity.Fertilizer;
+import lk.ijse.teacraft.dao.custom.FertilizerDAO;
+import lk.ijse.teacraft.util.SQLUtil;
 import lk.ijse.teacraft.view.tdm.FertilizerSalesCartTm;
 
 import java.sql.ResultSet;

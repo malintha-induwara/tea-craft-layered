@@ -1,9 +1,9 @@
-package lk.ijse.dao.custom.impl;
+package lk.ijse.teacraft.dao.custom.impl;
 
-import lk.ijse.dao.custom.EmployeeDAO;
-import lk.ijse.entity.Customer;
-import lk.ijse.entity.Employee;
-import lk.ijse.util.SQLUtil;
+import lk.ijse.teacraft.dao.custom.EmployeeDAO;
+import lk.ijse.teacraft.entity.Customer;
+import lk.ijse.teacraft.entity.Employee;
+import lk.ijse.teacraft.util.SQLUtil;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;

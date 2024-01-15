@@ -1,7 +1,7 @@
-package lk.ijse.dao.custom;
+package lk.ijse.teacraft.dao.custom;
 
-import lk.ijse.dao.CrudDAO;
-import lk.ijse.entity.Attendance;
+import lk.ijse.teacraft.dao.CrudDAO;
+import lk.ijse.teacraft.entity.Attendance;
 
 import java.sql.SQLException;
 import java.time.LocalDate;

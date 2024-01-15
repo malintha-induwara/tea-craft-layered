@@ -1,8 +1,8 @@
-package lk.ijse.dao.custom;
+package lk.ijse.teacraft.dao.custom;
 
-import lk.ijse.dao.CrudDAO;
-import lk.ijse.dto.PackagingCountAmountDto;
-import lk.ijse.entity.Packaging;
+import lk.ijse.teacraft.dao.CrudDAO;
+import lk.ijse.teacraft.dto.PackagingCountAmountDto;
+import lk.ijse.teacraft.entity.Packaging;
 import lk.ijse.teacraft.view.tdm.SalesCartTm;
 
 import java.sql.SQLException;

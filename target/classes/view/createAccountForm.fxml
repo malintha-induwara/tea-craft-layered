@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import io.github.palexdev.materialfx.controls.MFXButton?>
+<?import io.github.palexdev.materialfx.controls.MFXPasswordField?>
+<?import io.github.palexdev.materialfx.controls.MFXTextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane fx:id="createAccountPane" prefHeight="630.0" prefWidth="475.0" style="-fx-background-color: #FFFFFF;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.controller.CreateAccountFormController">
+   <children>
+      <Text layoutX="80.0" layoutY="105.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Create Account">
+         <font>
+            <Font name="Segoe UI" size="30.0" />
+         </font>
+      </Text>
+      <Text fill="#636e72" layoutX="80.0" layoutY="140.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Enter your details to create a account" wrappingWidth="320.0">
+         <font>
+            <Font name="Roboto" size="15.0" />
+         </font>
+      </Text>
+      <MFXTextField fx:id="txtEmail" floatingText="Email" layoutX="78.0" layoutY="169.0" onAction="#txtEmailOnAction" prefHeight="50.0" prefWidth="320.0" stylesheets="@../assets/css/MFXLogin.css" />
+      <MFXButton fx:id="btnCreateAccount" buttonType="RAISED" depthLevel="LEVEL0" layoutX="78.0" layoutY="469.0" onAction="#btnCreateAccountOnAction" prefHeight="50.0" prefWidth="150.0" style="-fx-background-color: #1dd1a1;" styleClass="mfx-button-login" stylesheets="@../assets/css/MFXLogin.css" text="Create Account" />
+      <MFXButton fx:id="btnCancel" buttonType="RAISED" depthLevel="LEVEL1" layoutX="248.0" layoutY="469.0" onAction="#btnCancelOnAction" prefHeight="50.0" prefWidth="150.0" style="-fx-background-color: #2d3436;" styleClass="mfx-button-CreateAccount" stylesheets="@../assets/css/MFXLogin.css" text="Cancel" />
+      <MFXTextField fx:id="txtUsername" floatingText="Username" layoutX="78.0" layoutY="241.0" onAction="#txtUsernameOnAction" prefHeight="50.0" prefWidth="320.0" stylesheets="@../assets/css/MFXLogin.css" />
+      <MFXPasswordField fx:id="txtPassword" floatMode="BORDER" floatingText="Password" layoutX="78.0" layoutY="315.0" onAction="#txtPasswordOnAction" prefHeight="50.0" prefWidth="320.0" stylesheets="@../assets/css/MFXLogin.css" />
+      <MFXPasswordField fx:id="txtReEnterPassword" floatMode="BORDER" floatingText="Re Enter Password" layoutX="78.0" layoutY="385.0" onAction="#txtReEnterPasswordOnAction" prefHeight="50.0" prefWidth="320.0" stylesheets="@../assets/css/MFXLogin.css" />
+      <Text fx:id="txtMassage" fill="#d93025" layoutX="80.0" layoutY="455.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" visible="false">
+         <font>
+            <Font name="Roboto" size="12.0" />
+         </font>
+      </Text>
+   </children>
+</AnchorPane>

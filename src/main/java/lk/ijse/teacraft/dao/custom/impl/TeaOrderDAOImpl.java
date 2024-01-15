@@ -1,8 +1,8 @@
-package lk.ijse.dao.custom.impl;
+package lk.ijse.teacraft.dao.custom.impl;
 
-import lk.ijse.dao.custom.TeaOrderDAO;
-import lk.ijse.entity.TeaOrder;
-import lk.ijse.util.SQLUtil;
+import lk.ijse.teacraft.dao.custom.TeaOrderDAO;
+import lk.ijse.teacraft.entity.TeaOrder;
+import lk.ijse.teacraft.util.SQLUtil;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;

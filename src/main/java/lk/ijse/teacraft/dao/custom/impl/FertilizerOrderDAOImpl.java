@@ -1,8 +1,8 @@
-package lk.ijse.dao.custom.impl;
+package lk.ijse.teacraft.dao.custom.impl;
 
-import lk.ijse.dao.custom.FertilizerOrderDAO;
-import lk.ijse.entity.FertilizerOrder;
-import lk.ijse.util.SQLUtil;
+import lk.ijse.teacraft.dao.custom.FertilizerOrderDAO;
+import lk.ijse.teacraft.entity.FertilizerOrder;
+import lk.ijse.teacraft.util.SQLUtil;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;

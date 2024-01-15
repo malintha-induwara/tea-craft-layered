@@ -1,4 +1,4 @@
-package lk.ijse.dao;
+package lk.ijse.teacraft.dao;
 
 import java.sql.SQLException;
 import java.util.ArrayList;

@@ -1,7 +1,7 @@
-package lk.ijse.dao.custom;
+package lk.ijse.teacraft.dao.custom;
 
-import lk.ijse.dao.CrudDAO;
-import lk.ijse.entity.Payments;
+import lk.ijse.teacraft.dao.CrudDAO;
+import lk.ijse.teacraft.entity.Payments;
 
 import java.sql.SQLException;
 import java.util.List;

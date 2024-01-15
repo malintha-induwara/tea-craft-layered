@@ -1,7 +1,7 @@
-package lk.ijse.dao.custom;
+package lk.ijse.teacraft.dao.custom;
 
-import lk.ijse.dao.SuperDAO;
-import lk.ijse.db.DbConnection;
+import lk.ijse.teacraft.dao.SuperDAO;
+import lk.ijse.teacraft.db.DbConnection;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;

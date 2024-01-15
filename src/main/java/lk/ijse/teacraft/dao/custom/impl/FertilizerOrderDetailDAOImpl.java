@@ -1,7 +1,7 @@
-package lk.ijse.dao.custom.impl;
+package lk.ijse.teacraft.dao.custom.impl;
 
-import lk.ijse.dao.custom.FertilizerOrderDetailDAO;
-import lk.ijse.util.SQLUtil;
+import lk.ijse.teacraft.dao.custom.FertilizerOrderDetailDAO;
+import lk.ijse.teacraft.util.SQLUtil;
 import lk.ijse.teacraft.view.tdm.FertilizerSalesCartTm;
 import java.sql.SQLException;
 import java.util.List;

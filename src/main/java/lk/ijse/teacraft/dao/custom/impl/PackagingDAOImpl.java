@@ -1,9 +1,9 @@
-package lk.ijse.dao.custom.impl;
+package lk.ijse.teacraft.dao.custom.impl;
 
-import lk.ijse.dao.custom.PackagingDAO;
-import lk.ijse.dto.PackagingCountAmountDto;
-import lk.ijse.entity.Packaging;
-import lk.ijse.util.SQLUtil;
+import lk.ijse.teacraft.dao.custom.PackagingDAO;
+import lk.ijse.teacraft.dto.PackagingCountAmountDto;
+import lk.ijse.teacraft.entity.Packaging;
+import lk.ijse.teacraft.util.SQLUtil;
 import lk.ijse.teacraft.view.tdm.SalesCartTm;
 
 import java.sql.ResultSet;

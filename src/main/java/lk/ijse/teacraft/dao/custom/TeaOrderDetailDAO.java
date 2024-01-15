@@ -1,6 +1,6 @@
-package lk.ijse.dao.custom;
+package lk.ijse.teacraft.dao.custom;
 
-import lk.ijse.dao.SuperDAO;
+import lk.ijse.teacraft.dao.SuperDAO;
 import lk.ijse.teacraft.view.tdm.SalesCartTm;
 import java.sql.SQLException;
 import java.util.List;

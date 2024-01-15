@@ -1,8 +1,8 @@
-package lk.ijse.dao.custom.impl;
+package lk.ijse.teacraft.dao.custom.impl;
 
-import lk.ijse.dao.custom.SalaryDAO;
-import lk.ijse.entity.Salary;
-import lk.ijse.util.SQLUtil;
+import lk.ijse.teacraft.dao.custom.SalaryDAO;
+import lk.ijse.teacraft.entity.Salary;
+import lk.ijse.teacraft.util.SQLUtil;
 
 import java.sql.Date;
 import java.sql.ResultSet;

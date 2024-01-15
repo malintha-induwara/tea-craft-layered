@@ -1,10 +1,10 @@
-package lk.ijse.dao.custom;
+package lk.ijse.teacraft.dao.custom;
 
-import lk.ijse.dao.CrudDAO;
-import lk.ijse.dto.PackagingCountAmountDto;
-import lk.ijse.entity.PackagingCountAmount;
-import lk.ijse.entity.PackagingDetails;
-import lk.ijse.util.SQLUtil;
+import lk.ijse.teacraft.dao.CrudDAO;
+import lk.ijse.teacraft.dto.PackagingCountAmountDto;
+import lk.ijse.teacraft.entity.PackagingCountAmount;
+import lk.ijse.teacraft.entity.PackagingDetails;
+import lk.ijse.teacraft.util.SQLUtil;
 
 import java.sql.Date;
 import java.sql.ResultSet;

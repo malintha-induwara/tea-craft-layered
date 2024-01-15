@@ -1,4 +1,4 @@
-package lk.ijse.util;
+package lk.ijse.teacraft.util;
 
 
 import javax.mail.*;

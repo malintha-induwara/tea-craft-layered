@@ -1,10 +1,10 @@
-package lk.ijse.dao.custom.impl;
+package lk.ijse.teacraft.dao.custom.impl;
 
 
-import lk.ijse.dao.custom.TeaTypeDAO;
-import lk.ijse.entity.TeaBookTypeDetails;
-import lk.ijse.entity.TeaTypes;
-import lk.ijse.util.SQLUtil;
+import lk.ijse.teacraft.dao.custom.TeaTypeDAO;
+import lk.ijse.teacraft.entity.TeaBookTypeDetails;
+import lk.ijse.teacraft.entity.TeaTypes;
+import lk.ijse.teacraft.util.SQLUtil;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;

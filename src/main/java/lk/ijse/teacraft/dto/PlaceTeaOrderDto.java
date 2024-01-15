@@ -1,4 +1,4 @@
-package lk.ijse.dto;
+package lk.ijse.teacraft.dto;
 
 import lk.ijse.teacraft.view.tdm.SalesCartTm;
 import lombok.AllArgsConstructor;

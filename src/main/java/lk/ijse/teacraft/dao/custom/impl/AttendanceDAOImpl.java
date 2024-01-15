@@ -1,8 +1,8 @@
-package lk.ijse.dao.custom.impl;
+package lk.ijse.teacraft.dao.custom.impl;
 
-import lk.ijse.dao.custom.AttendanceDAO;
-import lk.ijse.entity.Attendance;
-import lk.ijse.util.SQLUtil;
+import lk.ijse.teacraft.dao.custom.AttendanceDAO;
+import lk.ijse.teacraft.entity.Attendance;
+import lk.ijse.teacraft.util.SQLUtil;
 
 import java.sql.Date;
 import java.sql.ResultSet;

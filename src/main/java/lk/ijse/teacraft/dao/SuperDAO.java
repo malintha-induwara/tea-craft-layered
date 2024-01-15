@@ -1,4 +1,4 @@
-package lk.ijse.dao;
+package lk.ijse.teacraft.dao;
 
 public interface SuperDAO {
 }

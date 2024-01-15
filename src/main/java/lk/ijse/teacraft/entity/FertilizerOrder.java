@@ -1,4 +1,4 @@
-package lk.ijse.entity;
+package lk.ijse.teacraft.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

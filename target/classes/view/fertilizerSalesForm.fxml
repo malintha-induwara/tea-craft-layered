@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import io.github.palexdev.materialfx.controls.MFXButton?>
+<?import io.github.palexdev.materialfx.controls.MFXFilterComboBox?>
+<?import io.github.palexdev.materialfx.controls.MFXTextField?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane fx:id="fertilizerSalesPane" prefHeight="720.0" prefWidth="1030.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.controller.FertilizerSalesFormController">
+   <children>
+      <Text fill="#636e72" layoutX="60.0" layoutY="100.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Fertilizer Sales">
+         <font>
+            <Font name="Roboto Medium" size="37.0" />
+         </font>
+         <effect>
+            <DropShadow>
+               <color>
+                  <Color opacity="0.2786259651184082" />
+               </color>
+            </DropShadow>
+         </effect>
+      </Text>
+      <Rectangle arcHeight="10.0" arcWidth="10.0" fill="WHITE" height="485.0" layoutX="95.0" layoutY="138.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" style="" width="406.0">
+         <effect>
+            <DropShadow blurType="GAUSSIAN" offsetX="-1.0" offsetY="2.0" spread="0.12">
+               <color>
+                  <Color opacity="0.20000000298023224" />
+               </color>
+            </DropShadow>
+         </effect>
+      </Rectangle>
+      <Rectangle arcHeight="10.0" arcWidth="10.0" fill="WHITE" height="485.0" layoutX="512.0" layoutY="138.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" style="" width="472.0">
+         <effect>
+            <DropShadow blurType="GAUSSIAN" offsetX="-1.0" offsetY="2.0" spread="0.12">
+               <color>
+                  <Color opacity="0.20000000298023224" />
+               </color>
+            </DropShadow>
+         </effect>
+      </Rectangle>
+      <Rectangle arcHeight="10.0" arcWidth="10.0" fill="WHITE" height="72.0" layoutX="647.0" layoutY="45.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" style="" width="337.0">
+         <effect>
+            <DropShadow blurType="GAUSSIAN" offsetX="-1.0" offsetY="2.0" spread="0.12">
+               <color>
+                  <Color opacity="0.20000000298023224" />
+               </color>
+            </DropShadow>
+         </effect>
+      </Rectangle>
+      <Text fx:id="txtDate" layoutX="759.0" layoutY="88.0" strokeType="OUTSIDE" strokeWidth="0.0" text="-">
+         <font>
+            <Font name="Roboto Medium" size="20.0" />
+         </font>
+      </Text>
+      <Text fill="#636e72" layoutX="682.0" layoutY="89.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Date">
+         <font>
+            <Font name="Roboto Medium" size="22.0" />
+         </font>
+      </Text>
+      <Text fill="#636e72" layoutX="137.0" layoutY="181.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Order ID">
+         <font>
+            <Font name="Roboto Medium" size="22.0" />
+         </font>
+      </Text>
+      <Text fx:id="txtName" layoutX="366.0" layoutY="267.0" strokeType="OUTSIDE" strokeWidth="0.0" text="-">
+         <font>
+            <Font name="Roboto Medium" size="20.0" />
+         </font>
+      </Text>
+      <Text fill="#636e72" layoutX="137.0" layoutY="312.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Item">
+         <font>
+            <Font name="Roboto Medium" size="22.0" />
+         </font>
+      </Text>
+      <Text fill="#636e72" layoutX="137.0" layoutY="267.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Name">
+         <font>
+            <Font name="Roboto Medium" size="22.0" />
+         </font>
+      </Text>
+      <Text fill="#636e72" layoutX="137.0" layoutY="227.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Supplier ID">
+         <font>
+            <Font name="Roboto Medium" size="22.0" />
+         </font>
+      </Text>
+      <Text fx:id="txtOrderId" layoutX="363.0" layoutY="180.0" strokeType="OUTSIDE" strokeWidth="0.0" text="O-001">
+         <font>
+            <Font name="Roboto Medium" size="20.0" />
+         </font>
+      </Text>
+      <Text fill="#636e72" layoutX="137.0" layoutY="360.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Description">
+         <font>
+            <Font name="Roboto Medium" size="22.0" />
+         </font>
+      </Text>
+      <Text fx:id="txtDescription" layoutX="364.0" layoutY="359.0" strokeType="OUTSIDE" strokeWidth="0.0" text="-">
+         <font>
+            <Font name="Roboto Medium" size="20.0" />
+         </font>
+      </Text>
+      <Text fill="#636e72" layoutX="137.0" layoutY="450.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Qty On Hand">
+         <font>
+            <Font name="Roboto Medium" size="22.0" />
+         </font>
+      </Text>
+      <Text fill="#636e72" layoutX="137.0" layoutY="405.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Unit Price">
+         <font>
+            <Font name="Roboto Medium" size="22.0" />
+         </font>
+      </Text>
+      <Text fx:id="txtUnitPrice" layoutX="363.0" layoutY="404.0" strokeType="OUTSIDE" strokeWidth="0.0" text="-">
+         <font>
+            <Font name="Roboto Medium" size="20.0" />
+         </font>
+      </Text>
+      <Text fx:id="txtQtyOnHand" layoutX="367.0" layoutY="449.0" strokeType="OUTSIDE" strokeWidth="0.0" text="-">
+         <font>
+            <Font name="Roboto Medium" size="20.0" />
+         </font>
+      </Text>
+      <Text fill="#636e72" layoutX="138.0" layoutY="503.0" strokeType="OUTSIDE" strokeWidth="0.0" text="QTY">
+         <font>
+            <Font name="Roboto Medium" size="22.0" />
+         </font>
+      </Text>
+      <MFXTextField fx:id="txtFieldQty" floatMode="DISABLED" layoutX="308.0" layoutY="470.0" onAction="#txtFieldQtyOnAction" prefHeight="45.0" prefWidth="81.0" styleClass="mfx-text-field" stylesheets="@../assets/css/MFXProcessing.css" />
+      <Text fill="#636e72" layoutX="589.0" layoutY="502.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Net Total">
+         <font>
+            <Font name="Roboto Medium" size="22.0" />
+         </font>
+      </Text>
+      <Text fx:id="txtNetTotal" layoutX="727.0" layoutY="502.0" strokeType="OUTSIDE" strokeWidth="0.0" text="-">
+         <font>
+            <Font name="Roboto Medium" size="20.0" />
+         </font>
+      </Text>
+      <MFXButton fx:id="btnCancel" buttonType="RAISED" depthLevel="LEVEL1" layoutX="775.0" layoutY="547.0" onAction="#btnCancelOnAction" prefHeight="50.0" prefWidth="150.0" style="-fx-background-color: #2d3436;" styleClass="mfx-button-Cancel" stylesheets="@../assets/css/MFXSales.css" text="Cancel" />
+      <TableView fx:id="tblCart" layoutX="532.0" layoutY="191.0" prefHeight="271.0" prefWidth="433.0" stylesheets="@../assets/css/TableStyle.css">
+        <columns>
+          <TableColumn fx:id="colFertilizerId" prefWidth="81.0" style="-fx-alignment: center;" text="ID" />
+          <TableColumn fx:id="colDescription" prefWidth="95.0" style="-fx-alignment: center;" text="Desctiption" />
+            <TableColumn fx:id="colQty" prefWidth="84.0" style="-fx-alignment: center;" text="Qty" />
+            <TableColumn fx:id="colTotal" prefWidth="89.0" style="-fx-alignment: center;" text="Total" />
+            <TableColumn fx:id="colRemove" prefWidth="82.0" style="-fx-alignment: center;" text="Remove" />
+        </columns>
+      </TableView>
+      <MFXButton fx:id="btnReceipt" buttonType="RAISED" depthLevel="LEVEL0" layoutX="839.0" layoutY="473.0" onAction="#btnReceiptOnAction" prefHeight="50.0" prefWidth="104.0" style="-fx-background-color: #1dd1a1;" styleClass="mfx-button-PlaceOrder" stylesheets="@../assets/css/MFXSales.css" text="Recipt">
+         <graphic>
+            <ImageView fitHeight="32.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../assets/images/recipt.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </MFXButton>
+      <MFXButton fx:id="btnSales" buttonType="RAISED" depthLevel="LEVEL3" layoutX="371.0" layoutY="643.0" prefHeight="50.0" prefWidth="133.0" style="-fx-background-color: #74b9ff;" styleClass="mfx-button-Employee" stylesheets="@../assets/css/MFXEmployee.css" text="Sales">
+         <graphic>
+            <ImageView fitHeight="23.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../assets/images/purchase.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </MFXButton>
+      <MFXButton fx:id="btnFertilizer" buttonType="RAISED" depthLevel="LEVEL3" layoutX="522.0" layoutY="643.0" onAction="#btnFertilizerOnAction" prefHeight="50.0" prefWidth="133.0" style="-fx-background-color: #a29bfe;" styleClass="mfx-button-Employee" stylesheets="@../assets/css/MFXEmployee.css" text="Fertilizer">
+         <graphic>
+            <ImageView fitHeight="25.0" fitWidth="72.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../assets/images/fertilizer.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </MFXButton>
+      <MFXButton fx:id="btnAddCart" buttonType="RAISED" depthLevel="LEVEL0" layoutX="233.0" layoutY="544.0" onAction="#btnAddCartOnAction" prefHeight="50.0" prefWidth="150.0" style="-fx-background-color: #1dd1a1;" styleClass="mfx-button-AddToCart" stylesheets="@../assets/css/MFXSales.css" text="Add To Cart">
+         <graphic>
+            <ImageView fitHeight="30.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../assets/images/addToCart.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </MFXButton>
+      <MFXButton fx:id="btnPlaceOrder" buttonType="RAISED" depthLevel="LEVEL0" layoutX="573.0" layoutY="547.0" onAction="#btnPlaceOrderOnAction" prefHeight="50.0" prefWidth="150.0" style="-fx-background-color: #1dd1a1;" styleClass="mfx-button-PlaceOrder" stylesheets="@../assets/css/MFXSales.css" text="Place Order">
+         <graphic>
+            <ImageView fitHeight="30.0" fitWidth="45.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../assets/images/placOrder.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </MFXButton>
+      <Text fx:id="txtMassage" fill="#d93025" layoutX="140.0" layoutY="541.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Enter Valid Qty" visible="false">
+         <font>
+            <Font name="Roboto" size="13.0" />
+         </font>
+      </Text>
+      <MFXFilterComboBox fx:id="cmbFertilizer" floatMode="DISABLED" layoutX="308.0" layoutY="282.0" onAction="#cmbFertilizerOnAction" prefHeight="45.0" prefWidth="160.0" styleClass="mfx-combo-box" stylesheets="@../assets/css/MFXProcessing.css" />
+      <Text layoutX="329.0" layoutY="404.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Rs">
+         <font>
+            <Font name="Roboto Medium" size="20.0" />
+         </font>
+      </Text>
+      <Text layoutX="696.0" layoutY="502.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Rs">
+         <font>
+            <Font name="Roboto Medium" size="20.0" />
+         </font>
+      </Text>
+      <Text fill="#636e72" layoutX="538.0" layoutY="173.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Sales Cart">
+         <font>
+            <Font name="Roboto Medium" size="22.0" />
+         </font>
+      </Text>
+      <MFXFilterComboBox fx:id="cmbCustomerId" floatMode="DISABLED" layoutX="310.0" layoutY="197.0" onAction="#cmbCustomerOnAction" prefHeight="45.0" prefWidth="160.0" styleClass="mfx-combo-box" stylesheets="@../assets/css/MFXProcessing.css" />
+   </children>
+</AnchorPane>
