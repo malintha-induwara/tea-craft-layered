@@ -1,9 +1,9 @@
-package lk.ijse.bo.custom;
+package lk.ijse.teacraft.bo.custom;
 
-import lk.ijse.bo.SuperBO;
-import lk.ijse.dto.PackagingCountAmountDto;
-import lk.ijse.dto.TeaBookTypeDetailDto;
-import lk.ijse.dto.TeaTypesDto;
+import lk.ijse.teacraft.bo.SuperBO;
+import lk.ijse.teacraft.dto.PackagingCountAmountDto;
+import lk.ijse.teacraft.dto.TeaBookTypeDetailDto;
+import lk.ijse.teacraft.dto.TeaTypesDto;
 import java.sql.SQLException;
 import java.util.List;
 

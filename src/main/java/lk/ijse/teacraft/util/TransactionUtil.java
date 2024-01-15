@@ -1,6 +1,6 @@
 package lk.ijse.teacraft.util;
 
-import lk.ijse.db.DbConnection;
+import lk.ijse.teacraft.db.DbConnection;
 
 import java.sql.Connection;
 import java.sql.SQLException;

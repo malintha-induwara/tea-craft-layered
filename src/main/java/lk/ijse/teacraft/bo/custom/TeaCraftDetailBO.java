@@ -1,6 +1,6 @@
-package lk.ijse.bo.custom;
+package lk.ijse.teacraft.bo.custom;
 
-import lk.ijse.bo.SuperBO;
+import lk.ijse.teacraft.bo.SuperBO;
 import java.sql.SQLException;
 
 public interface TeaCraftDetailBO extends SuperBO {

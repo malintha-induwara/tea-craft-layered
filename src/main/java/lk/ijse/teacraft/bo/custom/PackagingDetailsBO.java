@@ -1,8 +1,8 @@
-package lk.ijse.bo.custom;
+package lk.ijse.teacraft.bo.custom;
 
-import lk.ijse.bo.SuperBO;
-import lk.ijse.dto.PackagingCountAmountDto;
-import lk.ijse.dto.PackagingDetailsDto;
+import lk.ijse.teacraft.bo.SuperBO;
+import lk.ijse.teacraft.dto.PackagingCountAmountDto;
+import lk.ijse.teacraft.dto.PackagingDetailsDto;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.List;

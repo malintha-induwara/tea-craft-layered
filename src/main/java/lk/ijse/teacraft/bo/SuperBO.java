@@ -1,4 +1,4 @@
-package lk.ijse.bo;
+package lk.ijse.teacraft.bo;
 
 public interface SuperBO {
 }

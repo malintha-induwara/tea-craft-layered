@@ -1,6 +1,6 @@
-package lk.ijse.bo;
+package lk.ijse.teacraft.bo;
 
-import lk.ijse.bo.custom.impl.*;
+import lk.ijse.teacraft.bo.custom.impl.*;
 
 public class BOFactory {
 

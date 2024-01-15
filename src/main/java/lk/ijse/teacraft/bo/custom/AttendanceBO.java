@@ -1,9 +1,9 @@
-package lk.ijse.bo.custom;
+package lk.ijse.teacraft.bo.custom;
 
-import lk.ijse.bo.SuperBO;
-import lk.ijse.db.DbConnection;
-import lk.ijse.dto.AttendanceDto;
-import lk.ijse.entity.Attendance;
+import lk.ijse.teacraft.bo.SuperBO;
+import lk.ijse.teacraft.db.DbConnection;
+import lk.ijse.teacraft.dto.AttendanceDto;
+import lk.ijse.teacraft.entity.Attendance;
 import java.sql.*;
 import java.time.LocalDate;
 import java.time.LocalTime;

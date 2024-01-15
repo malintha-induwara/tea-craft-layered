@@ -1,8 +1,8 @@
-package lk.ijse.bo.custom;
-import lk.ijse.bo.SuperBO;
-import lk.ijse.db.DbConnection;
-import lk.ijse.dto.SupplierDto;
-import lk.ijse.entity.Supplier;
+package lk.ijse.teacraft.bo.custom;
+import lk.ijse.teacraft.bo.SuperBO;
+import lk.ijse.teacraft.db.DbConnection;
+import lk.ijse.teacraft.dto.SupplierDto;
+import lk.ijse.teacraft.entity.Supplier;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;

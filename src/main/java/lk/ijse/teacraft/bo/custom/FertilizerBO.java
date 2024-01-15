@@ -1,7 +1,7 @@
-package lk.ijse.bo.custom;
+package lk.ijse.teacraft.bo.custom;
 
-import lk.ijse.bo.SuperBO;
-import lk.ijse.dto.FertilizerDto;
+import lk.ijse.teacraft.bo.SuperBO;
+import lk.ijse.teacraft.dto.FertilizerDto;
 import lk.ijse.teacraft.view.tdm.FertilizerSalesCartTm;
 
 import java.sql.SQLException;

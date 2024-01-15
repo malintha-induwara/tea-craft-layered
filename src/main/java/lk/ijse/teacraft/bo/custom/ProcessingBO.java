@@ -1,7 +1,7 @@
-package lk.ijse.bo.custom;
+package lk.ijse.teacraft.bo.custom;
 
-import lk.ijse.bo.SuperBO;
-import lk.ijse.dto.TeaBookTypeDetailDto;
+import lk.ijse.teacraft.bo.SuperBO;
+import lk.ijse.teacraft.dto.TeaBookTypeDetailDto;
 
 import java.sql.SQLException;
 import java.time.LocalDate;
