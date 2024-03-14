@@ -1,7 +1,5 @@
 # Tea Craft - Tea Factory Management System.
 * Tea Craft is a comprehensive Tea Factory Management System designed to streamline the operations of tea processing facilities. Leveraging modern technologies, including JavaFX, Java MaterialFX, UniRest, and Google ZXing, Tea Craft offers an intuitive user interface and robust functionality.
-### User Interfaces
-
 
 ### User Interfaces
 ![Screenshot from 2023-12-03 16-38-36](https://github.com/malintha-induwara/tea-craft-layered/assets/60071404/8b13404f-cda7-4364-b91e-5a8e7dfa771a)
