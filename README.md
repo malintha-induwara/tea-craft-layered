@@ -16,7 +16,7 @@
 
 ![Screenshot from 2023-12-03 16-40-56](https://github.com/malintha-induwara/tea-craft-layered/assets/60071404/de2ad892-e226-49c0-b30e-032fc6740daf)
 
-
+### Features
 
 * **Email Verification:** Tea Craft ensures security by sending email verifications during user account creation or password resets, ensuring that only authorized personnel gain access to the system.
 * **QR Scanning for Employee Attendance:** Utilizing Google ZXing, Tea Craft simplifies employee attendance tracking through QR code scanning, providing a convenient and efficient method for monitoring workforce presence.
