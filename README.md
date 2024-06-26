@@ -1,7 +1,7 @@
 # Tea Craft - Tea Factory Management System.
 * Tea Craft is a comprehensive Tea Factory Management System designed to streamline the operations of tea processing facilities. Leveraging modern technologies, including JavaFX, Java MaterialFX, UniRest, and Google ZXing, Tea Craft offers an intuitive user interface and robust functionality.
 
-### User Interfaces
+## User Interfaces
 ![Screenshot from 2023-12-03 16-38-36](https://github.com/malintha-induwara/tea-craft-layered/assets/60071404/8b13404f-cda7-4364-b91e-5a8e7dfa771a)
 
 ![Screenshot from 2023-12-03 16-39-03](https://github.com/malintha-induwara/tea-craft-layered/assets/60071404/386240f1-d337-4f63-a047-a4758995ef04)
@@ -16,7 +16,7 @@
 
 ![Screenshot from 2023-12-03 16-40-56](https://github.com/malintha-induwara/tea-craft-layered/assets/60071404/de2ad892-e226-49c0-b30e-032fc6740daf)
 
-### Features
+## Features
 
 * **Email Verification:** Tea Craft ensures security by sending email verifications during user account creation or password resets, ensuring that only authorized personnel gain access to the system.
 * **QR Scanning for Employee Attendance:** Utilizing Google ZXing, Tea Craft simplifies employee attendance tracking through QR code scanning, providing a convenient and efficient method for monitoring workforce presence.
@@ -25,16 +25,17 @@
 * **Receipt Generation:** Seamlessly generate receipts for transactions and processes within the tea factory, facilitating accurate record-keeping and financial management.
 
 
-### How to use this repo
+## How to use this repo
 * Clone the reop 
 * Open the project using IDE like IntelliJ IDEA
 * Reload the pom.xml file via Maven Tool Window
 * Create a database using schema and change the username and password of DB Connection.class
 * Run Lancher Wrapper ✨
 
-### Built with
+## Built with
 * Java
 * Java FX
 * Material FX
 * UniRest
 * ZXing
+* Open CV
