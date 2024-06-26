@@ -26,8 +26,15 @@
 
 
 ### How to use this repo
-* Open the pom.xml via IntelliJ IDEA
-* Make sure to the open it as a project, if prompt
+* Clone the reop 
+* Open the project using IDE like IntelliJ IDEA
 * Reload the pom.xml file via Maven Tool Window
 * Create a database using schema and change the username and password of DB Connection.class
 * Run Lancher Wrapper ✨
+
+### Built with
+* Java
+* Java FX
+* Material FX
+* UniRest
+* ZXing
